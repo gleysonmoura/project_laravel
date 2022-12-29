@@ -1,8 +1,7 @@
 <?php
-
 function do_register()
 {
-    if($_POST['person']??false){
+    if ($_POST['person'] ?? false) {
         unset($_POST['person']['password-confirm']);
         crud_create($_POST['person']);
         header("Location: /?page=login");
@@ -26,4 +25,3 @@ function do_forget_password()
 {
     render_view('forget_password');
 }
-
