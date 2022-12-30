@@ -1,5 +1,5 @@
 <?php
-function do_register()
+/* function do_register()
 {
     if ($_POST['person'] ?? false) {
         unset($_POST['person']['password-confirm']);
@@ -8,6 +8,11 @@ function do_register()
     } else {
         render_view('register');
     }
+} */
+
+function do_register()
+{
+    render_view('register');
 }
 
 function do_login()
