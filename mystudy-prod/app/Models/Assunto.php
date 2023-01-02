@@ -15,4 +15,9 @@ class Assunto extends Model
     {
         return $this->belongsTo(Disciplina::class);
     }
+
+    public function Atividades ()
+    {
+        return $this->hasMany(Atividade::class);
+    }
 }

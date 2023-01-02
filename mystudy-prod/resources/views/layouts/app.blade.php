@@ -17,6 +17,8 @@
         <!-- Font Awesome Icons -->
         <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
         <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+        </script>
         <!-- CSS Files -->
         <link id="pagestyle" href="{{ asset ('assets/css/argon-dashboard.css') }}" rel="stylesheet" />
     </head>
@@ -58,6 +60,7 @@
         <script src="{{asset ('assets/js/core/bootstrap.min.js') }}"></script>
         <script src="{{asset ('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
         <script src="{{asset ('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
+        <script src="{{asset ('assets/js/flatpickr.min.js') }}"></script>
         <script>
             var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -71,7 +74,9 @@
         <script async defer src="https://buttons.github.io/buttons.js"></script>
         <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="{{ asset ('assets/js/argon-dashboard.js') }}"></script>
-        {{-- @stack('js') --}}
+        <script src="{{ asset ('assets/js/argon-dashboard.min.js') }}"></script>
+        {{-- <script src="{{ asset ('assets/js/jquery.min.js') }}"></script> --}}
+        @stack('js')
     </body>
 
 </html>

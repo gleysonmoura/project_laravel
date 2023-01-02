@@ -48,6 +48,15 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pages</h6>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href=" {{ route('atividade.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Atividades</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link " href="http://127.0.0.1:8000/tables">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">

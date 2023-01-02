@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ConteudoController;
+use App\Http\Controllers\AtividadesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('conteudo', conteudoController::class);
-
+Route::resource('conteudo', ConteudoController::class);
+Route::resource('atividade', AtividadesController::class);
 Route::get('/', function () {
 	return view('welcome');
 });
@@ -60,8 +61,6 @@ Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middle
 
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/virtual-reality', [PageController::class, 'vr'])->name('virtual-reality');
-	Route::get('/rtl', [PageController::class, 'rtl'])->name('rtl');
 	Route::get('/profile', [UserProfileController::class, 'show'])->name('profile');
 	Route::post('/profile', [UserProfileController::class, 'update'])->name('profile.update');
 	Route::get('/profile-static', [PageController::class, 'profile'])->name('profile-static');
