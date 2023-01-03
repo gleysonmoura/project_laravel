@@ -13,11 +13,12 @@ class AtividadesController extends Controller
     public function index()
     {
         $atividades = DB::table('atividades as ati')
-            ->join('assuntos as assu', 'ati.assunto_id', '=', 'assu.id')
+            ->join('assuntos as assu', 'assu.id', '=', 'ati.assunto_id')
             ->join('disciplinas as dis', 'assu.disciplina_id', '=', 'dis.id')
+            ->select('ati.*', 'assu.assunto_nome', 'dis.disciplina_none')
             ->orderBy('ati.atividade_data', 'asc')
             ->get();
-
+        /* dd($atividades); */
         return view('pages.atividades.atividade-index', compact('atividades'));
     }
 
@@ -53,7 +54,7 @@ class AtividadesController extends Controller
         $data = DB::table('assuntos')
             ->where('disciplina_id', $request->id)
             ->pluck('assunto_nome', 'id');
-        return  $data;
+
         return response()->json($data);
     }
 
@@ -65,7 +66,16 @@ class AtividadesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $atividades_edit = Atividade::findOrFail($id);
+
+        $assunto = DB::table('assuntos as ass')
+            ->where('ass.id', '=', $atividades_edit->assunto_id)
+            ->join('disciplinas as dis', 'dis.id', '=', 'ass.disciplina_id')
+            ->get();
+
+        $atividades_edit->assunto_id;
+
+        return view('pages.atividades.atividade-edit', compact('atividades_edit', 'assunto'));
     }
 
     /**

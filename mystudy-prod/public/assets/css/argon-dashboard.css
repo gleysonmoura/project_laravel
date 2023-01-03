@@ -22882,7 +22882,7 @@ hr.horizontal.gray-light {
 }
 @media (min-width: 992px) {
   .timeline-one-side .timeline-content {
-    max-width: 30rem;
+   /*  max-width: 30rem; */
   }
 }
 
