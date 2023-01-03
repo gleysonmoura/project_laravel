@@ -6,14 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\Atividade;
 use App\Models\Disciplina;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class AtividadesController extends Controller
 {
     public function index()
     {
-        // $atividades = Atividades::all();
+        $atividades = DB::table('atividades as ati')
+            ->join('assuntos as assu', 'ati.assunto_id', '=', 'assu.id')
+            ->join('disciplinas as dis', 'assu.disciplina_id', '=', 'dis.id')
+            ->orderBy('ati.atividade_data', 'asc')
+            ->get();
 
-        return view('pages.atividades.atividade-index');
+        return view('pages.atividades.atividade-index', compact('atividades'));
     }
 
     public function create()

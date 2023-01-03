@@ -1,5 +1,4 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
-
 @section('content')
 @include('layouts.navbars.auth.topnav', ['title' => 'Conteudo'])
 
@@ -13,11 +12,11 @@
                     {{ csrf_field() }}
                     <label class="mt-4"> Disciplina</label>
                     <div class="form-group">
-                        @foreach ($disciplina as $item)
-                        <select class="form-control" id="exampleFormControlSelect1" name="nome_disciplina">
+                        <select class="form-control" id="nome_disciplina" name="nome_disciplina">
+                            @foreach ($disciplina as $item)
                             <option value="{{ $item->id }}">{{ $item->disciplina_none }}</option>
+                            @endforeach
                         </select>
-                        @endforeach
                     </div>
                     <div class="row mt-4">
                         <div class="col-6">
