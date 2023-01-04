@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('atividades', function (Blueprint $table) {
             $table->id();
             $table->foreignId('assunto_id')->references('id')->on('assuntos');
+            $table->string('tags_nome');
             $table->date('atividade_data');
             $table->String('atividade_status', 20);
             $table->String('atividade_prioridade', 20);

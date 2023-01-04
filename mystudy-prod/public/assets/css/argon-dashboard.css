@@ -19099,8 +19099,17 @@ textarea.form-control-lg {
   margin-left: -1rem;
 }
 
-.badge.bg-primary {
+/* .badge.bg-primary {
   background: #fb6340;
+} */
+.badge-primary {
+    color: #2643e9;
+    background-color: #eaecfb;
+}
+.badge-sm {
+    padding: 0.45em 0.775em;
+    font-size: .65em;
+    border-radius: 0.25rem;
 }
 
 .badge.bg-secondary {

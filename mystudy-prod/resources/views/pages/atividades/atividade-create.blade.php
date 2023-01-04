@@ -62,6 +62,12 @@
                         <textarea class="form-control" id="observacao_atividade" name="observacao_atividade"
                             rows="3"></textarea>
                     </div>
+                    <select name="tags[]" class="form-select" id="multiple-select-field"
+                        data-placeholder="Choose anything" multiple="multiple">
+                        <option>Fazer Questões</option>
+                        <option>Revisar</option>
+                        <option>Fazer Resumo</option>
+                    </select>
                     <div class="d-flex justify-content-end mt-4">
                         <button type="button" name="button" class="btn btn-light m-0">Cancel</button>
                         <button type="submit" name="button" class="btn bg-gradient-primary m-0 ms-2">Criar
@@ -74,15 +80,10 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-    
                 $(document).on('change', '.nome_disciplina', function() {
-                     //console.log("hmm its change");
-    
                     var cat_id = $(this).val();
-                    // console.log(cat_id);
                     var div = $(this).parent();
                     var op = " ";
-    
                     $.ajax({
                         type: 'get',
                         url: '{!!URL::to("atividade/show")!!}',
@@ -101,6 +102,12 @@
                     });
                 });
             });
+            $( '#multiple-select-field' ).select2( {
+            theme: "bootstrap-5",
+            width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+            placeholder: $( this ).data( 'placeholder' ),
+            closeOnSelect: false,
+            } );
     </script>
 </div>
 @endsection

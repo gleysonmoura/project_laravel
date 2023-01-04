@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Atividade;
 use App\Models\Disciplina;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
+
 
 class AtividadesController extends Controller
 {
@@ -18,21 +18,25 @@ class AtividadesController extends Controller
             ->select('ati.*', 'assu.assunto_nome', 'dis.disciplina_none')
             ->orderBy('ati.atividade_data', 'asc')
             ->get();
-        /* dd($atividades); */
-        return view('pages.atividades.atividade-index', compact('atividades'));
+        $tags_atividades = "";
+
+        foreach ($atividades as $ati) {
+            $tags_atividades = explode(',', $ati->tags_nome);
+        }
+        return view('pages.atividades.atividade-index', compact('atividades', 'tags_atividades'));
     }
 
     public function create()
     {
         $lista_disciplina = Disciplina::all();
-        return view('pages.atividades.atividade-create', compact('lista_disciplina'));
+        return view('pages.atividades.atividade-create', compact('lista_disciplina',));
     }
-
 
     public function store(Request $request)
     {
         $atividades = new Atividade();
         $atividades->assunto_id = $request->campo_assunto;
+        $atividades->tags_nome = implode(',', $request->input('tags'));
         $atividades->atividade_data = $request->data_atividade;
         $atividades->atividade_status = $request->status_atividade;
         $atividades->atividade_prioridade = $request->prioridade_atividade;
@@ -40,15 +44,9 @@ class AtividadesController extends Controller
 
         $atividades->save();
 
-        return redirect()->route('atividade.index')->with('Task Created Successfully!');
+        return redirect()->route('atividade.index')->with('success', 'Atividade criada com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Request $request, $id)
     {
         $data = DB::table('assuntos')
@@ -58,12 +56,6 @@ class AtividadesController extends Controller
         return response()->json($data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $atividades_edit = Atividade::findOrFail($id);
@@ -78,24 +70,21 @@ class AtividadesController extends Controller
         return view('pages.atividades.atividade-edit', compact('atividades_edit', 'assunto'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $atividades_edit = Atividade::findOrFail($id);
+        $atividades_edit->assunto_id = $atividades_edit->assunto_id;
+        $atividades_edit->tags_nome = implode(',', $request->input('tags'));
+        $atividades_edit->atividade_data = $request->data_atividade;
+        $atividades_edit->atividade_status = $request->status_atividade;
+        $atividades_edit->atividade_prioridade = $request->prioridade_atividade;
+        $atividades_edit->atividade_observacao = $request->observacao_atividade;
+
+        $atividades_edit->save();
+
+        return redirect()->route('atividade.index')->with('success', 'Atividade editada com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

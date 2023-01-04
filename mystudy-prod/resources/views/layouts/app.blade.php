@@ -19,6 +19,14 @@
         <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
         </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+
+
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
         <!-- CSS Files -->
         <link id="pagestyle" href="{{ asset ('assets/css/argon-dashboard.css') }}" rel="stylesheet" />
     </head>
@@ -26,11 +34,14 @@
     <body class="g-sidenav-show vsc-initialized dark-version bg-gray-600">
 
         @guest
+
         @yield('content')
         @endguest
         @include('layouts.navbars.auth.sidenav')
         <main class="main-content border-radius-lg">
+
             @yield('content')
+
             @include('layouts.footers.auth.footer')
         </main>
 
@@ -74,8 +85,8 @@
         <script async defer src="https://buttons.github.io/buttons.js"></script>
         <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="{{ asset ('assets/js/argon-dashboard.js') }}"></script>
-        <script src="{{ asset ('assets/js/argon-dashboard.min.js') }}"></script>
-        {{-- <script src="{{ asset ('assets/js/jquery.min.js') }}"></script> --}}
+        {{-- <script src="{{ asset ('assets/js/argon-dashboard.min.js') }}"></script> --}}
+
         @stack('js')
     </body>
 

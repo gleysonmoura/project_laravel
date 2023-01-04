@@ -26,8 +26,8 @@
                             <div class="form-group">
                                 <label class="form-label">Assuntos</label>
                                 <input type="text" style="text-ucfirst" placeholder="{{ucfirst($item->assunto_nome)}}"
-                                    class="text-ucfirst form-control" name="campo_assunto" id="campo_assunto"
-                                    disabled />
+                                    class="text-ucfirst form-control campo_assunto" name="campo_assunto"
+                                    id="campo_assunto" disabled />
                             </div>
                         </div>
                         @endforeach
