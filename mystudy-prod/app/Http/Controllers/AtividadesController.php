@@ -18,12 +18,12 @@ class AtividadesController extends Controller
             ->select('ati.*', 'assu.assunto_nome', 'dis.disciplina_none')
             ->orderBy('ati.atividade_data', 'asc')
             ->get();
-        $tags_atividades = "";
 
-        foreach ($atividades as $ati) {
-            $tags_atividades = explode(',', $ati->tags_nome);
-        }
-        return view('pages.atividades.atividade-index', compact('atividades', 'tags_atividades'));
+        $count_atividade_abertas = DB::table('atividades as ati')
+            ->where('ati.atividade_status', '!=', 'finalizado')
+            ->count();
+
+        return view('pages.atividades.atividade-index', compact('atividades', 'count_atividade_abertas'));
     }
 
     public function create()

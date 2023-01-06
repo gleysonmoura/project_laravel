@@ -24,8 +24,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
         <link rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
-
-
+        <script src="{{asset ('assets/js/chartjs.min.js') }}"></script>
+        <script src="{{ asset ('assets/js/argon-dashboard.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
         <!-- CSS Files -->
         <link id="pagestyle" href="{{ asset ('assets/css/argon-dashboard.css') }}" rel="stylesheet" />
@@ -71,7 +71,7 @@
         <script src="{{asset ('assets/js/core/bootstrap.min.js') }}"></script>
         <script src="{{asset ('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
         <script src="{{asset ('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
-        <script src="{{asset ('assets/js/flatpickr.min.js') }}"></script>
+
         <script>
             var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -84,7 +84,7 @@
         <!-- Github buttons -->
         <script async defer src="https://buttons.github.io/buttons.js"></script>
         <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-        <script src="{{ asset ('assets/js/argon-dashboard.js') }}"></script>
+
         {{-- <script src="{{ asset ('assets/js/argon-dashboard.min.js') }}"></script> --}}
 
         @stack('js')

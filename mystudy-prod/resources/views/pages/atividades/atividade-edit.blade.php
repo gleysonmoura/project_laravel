@@ -69,6 +69,16 @@
                         <textarea class="form-control" id="observacao_atividade" placeholder=""
                             name="observacao_atividade" rows="3">{{ $atividades_edit->atividade_observacao }}</textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Tags</label>
+                        <select name="tags[]" class="form-select form-select-sm" id="multiple-select-field"
+                            data-placeholder="Selecione Tag(s)" multiple="multiple">
+                            <option value="fazer questões">Fazer Questões</option>
+                            <option value="revisar">Revisar</option>
+                            <option value="fazer resumo">Fazer Resumo</option>
+                        </select>
+                    </div>
+
                     <div class="d-flex justify-content-end mt-4">
                         <button type="button" name="button" class="btn btn-light m-0">Cancel</button>
                         <button type="submit" name="button" class="btn bg-gradient-primary m-0 ms-2">Editar
@@ -108,6 +118,12 @@
                     });
                 });
             });
+            $( '#multiple-select-field' ).select2( {
+            theme: "bootstrap-5",
+            width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+            placeholder: $( this ).data( 'placeholder' ),
+            closeOnSelect: false,
+            } );
     </script>
 </div>
 @endsection
