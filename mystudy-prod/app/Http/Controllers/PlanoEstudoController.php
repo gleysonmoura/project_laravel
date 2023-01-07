@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PlanoEstudo;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
-class TagsController extends Controller
+class PlanoEstudoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,9 @@ class TagsController extends Controller
      */
     public function index()
     {
-        //
+
+        $planos = PlanoEstudo::all();
+        return view('pages.planoestudo.planoestudo-index', compact('planos'));
     }
 
     /**
@@ -23,7 +27,7 @@ class TagsController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.planoestudo.planoestudo-create');
     }
 
     /**
@@ -34,7 +38,15 @@ class TagsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $planos = new PlanoEstudo();
+
+        $planos->plano_nome = $request->nome_plano;
+        $planos->plano_data = $request->data_plano;
+        $planos->plano_status = $request->status_plano;
+
+        $planos->save();
+
+        return redirect()->route('planoestudo.index')->with('success', 'Plano de estudo criado com sucesso!');
     }
 
     /**
@@ -45,7 +57,11 @@ class TagsController extends Controller
      */
     public function show($id)
     {
-        //
+
+        Session::put('id', $id);
+        $id_plano =  Session::get('id');
+        $planos = PlanoEstudo::findOrFail($id);
+        return view('pages.planoestudo.planoestudo-show', compact('planos'));
     }
 
     /**

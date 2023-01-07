@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Atividade;
 use App\Models\Disciplina;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Session;
 
 class AtividadesController extends Controller
 {
     public function index()
     {
         $atividades = DB::table('atividades as ati')
+            ->where('ati.plano_id', '=', Session::get('id'))
             ->join('assuntos as assu', 'assu.id', '=', 'ati.assunto_id')
             ->join('disciplinas as dis', 'assu.disciplina_id', '=', 'dis.id')
             ->select('ati.*', 'assu.assunto_nome', 'dis.disciplina_none')
@@ -20,6 +21,7 @@ class AtividadesController extends Controller
             ->get();
 
         $count_atividade_abertas = DB::table('atividades as ati')
+            ->where('ati.plano_id', '=', Session::get('id'))
             ->where('ati.atividade_status', '!=', 'finalizado')
             ->count();
 
@@ -36,6 +38,7 @@ class AtividadesController extends Controller
     {
         $atividades = new Atividade();
         $atividades->assunto_id = $request->campo_assunto;
+        $atividades->plano_id = Session::get('id');
         $atividades->tags_nome = implode(',', $request->input('tags'));
         $atividades->atividade_data = $request->data_atividade;
         $atividades->atividade_status = $request->status_atividade;
