@@ -25,47 +25,51 @@
         <link rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
         <script src="{{asset ('assets/js/chartjs.min.js') }}"></script>
-        <script src="{{ asset ('assets/js/argon-dashboard.js') }}"></script>
+        <script src="{{asset ('assets/js/datatables.js') }}"></script>
+        {{-- <script src="{{ asset ('assets/js/argon-dashboard.js') }}"></script> --}}
         <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
         <!-- CSS Files -->
         <link id="pagestyle" href="{{ asset ('assets/css/argon-dashboard.css') }}" rel="stylesheet" />
+        <link id="pagestyle" href="{{ asset ('assets/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
+
     </head>
 
     <body class="g-sidenav-show vsc-initialized dark-version bg-gray-600">
 
         @guest
-
         @yield('content')
         @endguest
+        {{--
         @include('layouts.navbars.auth.sidenav')
         <main class="main-content border-radius-lg">
 
             @yield('content')
 
             @include('layouts.footers.auth.footer')
-        </main>
+        </main> --}}
 
-        {{-- @auth
+        @auth
         @if (in_array(request()->route()->getName(), ['sign-in-static', 'sign-up-static', 'login', 'register',
-        'recover-password', 'rtl', 'virtual-reality']))
+        'recover-password']))
         @yield('content')
         @else
         @if (!in_array(request()->route()->getName(), ['profile', 'profile-static']))
         <div class="min-height-300 bg-primary position-absolute w-100"></div>
         @elseif (in_array(request()->route()->getName(), ['profile-static', 'profile']))
-        <div class="position-absolute w-100 min-height-300 top-0"
+        {{-- <div class="position-absolute w-100 min-height-300 top-0"
             style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg'); background-position-y: 50%;">
             <span class="mask bg-primary opacity-6"></span>
-        </div>
+        </div> --}}
         @endif
         @include('layouts.navbars.auth.sidenav')
         <main class="main-content border-radius-lg">
             @yield('content')
+            @include('layouts.footers.auth.footer')
         </main>
-         @include('components.fixed-plugin')
-  @endif
+        {{-- @include('components.fixed-plugin') --}}
+        @endif
         @endauth
- --}}
+
         <!--   Core JS Files   -->
         <script src="{{asset ('assets/js/core/popper.min.js') }}"></script>
         <script src="{{asset ('assets/js/core/bootstrap.min.js') }}"></script>
@@ -84,9 +88,7 @@
         <!-- Github buttons -->
         <script async defer src="https://buttons.github.io/buttons.js"></script>
         <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-
-        {{-- <script src="{{ asset ('assets/js/argon-dashboard.min.js') }}"></script> --}}
-
+        <script src="{{ asset ('assets/js/argon-dashboard.min.js') }}"></script>
         @stack('js')
     </body>
 

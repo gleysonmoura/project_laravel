@@ -93,7 +93,7 @@
                                     </td>
                                 </tr>
                                 @empty
-                                <div class="alert alert-warning alert-block fade show" role="alert">
+                                <div class="col-md-6 centered alert alert-warning alert-block fade show" role="alert">
                                     Não há Plano de Estudos cadastrados! <a href="{{route('planoestudo.create')}}"
                                         class="alert-link">Cadastrar Plano de Estudos</a>
                                 </div>

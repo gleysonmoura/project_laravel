@@ -16,4 +16,9 @@ class Atividade extends Model
     {
         return $this->belongsTo(Assuntos::class);
     }
+
+    public function PlanodeEstudo()
+    {
+        return $this->belongsTo(PlanoEstudo::class);
+    }
 }
