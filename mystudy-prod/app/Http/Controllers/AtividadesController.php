@@ -18,7 +18,7 @@ class AtividadesController extends Controller
             ->join('disciplinas as dis', 'assu.disciplina_id', '=', 'dis.id')
             ->select('ati.*', 'assu.assunto_nome', 'dis.disciplina_none')
             ->orderBy('ati.atividade_data', 'asc')
-            ->get();
+            ->paginate(1);
 
         $count_atividade_abertas = DB::table('atividades as ati')
             ->where('ati.plano_id', '=', Session::get('id'))

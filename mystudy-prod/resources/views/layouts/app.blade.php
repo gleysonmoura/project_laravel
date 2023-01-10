@@ -29,10 +29,9 @@
         {{-- <script src="{{ asset ('assets/js/argon-dashboard.js') }}"></script> --}}
         <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
         <!-- CSS Files -->
-        <link id="pagestyle" href="{{ asset ('assets/css/argon-dashboard.css') }}" rel="stylesheet" />
-        <link id="pagestyle" href="{{ asset ('assets/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
 
     </head>
+    <link id="pagestyle" href="{{ asset ('assets/css/argon-dashboard.css') }}" rel="stylesheet" />
 
     <body class="g-sidenav-show vsc-initialized dark-version bg-gray-600">
 

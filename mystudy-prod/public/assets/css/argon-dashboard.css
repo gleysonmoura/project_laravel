@@ -24984,3 +24984,33 @@ pre[class*=language-] {
     border-right: 4px solid transparent;
     opacity: .2;
 }
+
+ .page-item.active .page-link{
+        z-index: 3;
+        color: linear-gradient(310deg,#5e72e4,#825ee4) !important  ;
+        background-color: #7c62e4 !important;
+        border-color: #7c62e4 !important;
+        border-radius: 50%;
+        padding: 6px 12px;
+    }
+    .page-link{
+        z-index: 3;
+        color: #7c62e4 !important;
+        background-color: linear-gradient(310deg,#5e72e4,#825ee4);
+        border-color: #007bff;
+        border-radius: 50%;
+        padding: 6px 12px !important;
+    }
+    .page-item:first-child .page-link{
+        border-radius: 15% !important;
+    }
+    .page-item:last-child .page-link{
+        border-radius: 30% !important;   
+    }
+    .pagination li{
+        padding: 3px;
+    }
+    .disabled .page-link{
+        color: #212529 !important;
+        opacity: 0.5 !important;
+    }
