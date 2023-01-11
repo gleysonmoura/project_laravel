@@ -10,6 +10,7 @@
             {{ config('app.name', 'Laravel') }}
         </title>
         <!--     Fonts and icons     -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
         <!-- Nucleo Icons -->
         <link rel="stylesheet" href="{{asset ('./assets/css/nucleo-icons.css')}}">
@@ -61,6 +62,7 @@
         </div> --}}
         @endif
         @include('layouts.navbars.auth.sidenav')
+
         <main class="main-content border-radius-lg">
             @yield('content')
             @include('layouts.footers.auth.footer')

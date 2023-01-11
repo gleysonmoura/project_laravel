@@ -94,27 +94,30 @@
                                         @endif
                                     </td>
                                     <td class="text-sm">
-                                        <a href="javascript:;" data-bs-toggle="tooltip"
-                                            data-bs-original-title="Preview product">
-                                            <i class="fas fa-eye text-secondary" aria-hidden="true"></i>
-                                        </a>
-                                        <a href="{{ route('atividade.edit', $item->id) }}" class="mx-3"
-                                            data-bs-toggle="tooltip" data-bs-original-title="Editar atividade">
-                                            <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
-                                        </a>
-                                        <a href="javascript:;" data-bs-toggle="tooltip"
-                                            data-bs-original-title="Delete product">
-                                            <i class="fas fa-trash text-secondary" aria-hidden="true"></i>
-                                        </a>
+                                        <span class="d-flex">
+                                            <a href="{{ route('atividade.showAtividade', $item->id) }}" class="me-3"
+                                                data-bs-toggle="tooltip" data-bs-original-title="Show item">
+                                                <i class="fas fa-eye text-secondary" aria-hidden="true"></i>
+                                            </a>
+                                            <a href="{{ route('atividade.edit', $item->id) }}" class="me-3"
+                                                data-bs-toggle="tooltip" data-bs-original-title="Edit item">
+                                                <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
+                                            </a>
+                                            <form action="{{ route('atividade.destroy', $item->id) }}"
+                                                class="delete_form" method="post">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button data-bs-toggle="tooltip" data-bs-original-title="Delete item"
+                                                    class="border-0 bg-default">
+                                                    <i class="fas fa-trash text-secondary" aria-hidden="true"></i>
+                                                </button>
+                                            </form>
+                                        </span>
                                     </td>
                                 </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
-
-
-
                     </div>
                     <div class="mt-4">
                         {{ $atividades->links('pages.atividades.paginate')}}
@@ -196,6 +199,18 @@
 @push('js')
 
 <script>
+    $(document).ready(function(){
+    $('.delete_form').on('submit', function(){
+    if(confirm("Deseja remover essa atividade?"))
+    {
+    return true;
+    }
+    else
+    {
+    return false;
+    }
+    });
+    });
     var ctx1 = document.getElementById("chart-line").getContext("2d");
 
         var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);

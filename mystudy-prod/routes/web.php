@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
 	Route::resource('conteudo', ConteudoController::class);
 	Route::resource('atividade', AtividadesController::class);
 	Route::resource('planoestudo', PlanoEstudoController::class);
+	Route::get('/showAtividade/{id}', [AtividadesController::class, 'showAtividade'])->name('atividade.showAtividade');
 	Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 	Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 	Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

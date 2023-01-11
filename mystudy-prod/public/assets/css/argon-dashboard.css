@@ -20690,7 +20690,7 @@ hr.vertical.gray-light {
 }
 
 hr.horizontal {
-  background-color: transparent;
+  background-color: #d3d3d3;
 }
 hr.horizontal.light {
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0), white, rgba(255, 255, 255, 0));

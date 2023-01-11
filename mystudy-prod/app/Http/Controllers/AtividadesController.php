@@ -18,7 +18,7 @@ class AtividadesController extends Controller
             ->join('disciplinas as dis', 'assu.disciplina_id', '=', 'dis.id')
             ->select('ati.*', 'assu.assunto_nome', 'dis.disciplina_none')
             ->orderBy('ati.atividade_data', 'asc')
-            ->paginate(1);
+            ->paginate(5);
 
         $count_atividade_abertas = DB::table('atividades as ati')
             ->where('ati.plano_id', '=', Session::get('id'))
@@ -59,6 +59,20 @@ class AtividadesController extends Controller
         return response()->json($data);
     }
 
+    public function showAtividade($id)
+    {
+        $atividadeshow = DB::table('atividades as ati')
+            ->where('ati.id', '=', $id)
+            ->where('ati.plano_id', '=', Session::get('id'))
+            ->join('assuntos as assu', 'assu.id', '=', 'ati.assunto_id')
+            ->join('disciplinas as dis', 'assu.disciplina_id', '=', 'dis.id')
+            ->select('ati.*', 'assu.assunto_nome', 'dis.disciplina_none')
+            ->orderBy('ati.atividade_data', 'asc')
+            ->get();
+
+        return view('pages.atividades.atividade-show', compact('atividadeshow'));
+    }
+
     public function edit($id)
     {
         $atividades_edit = Atividade::findOrFail($id);
@@ -90,6 +104,8 @@ class AtividadesController extends Controller
 
     public function destroy($id)
     {
-        //
+        $atividades = Atividade::find($id);
+        $atividades->delete();
+        return redirect()->route('atividade.index')->with('success', 'Atividade excluida com sucesso!');
     }
 }
