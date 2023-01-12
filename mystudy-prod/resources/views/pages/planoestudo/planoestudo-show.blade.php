@@ -1,6 +1,8 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
+@inject('carbon', 'Carbon\Carbon')
 @section('content')
 @include('layouts.navbars.auth.topnav', ['title' => 'Dashboard'])
+
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -105,18 +107,76 @@
     </div>
     <div class="row mt-4">
         <div class="col-lg-7 mb-lg-0 mb-4">
-            <div class="card z-index-2 h-100">
-                <div class="card-header pb-0 pt-3 bg-transparent">
-                    <h6 class="text-capitalize">Sales overview</h6>
-                    <p class="text-sm mb-0">
-                        <i class="fa fa-arrow-up text-success"></i>
-                        <span class="font-weight-bold">4% more</span> in 2021
-                    </p>
+            <div class="card">
+                <div class="card-header pb-0">
+                    <h6>Timeline de Atividades</h6>
                 </div>
                 <div class="card-body p-3">
-                    <div class="chart">
-                        <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+
+                    <div class="timeline timeline-one-side" data-timeline-axis-style="dotted">
+                        @foreach ($atividades as $item)
+                        <div class="timeline-block mb-3">
+
+                            @if ($item->atividade_data > date("Y-m-d"))
+                            <span class="timeline-step">
+                                <i class="ni ni-bell-55 text-info text-gradient"></i>
+                            </span>
+                            @else
+                            @if ($item->atividade_data == date("Y-m-d"))
+                            <span class="timeline-step">
+                                <i class="ni ni-bell-55 text-warning text-gradient"></i>
+                            </span>
+                            @else
+                            <span class="timeline-step">
+                                <i class="ni ni-bell-55 text-danger text-gradient"></i>
+                            </span>
+                            @endif
+                            @endif
+                            <div class="timeline-content">
+                                <h6 class="text-dark  font-weight-bold mb-0">
+                                    {{ ucwords($item->disciplina_none)  }} -
+                                    {{ Str::ucfirst($item->assunto_nome)  }}
+                                </h6>
+                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">
+                                    de {{ $carbon::parse($item->atividade_data)->format('d/m/Y') }} até
+                                    {{ $carbon::parse($item->atividade_tempo)->format('d/m/Y')  }}
+                                </p>
+                                <p class="text-sm mt-3 mb-2">
+                                    {{ $item->atividade_observacao }}
+                                </p>
+                                @if ($item->atividade_prioridade == 'altissima')
+                                <span class="badge badge-sm bg-gradient-danger">{{ $item->atividade_prioridade }}</span>
+                                @else
+                                @if ($item->atividade_prioridade == 'alta')
+                                <span
+                                    class="badge badge-sm bg-gradient-warning">{{ $item->atividade_prioridade }}</span>
+                                @else
+                                @if ($item->atividade_prioridade == 'media')
+                                <span
+                                    class="badge badge-sm bg-gradient-primary">{{ $item->atividade_prioridade }}</span>
+                                @else
+                                <span
+                                    class="badge badge-sm bg-gradient-secondary">{{ $item->atividade_prioridade }}</span>
+                                @endif
+                                @endif
+                                @endif
+
+                                @foreach (explode(',', $item->tags_nome) as $info)
+                                - <span class="badge bg-gradient-info badge-sm">{{ $info }}</span>
+                                @endforeach
+                                <a class="text-sm text-secondary d-flex justify-content-end font-weight-bold mb-0 icon-move-right mt-2"
+                                    href="{{ route('atividade.showAtividade', $item->id) }}">
+
+                                    <i class="fas fa-eye text-secondary  ms-1" title="Ver atividade"
+                                        aria-hidden="true"></i>
+                                </a>
+                            </div>
+
+                        </div>
+
+                        @endforeach
                     </div>
+
                 </div>
             </div>
         </div>

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('atividade_data');
             $table->String('atividade_status', 20);
             $table->String('atividade_prioridade', 20);
+            $table->string('atividade_tempo', 15);
             $table->String('atividade_observacao', 200);
             $table->timestamps();
         });

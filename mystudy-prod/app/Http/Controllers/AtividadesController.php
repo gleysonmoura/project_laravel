@@ -22,10 +22,20 @@ class AtividadesController extends Controller
 
         $count_atividade_abertas = DB::table('atividades as ati')
             ->where('ati.plano_id', '=', Session::get('id'))
+            ->where('ati.atividade_data', '>', date('Y/m/d'))
+            ->where('ati.atividade_status', '!=', 'finalizado')
+            ->count();
+        $count_atividade_atrasadas = DB::table('atividades as ati')
+            ->where('ati.plano_id', '=', Session::get('id'))
+            ->where('ati.atividade_data', '<', date('Y/m/d'))
+            ->where('ati.atividade_status', '!=', 'finalizado')
+            ->count();
+        $count_atividade = DB::table('atividades as ati')
+            ->where('ati.plano_id', '=', Session::get('id'))
             ->where('ati.atividade_status', '!=', 'finalizado')
             ->count();
 
-        return view('pages.atividades.atividade-index', compact('atividades', 'count_atividade_abertas'));
+        return view('pages.atividades.atividade-index', compact('atividades', 'count_atividade_abertas', 'count_atividade', 'count_atividade_atrasadas'));
     }
 
     public function create()
@@ -43,10 +53,22 @@ class AtividadesController extends Controller
         $atividades->atividade_data = $request->data_atividade;
         $atividades->atividade_status = $request->status_atividade;
         $atividades->atividade_prioridade = $request->prioridade_atividade;
+        $data = $request->data_atividade;
+        if ($request->tempo_atividade == 1) {
+            $atividades->atividade_tempo = date('Y-m-d', strtotime($request->data_atividade . '+1 day'));
+        } else {
+            if ($request->tempo_atividade == 3) {
+                $atividades->atividade_tempo = date('Y-m-d', strtotime($request->data_atividade . '+3 day'));
+            } else {
+                if ($request->tempo_atividade == 5) {
+                    $atividades->atividade_tempo = date('Y-m-d', strtotime($request->data_atividade . '+5 day'));
+                } else {
+                    $atividades->atividade_tempo = date('Y-m-d', strtotime($request->data_atividade . '+7 day'));
+                }
+            }
+        }
         $atividades->atividade_observacao = $request->observacao_atividade;
-
         $atividades->save();
-
         return redirect()->route('atividade.index')->with('success', 'Atividade criada com sucesso!');
     }
 

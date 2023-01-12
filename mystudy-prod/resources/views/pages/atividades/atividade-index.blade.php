@@ -8,8 +8,103 @@
     <div class="row mt-2 mx-4 col-12">
         @include('alert-notification')
     </div>
-    <div class="row mt-2 mx-4">
-        <div class="col-lg-8 col-12">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body p-3 position-relative">
+                    <div class="row">
+                        <div class="col-7 text-start">
+                            <p class="text-sm mb-1 text-uppercase font-weight-bold">Atividades Futuras</p>
+                            <h5 class="font-weight-bolder mb-0">
+                                {{ $count_atividade_abertas }}
+                            </h5>
+                            <span class="text-sm text-end text-success font-weight-bolder mt-auto mb-0">+55% <span
+                                    class="font-weight-normal text-secondary">since last month</span></span>
+                        </div>
+                        <div class="col-5">
+                            <div class="dropdown text-end">
+                                <a href="javascript:;" class="cursor-pointer text-secondary" id="dropdownUsers1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="text-xs text-secondary"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end px-2 py-3" aria-labelledby="dropdownUsers1">
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last 7 days</a>
+                                    </li>
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last week</a></li>
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last 30 days</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 mt-sm-0 mt-4">
+            <div class="card">
+                <div class="card-body p-3 position-relative">
+                    <div class="row">
+                        <div class="col-7 text-start">
+                            <p class="text-sm mb-1 text-uppercase font-weight-bold">Atrasadas</p>
+                            <h5 class="font-weight-bolder mb-0">
+                                {{ $count_atividade_atrasadas }}
+                            </h5>
+                            <span class="text-sm text-end text-success font-weight-bolder mt-auto mb-0">+12% <span
+                                    class="font-weight-normal text-secondary">since last month</span></span>
+                        </div>
+                        <div class="col-5">
+                            <div class="dropdown text-end">
+                                <a href="javascript:;" class="cursor-pointer text-secondary" id="dropdownUsers2"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="text-xs text-secondary"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end px-2 py-3" aria-labelledby="dropdownUsers2">
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last 7 days</a>
+                                    </li>
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last week</a></li>
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last 30 days</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 mt-sm-0 mt-4">
+            <div class="card">
+                <div class="card-body p-3 position-relative">
+                    <div class="row">
+                        <div class="col-7 text-start">
+                            <p class="text-sm mb-1 text-uppercase font-weight-bold"> Total</p>
+                            <h5 class="font-weight-bolder mb-0">
+                                {{ $count_atividade }}
+                            </h5>
+                            <span class="text-sm text-end text-success font-weight-bolder mt-auto mb-0">+12% <span
+                                    class="font-weight-normal text-secondary">since last month</span></span>
+                        </div>
+                        <div class="col-5">
+                            <div class="dropdown text-end">
+                                <a href="javascript:;" class="cursor-pointer text-secondary" id="dropdownUsers2"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="text-xs text-secondary"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end px-2 py-3" aria-labelledby="dropdownUsers2">
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last 7 days</a>
+                                    </li>
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last week</a></li>
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last 30 days</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg-12 col-12">
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="d-lg-flex">
@@ -31,16 +126,24 @@
                                         Atividades</th>
                                     <th
                                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Data</th>
+                                        Data
+                                    </th>
+                                    <th
+                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        Data Final
+                                    </th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Prioridade</th>
+                                        Prioridade
+                                    </th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Status</th>
+                                        Status
+                                    </th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Actions</th>
+                                        Actions
+                                    </th>
 
                                 </tr>
                             </thead>
@@ -55,6 +158,9 @@
                                     </td>
                                     <td class="text-sm text-center">
                                         {{ $carbon::parse($item->atividade_data)->format('d/m/Y')  }}
+                                    </td>
+                                    <td class="text-sm text-center">
+                                        {{ $carbon::parse($item->atividade_tempo)->format('d/m/Y')  }}
                                     </td>
                                     <td class="text-sm text-center">
                                         @if ($item->atividade_prioridade == 'altissima')
@@ -126,75 +232,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-12 mt-4 mt-lg-0">
-            <div class="card overflow-hidden">
-                <div class="card-header p-3 pb-0">
-                    <div class="d-flex align-items-center">
-                        <div class="icon icon-shape bg-gradient-info shadow text-center border-radius-md">
-                            <i class="ni ni-calendar-grid-58 text-lg opacity-10" aria-hidden="true"></i>
-                        </div>
-                        <div class="ms-3">
-                            <p class="text-sm mb-0 text-capitalize font-weight-bold">Atividades</p>
-                            <h5 class="font-weight-bolder mb-0">
-                                {{ $count_atividade_abertas }}
-                            </h5>
-                        </div>
-                        <div class="progress-wrapper ms-auto w-25">
-                            <div class="progress-info">
-                                <div class="progress-percentage">
-                                    <span class="text-xs font-weight-bold">60%</span>
-                                </div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-gradient-info w-60" role="progressbar" aria-valuenow="60"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body mt-3 p-0">
-                    <div class="chart">
-                        <canvas id="chart-line" class="chart-canvas" height="100" width="351"
-                            style="display: block; box-sizing: border-box; height: 100px; width: 351px;"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="card overflow-hidden mt-4">
-                <div class="card-body p-3">
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <div class="d-flex">
-                                <div class="icon icon-shape bg-gradient-info shadow text-center border-radius-md">
-                                    <i class="ni ni-delivery-fast text-lg opacity-10" aria-hidden="true"></i>
-                                </div>
-                                <div class="ms-3">
-                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Projects</p>
-                                    <h5 class="font-weight-bolder mb-0">
-                                        115
-                                    </h5>
-                                </div>
-                            </div>
-                            <span class="badge badge-dot d-block text-start pb-0 mt-3">
-                                <i class="bg-gradient-info"></i>
-                                <span class="text-muted text-xs font-weight-bold">Done</span>
-                            </span>
-                            <span class="badge badge-dot d-block text-start">
-                                <i class="bg-gradient-secondary"></i>
-                                <span class="text-muted text-xs font-weight-bold">In progress</span>
-                            </span>
-                        </div>
-                        <div class="col-lg-7 my-auto">
-                            <div class="chart ms-auto">
-                                <canvas id="chart-bar" class="chart-canvas" height="150" width="176"
-                                    style="display: block; box-sizing: border-box; height: 150px; width: 176.1px;"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-
 </div>
 @push('js')
 

@@ -62,15 +62,12 @@
                                 <span class="badge badge-sm bg-gradient-danger">{{ $item->atividade_prioridade }}</span>
                                 @else
                                 @if ($item->atividade_prioridade == 'alta')
-                                <span
-                                    class="badge badge-sm bg-gradient-warning">{{ $item->atividade_prioridade }}</span>
+                                <span class="badge badge-sm bg-gradient-warning">{{ $item->atividade_prioridade }}</span>
                                 @else
                                 @if ($item->atividade_prioridade == 'media')
-                                <span
-                                    class="badge badge-sm bg-gradient-primary">{{ $item->atividade_prioridade }}</span>
+                                <span class="badge badge-sm bg-gradient-primary">{{ $item->atividade_prioridade }}</span>
                                 @else
-                                <span
-                                    class="badge badge-sm bg-gradient-secondary">{{ $item->atividade_prioridade }}</span>
+                                <span class="badge badge-sm bg-gradient-secondary">{{ $item->atividade_prioridade }}</span>
                                 @endif
                                 @endif
                                 @endif
@@ -80,8 +77,7 @@
                                 @endforeach
 
 
-                                <a class="text-sm text-secondary d-flex justify-content-end font-weight-bold mb-0 icon-move-right mt-2"
-                                    href="{{ route('atividade.edit', $item->id) }}">
+                                <a class="text-sm text-secondary d-flex justify-content-end font-weight-bold mb-0 icon-move-right mt-2" href="{{ route('atividade.edit', $item->id) }}">
                                     Editar
                                     <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
                                 </a>
@@ -115,16 +111,14 @@
                                 </div>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar bg-gradient-info w-60" role="progressbar" aria-valuenow="60"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-gradient-info w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-body mt-3 p-0">
                     <div class="chart">
-                        <canvas id="chart-line" class="chart-canvas" height="100" width="351"
-                            style="display: block; box-sizing: border-box; height: 100px; width: 351px;"></canvas>
+                        <canvas id="chart-line" class="chart-canvas" height="100" width="351" style="display: block; box-sizing: border-box; height: 100px; width: 351px;"></canvas>
                     </div>
                 </div>
             </div>
@@ -154,8 +148,7 @@
                         </div>
                         <div class="col-lg-7 my-auto">
                             <div class="chart ms-auto">
-                                <canvas id="chart-bar" class="chart-canvas" height="150" width="176"
-                                    style="display: block; box-sizing: border-box; height: 150px; width: 176.1px;"></canvas>
+                                <canvas id="chart-bar" class="chart-canvas" height="150" width="176" style="display: block; box-sizing: border-box; height: 150px; width: 176.1px;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -168,85 +161,85 @@
 <script>
     var ctx1 = document.getElementById("chart-line").getContext("2d");
 
-        var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+    var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
 
-        gradientStroke1.addColorStop(1, 'rgba(251, 99, 64, 0.2)');
-        gradientStroke1.addColorStop(0.2, 'rgba(251, 99, 64, 0.0)');
-        gradientStroke1.addColorStop(0, 'rgba(251, 99, 64, 0)');
-        new Chart(ctx1, {
-            type: "line",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Mobile apps",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#fb6340",
-                    backgroundColor: gradientStroke1,
-                    borderWidth: 3,
-                    fill: true,
-                    data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-                    maxBarThickness: 6
+    gradientStroke1.addColorStop(1, 'rgba(251, 99, 64, 0.2)');
+    gradientStroke1.addColorStop(0.2, 'rgba(251, 99, 64, 0.0)');
+    gradientStroke1.addColorStop(0, 'rgba(251, 99, 64, 0)');
+    new Chart(ctx1, {
+        type: "line",
+        data: {
+            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: "Mobile apps",
+                tension: 0.4,
+                borderWidth: 0,
+                pointRadius: 0,
+                borderColor: "#fb6340",
+                backgroundColor: gradientStroke1,
+                borderWidth: 3,
+                fill: true,
+                data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+                maxBarThickness: 6
 
-                }],
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false,
+                }
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
+            scales: {
+                y: {
+                    grid: {
+                        drawBorder: false,
+                        display: true,
+                        drawOnChartArea: true,
+                        drawTicks: false,
+                        borderDash: [5, 5]
+                    },
+                    ticks: {
+                        display: true,
+                        padding: 10,
+                        color: '#fbfbfb',
+                        font: {
+                            size: 11,
+                            family: "Open Sans",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
                     }
                 },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            padding: 10,
-                            color: '#fbfbfb',
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
+                x: {
+                    grid: {
+                        drawBorder: false,
+                        display: false,
+                        drawOnChartArea: false,
+                        drawTicks: false,
+                        borderDash: [5, 5]
                     },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                            borderDash: [5, 5]
+                    ticks: {
+                        display: true,
+                        color: '#ccc',
+                        padding: 20,
+                        font: {
+                            size: 11,
+                            family: "Open Sans",
+                            style: 'normal',
+                            lineHeight: 2
                         },
-                        ticks: {
-                            display: true,
-                            color: '#ccc',
-                            padding: 20,
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
+                    }
                 },
             },
-        });
+        },
+    });
 </script>
 @endpush
 

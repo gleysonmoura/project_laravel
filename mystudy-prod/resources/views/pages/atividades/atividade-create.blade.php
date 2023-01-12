@@ -1,10 +1,9 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
-
 @section('content')
 @include('layouts.navbars.auth.topnav', ['title' => 'Atividades'])
 
 <div class="container-fluid py-4">
-    <div class="row mt-2 mx-4">
+    <div class="row ">
         <div class="col-12">
             <div class="card card-body mt-4">
                 <div class="card-header d-flex justify-content-between">
@@ -33,13 +32,22 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-3">
                             <label class="form-label">Data</label>
                             <div class="form-group">
                                 <input class="form-control" type="date" id="data_atividade" name="data_atividade">
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
+                            <label class="form-label">Tempo</label>
+                            <select class="form-control" id="tempo_atividade" name="tempo_atividade">
+                                <option value="1">1 dia</option>
+                                <option value="3">3 dias</option>
+                                <option value="5">5 dias</option>
+                                <option value="7">7 dias</option>
+                            </select>
+                        </div>
+                        <div class="col-3">
                             <label class="form-label">Prioridade</label>
                             <select class="form-control" id="prioridade_atividade" name="prioridade_atividade">
                                 <option value="baixa">Baixa</option>
@@ -48,7 +56,7 @@
                                 <option value="altissima">Altissima</option>
                             </select>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <label for="exampleFormControlSelect1">Status</label>
                             <select class="form-control" id="status_atividade" name="status_atividade">
                                 <option value="em estudo">Em estudo</option>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PlanoEstudo;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PlanoEstudoController extends Controller
 {
@@ -15,7 +16,6 @@ class PlanoEstudoController extends Controller
      */
     public function index()
     {
-
         $planos = PlanoEstudo::all();
         return view('pages.planoestudo.planoestudo-index', compact('planos'));
     }
@@ -61,7 +61,18 @@ class PlanoEstudoController extends Controller
         Session::put('id', $id);
         $id_plano =  Session::get('id');
         $planos = PlanoEstudo::findOrFail($id);
-        return view('pages.planoestudo.planoestudo-show', compact('planos'));
+
+        $atividades = DB::table('atividades as ati')
+            ->where('ati.plano_id', '=', Session::get('id'))
+            ->where('ati.atividade_data', '>=', date('Y/m/d', strtotime('-2 Monday')))
+            ->Where('ati.atividade_data', '<=', date('Y/m/d', strtotime('+1 Monday')))
+
+            ->join('assuntos as assu', 'assu.id', '=', 'ati.assunto_id')
+            ->join('disciplinas as dis', 'assu.disciplina_id', '=', 'dis.id')
+            ->select('ati.*', 'assu.assunto_nome', 'dis.disciplina_none')
+            ->orderBy('ati.atividade_data', 'asc')
+            ->get();
+        return view('pages.planoestudo.planoestudo-show', compact('planos', 'atividades'));
     }
 
     /**
