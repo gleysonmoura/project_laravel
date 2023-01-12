@@ -70,12 +70,16 @@
                         <textarea class="form-control" id="observacao_atividade" name="observacao_atividade"
                             rows="3"></textarea>
                     </div>
-                    <select name="tags[]" class="form-select" id="multiple-select-field"
-                        data-placeholder="Choose anything" multiple="multiple">
-                        <option>Fazer Questões</option>
-                        <option>Revisar</option>
-                        <option>Fazer Resumo</option>
-                    </select>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Tags</label>
+                        <select name="tags[]" class="form-select text-sm" id="multiple-select-field"
+                            data-placeholder="Tags" multiple="multiple">
+                            <option>Realizar a leitura do PDF</option>
+                            <option>Elaborar um resumo</option>
+                            <option>Realizar resolução de questões</option>
+                        </select>
+                    </div>
+
                     <div class="d-flex justify-content-end mt-4">
                         <button type="button" name="button" class="btn btn-light m-0">Cancel</button>
                         <button type="submit" name="button" class="btn bg-gradient-primary m-0 ms-2">Criar

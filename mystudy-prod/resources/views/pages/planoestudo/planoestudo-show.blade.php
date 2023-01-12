@@ -161,7 +161,7 @@
                                 @endif
                                 @endif
 
-                                @foreach (explode(',', $item->tags_nome) as $info)
+                                @foreach (explode(',', $item->atividade_plano) as $info)
                                 - <span class="badge bg-gradient-info badge-sm">{{ $info }}</span>
                                 @endforeach
                                 <a class="text-sm text-secondary d-flex justify-content-end font-weight-bold mb-0 icon-move-right mt-2"

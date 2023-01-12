@@ -49,7 +49,7 @@ class AtividadesController extends Controller
         $atividades = new Atividade();
         $atividades->assunto_id = $request->campo_assunto;
         $atividades->plano_id = Session::get('id');
-        $atividades->tags_nome = implode(',', $request->input('tags'));
+        $atividades->atividade_plano = implode(',', $request->input('tags'));
         $atividades->atividade_data = $request->data_atividade;
         $atividades->atividade_status = $request->status_atividade;
         $atividades->atividade_prioridade = $request->prioridade_atividade;
@@ -113,7 +113,7 @@ class AtividadesController extends Controller
     {
         $atividades_edit = Atividade::findOrFail($id);
         $atividades_edit->assunto_id = $atividades_edit->assunto_id;
-        $atividades_edit->tags_nome = implode(',', $request->input('tags'));
+        $atividades_edit->atividade_plano = implode(',', $request->input('tags'));
         $atividades_edit->atividade_data = $request->data_atividade;
         $atividades_edit->atividade_status = $request->status_atividade;
         $atividades_edit->atividade_prioridade = $request->prioridade_atividade;

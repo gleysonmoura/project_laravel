@@ -9,23 +9,22 @@
         <div class="col-lg-9 mt-lg-0 mt-4">
             <div class="card mt-4">
                 @foreach ($atividadeshow as $item)
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-8 d-flex align-items-center">
-                            <h5>{{ ucwords($item->disciplina_none)  }} -
-                                {{ Str::ucfirst($item->assunto_nome)  }}
+                <div class="card-header d-flex align-items-center border-bottom py-3">
+                    <div class="d-flex align-items-center">
+                        <div class="">
+                            <h5 class="text-dark font-weight-700 ">{{ Str::ucfirst($item->assunto_nome)  }}
                             </h5>
-                            <p class="mb-0 font-weight-bold text-sm">
-                                Public Relations
-                            </p>
+                            <small
+                                class="d-block mb-0 font-weight-bold text-sm">{{ ucwords($item->disciplina_none)  }}</small>
                         </div>
-                        <div class="col-md-4 text-end">
-                            <span class="badge badge-sm bg-gradient-danger">Prioridade
-                                {{ $item->atividade_prioridade }}</span>
-                        </div>
+                    </div>
+                    <div class="text-end ms-auto">
+                        <span class="badge badge-sm bg-gradient-danger">Prioridade
+                            {{ $item->atividade_prioridade }}</span>
                     </div>
                 </div>
                 <div class="card-body p-3">
+                    <span class="mb-0 font-weight-bold text-sm">Observação</span>
                     <p class="text-sm">
                         @foreach (explode(';', $item->atividade_observacao) as $info)
                     <ul class="list-group">
@@ -36,12 +35,21 @@
                     </ul>
                     @endforeach
                     </p>
-                    <hr class="horizontal gray-light my-4">
+                    <hr class="horizontal gray-light my-2">
+                    <span class="mb-0 font-weight-bold text-sm">Você tem que</span>
                     <p>
-                        @foreach (explode(',', $item->tags_nome) as $info)
+                        @foreach (explode(',', $item->atividade_plano) as $info)
                         <span class="badge bg-gradient-info text-white badge-sm">{{ $info }}</span>
                         @endforeach
                     </p>
+                    <hr class="horizontal gray-light my-2">
+                    <span class="mb-0 font-weight-bold text-sm">Data de Inicio e termino</span> </br>
+
+                    <span
+                        class="badge badge-pill bg-gradient-secondary">{{ $carbon::parse($item->atividade_data)->format('d/m/Y')  }}</span>
+                    <span
+                        class="badge badge-pill bg-gradient-secondary">{{ $carbon::parse($item->atividade_tempo)->format('d/m/Y')  }}</span>
+
                     <a type="submit" href="{{ URL::previous() }}"
                         class="btn bg-gradient-primary btn-sm float-end mt-6 mb-0">Voltar</a>
                 </div>

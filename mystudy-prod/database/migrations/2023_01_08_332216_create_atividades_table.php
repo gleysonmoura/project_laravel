@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('assunto_id')->references('id')->on('assuntos');
             $table->foreignId('plano_id')->references('id')->on('plano_estudos');
-            $table->string('tags_nome');
+            $table->string('atividade_plano');
             $table->date('atividade_data');
+            $table->date('atividade_tempo');
             $table->String('atividade_status', 20);
             $table->String('atividade_prioridade', 20);
-            $table->string('atividade_tempo', 15);
             $table->String('atividade_observacao', 200);
             $table->timestamps();
         });
