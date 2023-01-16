@@ -4,6 +4,7 @@ use App\Http\Controllers\ConteudoController;
 use App\Http\Controllers\AtividadesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PlanoEstudoController;
+use App\Http\Controllers\MetaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
 	Route::resource('conteudo', ConteudoController::class);
 	Route::resource('atividade', AtividadesController::class);
 	Route::resource('planoestudo', PlanoEstudoController::class);
+	Route::resource('metaquestao', MetaController::class);
 	Route::get('/showAtividade/{id}', [AtividadesController::class, 'showAtividade'])->name('atividade.showAtividade');
 	Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 	Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -14,13 +14,19 @@
                         <div class="">
                             <h5 class="text-dark font-weight-700 ">{{ Str::ucfirst($item->assunto_nome)  }}
                             </h5>
-                            <small
-                                class="d-block mb-0 font-weight-bold text-sm">{{ ucwords($item->disciplina_none)  }}</small>
+                            <small class="d-block mb-0 font-weight-bold text-sm">{{ ucwords($item->disciplina_none)  }}
+                            </small>
+                            <span class="badge badge-sm bg-gradient-danger mt-4">Prioridade
+                                {{ $item->atividade_prioridade }}</span>
                         </div>
                     </div>
                     <div class="text-end ms-auto">
-                        <span class="badge badge-sm bg-gradient-danger">Prioridade
-                            {{ $item->atividade_prioridade }}</span>
+                        <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            Launch demo modal
+                        </button>
+                        {{-- <a type="submit" href="{{ route('metaquestao.create') }}"
+                        class="btn bg-gradient-primary btn-sm float-end mt-6 mb-0">Voltar</a> --}}
                     </div>
                 </div>
                 <div class="card-body p-3">
@@ -60,7 +66,26 @@
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark" id="exampleModalLabel">Criar meta questões</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn bg-gradient-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @endsection
