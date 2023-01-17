@@ -21,4 +21,8 @@ class Atividade extends Model
     {
         return $this->belongsTo(PlanoEstudo::class);
     }
+    public function Metas()
+    {
+        return $this->hasMany(Metas::class);
+    }
 }

@@ -6043,7 +6043,7 @@ textarea.form-control-lg {
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
-  background-color: #fff;
+  background-color: #111C44;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.75rem;
@@ -25014,3 +25014,11 @@ pre[class*=language-] {
         color: #212529 !important;
         opacity: 0.5 !important;
     }
+    .ct-docs-page-h1-title {
+    font-family: inherit;
+    color: #32325d;
+    font-weight: 300;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    font-size: 26px;
+}

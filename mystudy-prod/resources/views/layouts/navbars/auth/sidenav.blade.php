@@ -1,4 +1,5 @@
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 ps"
+<aside
+    class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-2  ps ps--active-y"
     id="sidenav-main">
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer opacity-5 position-absolute end-0 top-0 d-none d-xl-none text-white opacity-8"
@@ -26,15 +27,15 @@
                 </div>
                 <h6 class="ms-2 text-uppercase text-xs font-weight-bolder opacity-6 mb-0">Ações</h6>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link " href="{{ route('profile') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-single-02 text-white text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Perfil</span>
-                </a>
-            </li>
+            <div
+                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-single-02 text-white text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Perfil</span>
+            </a>
+            </li> --}}
             <li class="nav-item">
                 <a class="nav-link " href="{{ route('planoestudo.index') }}">
                     <div
@@ -75,23 +76,15 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="http://127.0.0.1:8000/virtual-reality">
+                <a class="nav-link " href="{{ route('metaquestao.index') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-app text-info text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Virtual Reality</span>
+                    <span class="nav-link-text ms-1">Metas</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link " href="http://127.0.0.1:8000/rtl">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">RTL</span>
-                </a>
-            </li>
+
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
             </li>

@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Meta extends Model
 {
-    use HasFactory;
+    protected $fillable = ['atividade_id', 'meta_quantidade'];
+    protected $guarded = ['id', 'created_at', 'update_at'];
+    protected $table = 'metas';
+
+    public function Atividades()
+    {
+        return $this->belongsTo(Atividade::class);
+    }
 }

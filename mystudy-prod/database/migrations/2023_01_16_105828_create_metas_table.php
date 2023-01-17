@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('metas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('atividade_id')->references('id')->on('atividades');
+            $table->integer('meta_quantidade');
             $table->timestamps();
         });
     }

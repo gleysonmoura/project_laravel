@@ -5,7 +5,11 @@
 @include('layouts.navbars.auth.topnav', ['title' => 'Atividades'])
 
 <div class="container-fluid py-4">
+    <div class="d-flex justify-content-center col-lg-12 mt-4">
+        @include('alert-notification')
+    </div>
     <div class="d-flex justify-content-center mb-5">
+
         <div class="col-lg-9 mt-lg-0 mt-4">
             <div class="card mt-4">
                 @foreach ($atividadeshow as $item)
@@ -21,7 +25,7 @@
                         </div>
                     </div>
                     <div class="text-end ms-auto">
-                        <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-sm bg-gradient-primary" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">
                             Launch demo modal
                         </button>
@@ -71,18 +75,26 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-dark" id="exampleModalLabel">Criar meta questões</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <h5 class="modal-title text-default" id="exampleModalLabel">Meta questões</h5>
+                <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close">
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <div class="row">
+                    <form method="POST" action="{{ route('metaquestao.store', $item->id) }}">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label for="example-text-input" class="form-control-label">Quantidade de Questões</label>
+                            <input class="form-control" type="number" id="quantidade_meta" name="quantidade_meta">
+                        </div>
+
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn bg-gradient-primary">Save changes</button>
+                <button type="button" class="btn btn-sm bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-sm bg-gradient-primary">Save</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
