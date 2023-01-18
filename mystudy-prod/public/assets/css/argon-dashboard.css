@@ -6036,6 +6036,12 @@ textarea.form-control-lg {
   align-items: center;
   min-height: calc(100% - 1rem);
 }
+.isDisabled {
+  color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+}
 
 .modal-content {
   position: relative;

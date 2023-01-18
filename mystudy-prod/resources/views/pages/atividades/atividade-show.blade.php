@@ -26,8 +26,8 @@
                     </div>
                     <div class="text-end ms-auto">
                         <button type="button" class="btn btn-sm bg-gradient-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
-                            Launch demo modal
+                            data-bs-target="#Modaladdmeta">
+                            Add Meta
                         </button>
                         {{-- <a type="submit" href="{{ route('metaquestao.create') }}"
                         class="btn bg-gradient-primary btn-sm float-end mt-6 mb-0">Voltar</a> --}}
@@ -64,40 +64,9 @@
                         class="btn bg-gradient-primary btn-sm float-end mt-6 mb-0">Voltar</a>
                 </div>
                 @endforeach
-
-
             </div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-default" id="exampleModalLabel">Meta questões</h5>
-                <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <form method="POST" action="{{ route('metaquestao.store', $item->id) }}">
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label for="example-text-input" class="form-control-label">Quantidade de Questões</label>
-                            <input class="form-control" type="number" id="quantidade_meta" name="quantidade_meta">
-                        </div>
-
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-sm bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-sm bg-gradient-primary">Save</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
+@include('pages.metaquestao.create-metaquestao')
 @endsection

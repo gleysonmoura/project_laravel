@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Desempenho;
 use App\Models\Meta;;
 
 use Illuminate\Http\Request;
@@ -20,14 +21,23 @@ class MetaController extends Controller
     {
 
         $meta_questao = DB::table('metas as meta')
-            ->join('atividades as ati', 'ati.id', '=', 'meta.atividade_id')
-            ->join('assuntos as assu', 'assu.id', '=', 'ati.assunto_id')
+            ->where('atividades.plano_id', '=', Session::get('id'))
+            ->join('atividades', 'atividades.id', '=', 'meta.atividade_id')
+            ->join('assuntos as assu', 'assu.id', '=', 'atividades.assunto_id')
+            /* ->join('desempenhos as des', 'meta.id', '=', 'des.meta_id') */
             ->join('disciplinas as dis', 'assu.disciplina_id', '=', 'dis.id')
-            ->select('meta.*', 'ati.*', 'assu.assunto_nome', 'dis.disciplina_none')
+            ->select('meta.*'/* , 'ati.*' */, 'assu.assunto_nome', 'dis.disciplina_none')
             /*    ->orderBy('meta.metavidade_data', 'asc') */
             ->paginate(5);
 
-        return view('pages.metaquestao.index-metaquestao', compact('meta_questao'));
+        $desempenhos = DB::table('desempenhos as des')
+            ->join('metas as met', 'met.id', '=', 'des.meta_id')
+            ->join('atividades as ati', 'ati.id', '=', 'met.atividade_id')
+            ->where('ati.plano_id', '=', Session::get('id'))
+            ->select('des.*')
+            ->get();
+
+        return view('pages.metaquestao.index-metaquestao', compact('meta_questao', 'desempenhos'));
     }
 
     /**

@@ -42,7 +42,7 @@ class DesempenhoController extends Controller
     {
         $desempenho = new Desempenho();
 
-        $desempenho->atividade_id = $id;
+        $desempenho->meta_id = $id;
         $desempenho->desempenho_quantidade = $request->quantidade_questoes;
         $desempenho->desempenho_certas = $request->questoes_certas;
         $desempenho->desempenho_erradas = $request->questoes_erradas;
@@ -50,7 +50,7 @@ class DesempenhoController extends Controller
 
         $ide_meta = $request->id_meta;
 
-        $meta_questao = Meta::findOrFail($ide_meta);
+        $meta_questao = Meta::findOrFail($id);
         $meta_questao->atividade_id = $meta_questao->atividade_id;
         $meta_questao->meta_status = 'finalizada';
         $meta_questao->meta_quantidade = $meta_questao->meta_quantidade;

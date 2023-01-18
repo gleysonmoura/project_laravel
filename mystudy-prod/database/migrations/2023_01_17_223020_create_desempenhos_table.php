@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('desempenhos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('atividade_id')->references('id')->on('atividades');
+            $table->foreignId('meta_id')->references('id')->on('metas');
             $table->integer('desempenho_quantidade');
             $table->integer('desempenho_certas');
             $table->integer('desempenho_erradas');
