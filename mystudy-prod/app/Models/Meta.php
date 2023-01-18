@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Meta extends Model
 {
-    protected $fillable = ['atividade_id', 'meta_quantidade'];
+    protected $fillable = ['atividade_id', 'meta_quantidade', 'meta_status'];
     protected $guarded = ['id', 'created_at', 'update_at'];
     protected $table = 'metas';
 

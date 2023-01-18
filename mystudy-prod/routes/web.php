@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ConteudoController;
 use App\Http\Controllers\AtividadesController;
+use App\Http\Controllers\DesempenhoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PlanoEstudoController;
 use App\Http\Controllers\MetaController;
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-	return view('login');
+	return view('auth.login');
 });
 
 Route::get('/index', function () {
@@ -36,6 +37,8 @@ Route::middleware('auth')->group(function () {
 	Route::resource('atividade', AtividadesController::class);
 	Route::resource('planoestudo', PlanoEstudoController::class);
 	Route::resource('metaquestao', MetaController::class);
+	Route::resource('desempenho', DesempenhoController::class);
+	Route::post('/finalizar/{id}', [DesempenhoController::class, 'finalizar'])->name('desempenho.finalizar');
 	Route::post('/store/{id}', [MetaController::class, 'store'])->name('metaquestao.store');
 	Route::get('/showAtividade/{id}', [AtividadesController::class, 'showAtividade'])->name('atividade.showAtividade');
 	Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

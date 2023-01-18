@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Meta;;
-
+use App\Models\Desempenho;
+use App\Models\Meta;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 
-
-class MetaController extends Controller
+class DesempenhoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,26 +15,17 @@ class MetaController extends Controller
      */
     public function index()
     {
-
-        $meta_questao = DB::table('metas as meta')
-            ->join('atividades as ati', 'ati.id', '=', 'meta.atividade_id')
-            ->join('assuntos as assu', 'assu.id', '=', 'ati.assunto_id')
-            ->join('disciplinas as dis', 'assu.disciplina_id', '=', 'dis.id')
-            ->select('meta.*', 'ati.*', 'assu.assunto_nome', 'dis.disciplina_none')
-            /*    ->orderBy('meta.metavidade_data', 'asc') */
-            ->paginate(5);
-
-        return view('pages.metaquestao.index-metaquestao', compact('meta_questao'));
+        //
     }
 
     /**
-     * Show the form for cremetang a new resource.
+     * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('pages.metaquestao.create-metaquestao');
+        //
     }
 
     /**
@@ -46,16 +34,31 @@ class MetaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        $meta_questao = new Meta();
-        $meta_questao->atividade_id = $id;
-        $meta_questao->meta_status = 'em andamento';
-        $meta_questao->meta_quantidade = $request->quantidade_meta;
+    }
 
+    public function finalizar(Request $request, $id)
+    {
+        $desempenho = new Desempenho();
+
+        $desempenho->atividade_id = $id;
+        $desempenho->desempenho_quantidade = $request->quantidade_questoes;
+        $desempenho->desempenho_certas = $request->questoes_certas;
+        $desempenho->desempenho_erradas = $request->questoes_erradas;
+        $desempenho->desempenho_porcentagem = $request->desempenho;
+
+        $ide_meta = $request->id_meta;
+
+        $meta_questao = Meta::findOrFail($ide_meta);
+        $meta_questao->atividade_id = $meta_questao->atividade_id;
+        $meta_questao->meta_status = 'finalizada';
+        $meta_questao->meta_quantidade = $meta_questao->meta_quantidade;
+
+
+        $desempenho->save();
         $meta_questao->save();
-        return back()->with('success', 'Meta de questões criada com sucesso!');
-        //return redirect()->route('pages.metavidades.metavidade-show', $id)->with('success', 'Meta de questões criada com sucesso!');
+        return redirect()->route('metaquestao.index')->with('success', 'Meta finalizada com sucesso!');
     }
 
     /**

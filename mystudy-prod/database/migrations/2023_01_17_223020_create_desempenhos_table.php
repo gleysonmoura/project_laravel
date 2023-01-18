@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('metas', function (Blueprint $table) {
+        Schema::create('desempenhos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('atividade_id')->references('id')->on('atividades');
-            $table->integer('meta_quantidade');
-            $table->string('meta_status', 25);
+            $table->integer('desempenho_quantidade');
+            $table->integer('desempenho_certas');
+            $table->integer('desempenho_erradas');
+            $table->float('desempenho_porcentagem');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('metas');
+        Schema::dropIfExists('desempenhos');
     }
 };
