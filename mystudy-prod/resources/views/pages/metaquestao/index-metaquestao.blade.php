@@ -14,7 +14,7 @@
                 <div class="card-body p-3 position-relative">
                     <div class="row">
                         <div class="col-7 text-start">
-                            <p class="text-sm mb-1 text-uppercase font-weight-bold">Atividades Futuras</p>
+                            <p class="text-sm mb-1 text-uppercase font-weight-bold">Nos últimos 7 dias</p>
                             <h5 class="font-weight-bolder mb-0">
                                 {{-- {{ $count_atividade_abertas }} --}}
                             </h5>
@@ -124,7 +124,8 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th
+                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Atividades</th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -164,34 +165,34 @@
                                     <td class="text-sm text-center">
                                         {{ $item->meta_quantidade }}
                                     </td>
-                                   
+
                                     <td class="text-sm text-center">
-                                     @forelse($desempenhos as $desempenho)
+                                        @forelse($desempenhos as $desempenho)
                                         @if ($desempenho->meta_id === $item->id)
                                         @if ($desempenho->desempenho_porcentagem <= 50) <span
                                             class="text-danger font-weight-bolder">
                                             {{ $desempenho->desempenho_porcentagem }}%</span>
-                                        @else
-                                        @if (($desempenho->desempenho_porcentagem > 50 ) &&
-                                        ($desempenho->desempenho_porcentagem <= 80)) <span
-                                            class="text-warning font-weight-bolder">
-                                            {{ $desempenho->desempenho_porcentagem }}%</span>
                                             @else
-                                            <span class="text-success font-weight-bolder">
-                                                {{ $desempenho->desempenho_porcentagem }}%
-                                            </span>
-                                            @endif
-                                            @endif
-        
-                                        @else
+                                            @if (($desempenho->desempenho_porcentagem > 50 ) &&
+                                            ($desempenho->desempenho_porcentagem <= 80)) <span
+                                                class="text-warning font-weight-bolder">
+                                                {{ $desempenho->desempenho_porcentagem }}%</span>
+                                                @else
+                                                <span class="text-success font-weight-bolder">
+                                                    {{ $desempenho->desempenho_porcentagem }}%
+                                                </span>
+                                                @endif
+                                                @endif
 
-                                        @endif
-                                        {{--  --}}
-                                              @empty
-                                   0
-                                    @endforelse
+                                                @else
+
+                                                @endif
+                                                {{-- --}}
+                                                @empty
+                                                0
+                                                @endforelse
                                     </td>
-                                  
+
                                     <td class="text-sm text-center">
                                         @if ($item->meta_status == 'em andamento')
                                         <span class="badge badge-sm bg-gradient-danger">

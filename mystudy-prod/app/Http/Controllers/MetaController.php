@@ -37,25 +37,20 @@ class MetaController extends Controller
             ->select('des.*')
             ->get();
 
+        return   $count_semana = DB::table('metas as meta')
+            ->where('meta.meta_status', '=', 'finalizada')
+            ->where('meta.created_at', '<=', date('Y/m/d/', strtotime('+5 day')))
+            /* ->Where('r.primeira_revisao', '<=', $prox_segunda) */
+            ->count();
+
         return view('pages.metaquestao.index-metaquestao', compact('meta_questao', 'desempenhos'));
     }
 
-    /**
-     * Show the form for cremetang a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('pages.metaquestao.create-metaquestao');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request, $id)
     {
         $meta_questao = new Meta();
@@ -68,46 +63,21 @@ class MetaController extends Controller
         //return redirect()->route('pages.metavidades.metavidade-show', $id)->with('success', 'Meta de questões criada com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
