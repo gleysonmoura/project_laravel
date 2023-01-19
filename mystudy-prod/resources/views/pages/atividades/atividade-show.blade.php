@@ -25,10 +25,19 @@
                         </div>
                     </div>
                     <div class="text-end ms-auto">
-                        <button type="button" class="btn btn-sm bg-gradient-primary" data-bs-toggle="modal"
-                            data-bs-target="#Modaladdmeta">
-                            Add Meta
-                        </button>
+                        <div class="dropdown">
+                            <button class="btn bg-gradient-info btn-sm dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                Ações
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item text-white" data-bs-toggle="modal"
+                                        data-bs-target="#Modaladdmeta" href="#">Add Meta</a></li>
+                                <li><a class="dropdown-item text-white" href="{{ route('notas.index') }}">Add
+                                        anotações</a></li>
+                                <li><a class="dropdown-item text-white" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
                         {{-- <a type="submit" href="{{ route('metaquestao.create') }}"
                         class="btn bg-gradient-primary btn-sm float-end mt-6 mb-0">Voltar</a> --}}
                     </div>
