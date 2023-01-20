@@ -27,6 +27,7 @@
             href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
         <script src="{{asset ('assets/js/chartjs.min.js') }}"></script>
         <script src="{{asset ('assets/js/datatables.js') }}"></script>
+        <script src="{{asset ('assets/js/quill.min.js') }}"></script>
         {{-- <script src="{{ asset ('assets/js/argon-dashboard.js') }}"></script> --}}
         <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
         <!-- CSS Files -->

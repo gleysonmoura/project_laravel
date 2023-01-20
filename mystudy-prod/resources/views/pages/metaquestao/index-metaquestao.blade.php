@@ -108,7 +108,7 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="d-lg-flex">
-                        <h6 class="mb-0">Atividades</h6>
+                        <h6 class="mb-0">Metas</h6>
                         <div class="ms-auto my-auto mt-lg-0 mt-4">
                             <div class="ms-auto my-auto">
                                 <button type="button" class="btn btn-sm bg-gradient-primary" data-bs-toggle="modal"
