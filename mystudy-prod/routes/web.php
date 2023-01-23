@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PlanoEstudoController;
 use App\Http\Controllers\AnotacaoController;
 use App\Http\Controllers\MetaController;
+use App\Http\Controllers\ExerciciosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,8 @@ Route::middleware('auth')->group(function () {
 	Route::resource('metaquestao', MetaController::class);
 	Route::resource('desempenho', DesempenhoController::class);
 	Route::resource('notas', AnotacaoController::class);
+	Route::resource('exercicio', ExerciciosController::class);
+	Route::post('/saveexer/{id}', [ExerciciosController::class, 'saveexer'])->name('exercicio.saveexer');
 	Route::post('/finalizar/{id}', [DesempenhoController::class, 'finalizar'])->name('desempenho.finalizar');
 	Route::post('/store/{id}', [MetaController::class, 'store'])->name('metaquestao.store');
 	Route::get('/showAtividade/{id}', [AtividadesController::class, 'showAtividade'])->name('atividade.showAtividade');

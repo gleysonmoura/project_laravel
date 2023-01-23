@@ -32,7 +32,7 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <li><a class="dropdown-item text-white" data-bs-toggle="modal"
-                                        data-bs-target="#Modaladdmeta" href="#">Add Meta</a></li>
+                                        data-bs-target="#Modaladdexercicio" href="#">Add Meta Exercicios</a></li>
                                 <li><a class="dropdown-item text-white" href="{{ route('notas.index') }}">Add
                                         anotações</a></li>
                                 <li><a class="dropdown-item text-white" href="#">Something else here</a></li>
@@ -55,19 +55,33 @@
                     @endforeach
                     </p>
                     <hr class="horizontal gray-light my-2">
-                    <span class="mb-0 font-weight-bold text-sm">Você tem que</span>
-                    <p>
-                        @foreach (explode(',', $item->atividade_plano) as $info)
-                        <span class="badge bg-gradient-info text-white badge-sm">{{ $info }}</span>
-                        @endforeach
-                    </p>
+                    <div class="div">
+                        <span class="mb-0 font-weight-bold text-sm">Você tem que</span>
+                        <p>
+                            @foreach (explode(',', $item->atividade_plano) as $info)
+                            <span class="badge bg-gradient-info text-white badge-sm">{{ $info }}</span>
+                            @endforeach
+                        </p>
+                    </div>
                     <hr class="horizontal gray-light my-2">
-                    <span class="mb-0 font-weight-bold text-sm">Data de Inicio e termino</span> </br>
+                    <div class="div">
+                        <span class="mb-0 font-weight-bold text-sm">Data de Inicio e termino</span> </br>
 
-                    <span
-                        class="badge badge-pill bg-gradient-secondary">{{ $carbon::parse($item->atividade_data)->format('d/m/Y')  }}</span>
-                    <span
-                        class="badge badge-pill bg-gradient-secondary">{{ $carbon::parse($item->atividade_tempo)->format('d/m/Y')  }}</span>
+                        <span
+                            class="badge badge-pill bg-gradient-secondary">{{ $carbon::parse($item->atividade_data)->format('d/m/Y')  }}</span>
+                        <span
+                            class="badge badge-pill bg-gradient-secondary">{{ $carbon::parse($item->atividade_tempo)->format('d/m/Y')  }}</span>
+                    </div>
+                    <div class="mt-4">
+                        @forelse ($exercicio as $exer)
+                        <span class="mb-0 font-weight-bold text-sm">Você tem exercício para fazer</span> </br>
+                        {{ $exer->exer_quantidade }} questões sobre o assunto {{ Str::ucfirst($item->assunto_nome)  }}
+                        @empty
+
+                        @endforelse
+
+                    </div>
+
 
                     <a type="submit" href="{{ URL::previous() }}"
                         class="btn bg-gradient-primary btn-sm float-end mt-6 mb-0">Voltar</a>
@@ -77,5 +91,5 @@
         </div>
     </div>
 </div>
-@include('pages.metaquestao.create-metaquestao')
+@include('pages.exercicio.create-exercicio')
 @endsection
