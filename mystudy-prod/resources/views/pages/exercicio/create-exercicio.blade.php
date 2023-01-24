@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form method="POST" action="{{ route('exercicio.saveexer', $item->id) }}">
+                    <form method="POST" action="{{ route('exercicio.saveexer', $item->assunto_id) }}">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="example-text-input" class="form-control-label">Quantidade de Questões</label>

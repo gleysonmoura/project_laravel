@@ -54,7 +54,7 @@ class ExerciciosController extends Controller
     public function saveexer(Request $request, $id)
     {
         $meta_questao = new Exercicio();
-        $meta_questao->atividade_id = $id;
+        $meta_questao->assunto_id = $id;
         $meta_questao->exer_status = 'em andamento';
         $meta_questao->exer_quantidade = $request->quantidade_meta;
 

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('exercicios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('atividade_id')->references('id')->on('atividades');
+            $table->foreignId('assunto_id')->references('id')->on('assuntos');
             $table->integer('exer_quantidade');
             $table->string('exer_status', 25);
             $table->timestamps();

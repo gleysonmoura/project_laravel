@@ -95,9 +95,13 @@ class AtividadesController extends Controller
             ->select('ati.*', 'assu.assunto_nome', 'dis.disciplina_none')
             ->orderBy('ati.atividade_data', 'asc')
             ->get();
+        $assunto_ide = 0;
+        foreach ($atividadeshow as $ati) {
+            $assunto_ide = $ati->assunto_id;
+        }
 
         $exercicio = DB::table('exercicios as exer')
-            ->where('exer.atividade_id', '=', $id)
+            ->where('exer.assunto_id', '=', $assunto_ide)
             ->get();
 
 
