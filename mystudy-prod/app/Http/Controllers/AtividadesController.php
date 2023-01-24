@@ -35,6 +35,10 @@ class AtividadesController extends Controller
             ->where('ati.atividade_status', '!=', 'finalizado')
             ->count();
 
+        return $exercicio = DB::table('exercicios as exer')
+            ->join('atividades as ati', 'ati.id', '=', 'exer.atividade_id')
+            ->get();
+
         return view('pages.atividades.atividade-index', compact('atividades', 'count_atividade_abertas', 'count_atividade', 'count_atividade_atrasadas'));
     }
 
@@ -92,7 +96,12 @@ class AtividadesController extends Controller
             ->orderBy('ati.atividade_data', 'asc')
             ->get();
 
-        return view('pages.atividades.atividade-show', compact('atividadeshow'));
+        $exercicio = DB::table('exercicios as exer')
+            ->join('atividades as ati', 'ati.id', '=', 'exer.atividade_id')
+            ->get();
+
+
+        return view('pages.atividades.atividade-show', compact('atividadeshow', 'exercicio'));
     }
 
     public function edit($id)

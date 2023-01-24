@@ -106,7 +106,7 @@
         </div>
     </div>
     <div class="row mt-4">
-        <div class="col-lg-7 mb-lg-0 mb-4">
+        <div class="col-lg-7 col-md-6 mb-4 mb-lg-0">
             <div class="card">
                 <div class="card-header pb-0">
                     <h6>Timeline de Atividades</h6>
@@ -180,57 +180,63 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-5">
-            <div class="card card-carousel overflow-hidden h-100 p-0">
-                <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
-                    <div class="carousel-inner border-radius-lg h-100">
-                        <div class="carousel-item h-100 active" style="background-image: url('./img/carousel-1.jpg');
-            background-size: cover;">
-                            <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                    <i class="ni ni-camera-compact text-dark opacity-10"></i>
+        <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+            <div class="card h-100 ">
+                <div class="card-header">
+                    <h5 class="mb-0 text-capitalize">To do list</h5>
+                </div>
+                <div class="card-body pt-0">
+                    <ul class="list-group list-group-flush" data-toggle="checklist">
+                        <li class="checklist-entry list-group-item px-0">
+                            <div class="checklist-item checklist-item-success checklist-item-checked d-flex">
+                                <div class="checklist-info">
+                                    <h6 class="checklist-title mb-0">Meta do dia</h6>
+                                    <small class="text-xs">09:30 AM</small>
                                 </div>
-                                <h5 class="text-white mb-1">Get started with Argon</h5>
-                                <p>There’s nothing I really wanted to do in life that I wasn’t able to get good at.</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item h-100" style="background-image: url('./img/carousel-2.jpg');
-            background-size: cover;">
-                            <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                    <i class="ni ni-bulb-61 text-dark opacity-10"></i>
+                                <div class="form-check my-auto ms-auto">
+                                    <input class="form-check-input" type="checkbox" id="customCheck1" checked="">
                                 </div>
-                                <h5 class="text-white mb-1">Faster way to create web pages</h5>
-                                <p>That’s my skill. I’m not really specifically talented at anything except for the
-                                    ability to learn.</p>
                             </div>
-                        </div>
-                        <div class="carousel-item h-100" style="background-image: url('./img/carousel-3.jpg');
-            background-size: cover;">
-                            <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                    <i class="ni ni-trophy text-dark opacity-10"></i>
+                        </li>
+                        <li class="checklist-entry list-group-item px-0">
+                            <div class="checklist-item checklist-item-warning d-flex">
+                                <div class="checklist-info">
+                                    <h6 class="checklist-title mb-0">Brunch Meeting</h6>
+                                    <small class="text-xs">11:00 AM</small>
                                 </div>
-                                <h5 class="text-white mb-1">Share with us your design tips!</h5>
-                                <p>Don’t be afraid to be wrong because you can’t learn anything from a compliment.</p>
+                                <div class="form-check my-auto ms-auto">
+                                    <input class="form-check-input" type="checkbox" id="customCheck1">
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev w-5 me-3" type="button"
-                        data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next w-5 me-3" type="button"
-                        data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                        </li>
+                        <li class="checklist-entry list-group-item px-0">
+                            <div class="checklist-item checklist-item-info d-flex">
+                                <div class="checklist-info">
+                                    <h6 class="checklist-title mb-0">Argon Dashboard Launch</h6>
+                                    <small class="text-xs">02:00 PM</small>
+                                </div>
+                                <div class="form-check my-auto ms-auto">
+                                    <input class="form-check-input" type="checkbox" id="customCheck1">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="checklist-entry list-group-item px-0">
+                            <div class="checklist-item checklist-item-danger checklist-item-checked d-flex">
+                                <div class="checklist-info">
+                                    <h6 class="checklist-title mb-0">Winter Hackaton</h6>
+                                    <small>10:30 AM</small>
+                                </div>
+                                <div class="form-check my-auto ms-auto">
+                                    <input class="form-check-input" type="checkbox" id="customCheck2" checked="">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row mt-4">
+    <div class="row mt-5">
         <div class="col-lg-7 mb-lg-0 mb-4">
             <div class="card ">
                 <div class="card-header pb-0 p-3">

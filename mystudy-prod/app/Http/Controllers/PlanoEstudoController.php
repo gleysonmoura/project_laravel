@@ -72,6 +72,18 @@ class PlanoEstudoController extends Controller
             ->select('ati.*', 'assu.assunto_nome', 'dis.disciplina_none')
             ->orderBy('ati.atividade_data', 'asc')
             ->get();
+
+
+        $meta_questao = DB::table('metas as meta')
+            ->where('atividades.plano_id', '=', Session::get('id'))
+            /*  ->where('meta.meta_status', '!=', 'finalizada') */
+            ->join('atividades', 'atividades.id', '=', 'meta.atividade_id')
+            ->join('assuntos as assu', 'assu.id', '=', 'atividades.assunto_id')
+            /* ->join('desempenhos as des', 'meta.id', '=', 'des.meta_id') */
+            ->join('disciplinas as dis', 'assu.disciplina_id', '=', 'dis.id')
+            ->select('meta.*'/* , 'ati.*' */, 'assu.assunto_nome', 'dis.disciplina_none')
+            /*    ->orderBy('meta.metavidade_data', 'asc') */
+            ->get();
         return view('pages.planoestudo.planoestudo-show', compact('planos', 'atividades'));
     }
 
