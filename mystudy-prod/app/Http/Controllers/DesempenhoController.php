@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Desempenho;
+use App\Models\Exercicio;
 use App\Models\Meta;
 use Illuminate\Http\Request;
 
@@ -59,6 +60,29 @@ class DesempenhoController extends Controller
         $desempenho->save();
         $meta_questao->save();
         return redirect()->route('metaquestao.index')->with('success', 'Meta finalizada com sucesso!');
+    }
+
+    public function finalizarexercicio(Request $request, $id)
+    {
+        $desempenho = new Desempenho();
+
+        $desempenho->meta_id = $id;
+        $desempenho->desempenho_quantidade = $request->quantidade_questoes;
+        $desempenho->desempenho_certas = $request->questoes_certas;
+        $desempenho->desempenho_erradas = $request->questoes_erradas;
+        $desempenho->desempenho_porcentagem = $request->desempenho;
+
+        $ide_meta = $request->id_meta;
+
+        $meta_questao = Exercicio::findOrFail($id);
+        $meta_questao->atividade_id = $meta_questao->atividade_id;
+        $meta_questao->exer_status = 'finalizada';
+        $meta_questao->exer_quantidade = $meta_questao->exer_quantidade;
+
+
+        $desempenho->save();
+        $meta_questao->save();
+        return redirect()->route('metaquestao.index')->with('success', 'Exercicio finalizada com sucesso!');
     }
 
     /**

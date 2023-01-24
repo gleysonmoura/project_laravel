@@ -35,7 +35,7 @@ class AtividadesController extends Controller
             ->where('ati.atividade_status', '!=', 'finalizado')
             ->count();
 
-        return $exercicio = DB::table('exercicios as exer')
+        $exercicio = DB::table('exercicios as exer')
             ->join('atividades as ati', 'ati.id', '=', 'exer.atividade_id')
             ->get();
 
@@ -97,7 +97,7 @@ class AtividadesController extends Controller
             ->get();
 
         $exercicio = DB::table('exercicios as exer')
-            ->join('atividades as ati', 'ati.id', '=', 'exer.atividade_id')
+            ->where('exer.atividade_id', '=', $id)
             ->get();
 
 

@@ -37,7 +37,7 @@ class MetaController extends Controller
             ->select('des.*')
             ->get();
 
-        return   $count_semana = DB::table('metas as meta')
+        $count_semana = DB::table('metas as meta')
             ->where('meta.meta_status', '=', 'finalizada')
             ->where('meta.created_at', '<=', date('Y/m/d/', strtotime('+5 day')))
             /* ->Where('r.primeira_revisao', '<=', $prox_segunda) */

@@ -16,9 +16,10 @@
                 <div class="card-header d-flex align-items-center border-bottom py-3">
                     <div class="d-flex align-items-center">
                         <div class="">
-                            <h5 class="text-dark font-weight-700 ">{{ Str::ucfirst($item->assunto_nome)  }}
+                            <h5 class="text-white font-weight-700 ">{{ Str::ucfirst($item->assunto_nome)  }}
                             </h5>
-                            <small class="d-block mb-0 font-weight-bold text-sm">{{ ucwords($item->disciplina_none)  }}
+                            <small
+                                class="d-block mb-0 text-white font-weight-bold text-sm">{{ ucwords($item->disciplina_none)  }}
                             </small>
                             <span class="badge badge-sm bg-gradient-danger mt-4">Prioridade
                                 {{ $item->atividade_prioridade }}</span>
@@ -75,14 +76,13 @@
                     <div class="mt-4">
                         @forelse ($exercicio as $exer)
                         <span class="mb-0 font-weight-bold text-sm">Você tem exercício para fazer</span> </br>
-                        {{ $exer->exer_quantidade }} questões sobre o assunto {{ Str::ucfirst($item->assunto_nome)  }}
+                        {{ $exer->exer_quantidade }} questões sobre o assunto {{ Str::ucfirst($item->assunto_nome)  }} -
+                        <span class="badge badge-sm bg-gradient-danger mt-4">{{ $exer->exer_status }}</span>
                         @empty
 
                         @endforelse
 
                     </div>
-
-
                     <a type="submit" href="{{ URL::previous() }}"
                         class="btn bg-gradient-primary btn-sm float-end mt-6 mb-0">Voltar</a>
                 </div>

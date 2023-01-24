@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Exercicio;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ExerciciosController extends Controller
 {
@@ -14,7 +16,23 @@ class ExerciciosController extends Controller
      */
     public function index()
     {
-        //
+        $exercicios = DB::table('exercicios as exer')
+            ->where('atividades.plano_id', '=', Session::get('id'))
+            ->join('atividades', 'atividades.id', '=', 'exer.atividade_id')
+            ->join('assuntos as assu', 'assu.id', '=', 'atividades.assunto_id')
+            ->join('disciplinas as dis', 'assu.disciplina_id', '=', 'dis.id')
+            ->select('exer.*'/* , 'ati.*' */, 'assu.assunto_nome', 'dis.disciplina_none')
+            /*    ->orderBy('meta.metavidade_data', 'asc') */
+            ->paginate(5);
+
+        $desempenhos = DB::table('desempenhos as des')
+            ->join('metas as met', 'met.id', '=', 'des.meta_id')
+            ->join('atividades as ati', 'ati.id', '=', 'met.atividade_id')
+            ->where('ati.plano_id', '=', Session::get('id'))
+            ->select('des.*')
+            ->get();
+
+        return view('pages.exercicio.index-exercicio', compact('exercicios', 'desempenhos'));
     }
 
     /**

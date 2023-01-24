@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
 	Route::resource('exercicio', ExerciciosController::class);
 	Route::post('/saveexer/{id}', [ExerciciosController::class, 'saveexer'])->name('exercicio.saveexer');
 	Route::post('/finalizar/{id}', [DesempenhoController::class, 'finalizar'])->name('desempenho.finalizar');
+	Route::post('/finalizarexercicio/{id}', [DesempenhoController::class, 'finalizarexercicio'])->name('desempenho.finalizarexercicio');
 	Route::post('/store/{id}', [MetaController::class, 'store'])->name('metaquestao.store');
 	Route::get('/showAtividade/{id}', [AtividadesController::class, 'showAtividade'])->name('atividade.showAtividade');
 	Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
