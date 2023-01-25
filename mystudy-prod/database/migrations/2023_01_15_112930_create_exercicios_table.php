@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('exercicios', function (Blueprint $table) {
-            $table->id();
+            $table->id()->from(100);;
             $table->foreignId('assunto_id')->references('id')->on('assuntos');
+            $table->foreignId('plano_id')->references('id')->on('plano_estudos');
             $table->integer('exer_quantidade');
             $table->string('exer_status', 25);
             $table->timestamps();

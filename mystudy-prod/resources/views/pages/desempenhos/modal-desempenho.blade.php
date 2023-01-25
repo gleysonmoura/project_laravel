@@ -15,6 +15,7 @@
                             <p class="text-sm font-weight-bold text-secondary mb-0"> Meta de Questões
                                 <span class="text-success">{{ $item->meta_quantidade }}</span>
                             </p>
+
                             <span class="mb-0 font-weight-bold text-sm">
                                 <h6 class="text-danger"></h6>
                             </span>

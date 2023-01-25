@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Exercicio extends Model
 {
-    protected $fillable = ['assunto_id', 'exer_quantidade', 'exer_status'];
+    protected $fillable = ['assunto_id', 'plano_id', 'exer_quantidade', 'exer_status'];
     protected $guarded = ['id', 'created_at', 'update_at'];
     protected $table = 'exercicios';
 

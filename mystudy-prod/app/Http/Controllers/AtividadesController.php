@@ -36,7 +36,7 @@ class AtividadesController extends Controller
             ->count();
 
         $exercicio = DB::table('exercicios as exer')
-            ->join('atividades as ati', 'ati.id', '=', 'exer.atividade_id')
+            /*   ->join('atividades as ati', 'ati.id', '=', 'exer.atividade_id') */
             ->get();
 
         return view('pages.atividades.atividade-index', compact('atividades', 'count_atividade_abertas', 'count_atividade', 'count_atividade_atrasadas'));

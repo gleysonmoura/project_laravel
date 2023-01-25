@@ -170,7 +170,7 @@
 
                                     <td class="text-sm text-center">
                                         @forelse($desempenhos as $desempenho)
-                                        @if ($desempenho->meta_id === $item->id)
+                                        @if ($desempenho->exer_id === $item->id)
                                         @if ($desempenho->desempenho_porcentagem <= 50) <span
                                             class="text-danger font-weight-bolder">
                                             {{ $desempenho->desempenho_porcentagem }}%</span>
@@ -194,7 +194,6 @@
                                                 0
                                                 @endforelse
                                     </td>
-
                                     <td class="text-sm text-center">
                                         @if ($item->exer_status == 'em andamento')
                                         <span class="badge badge-sm bg-gradient-danger">
