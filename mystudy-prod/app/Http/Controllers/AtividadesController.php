@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Atividade;
+use App\Models\Desempenho;
 use App\Models\Disciplina;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -95,17 +96,34 @@ class AtividadesController extends Controller
             ->select('ati.*', 'assu.assunto_nome', 'dis.disciplina_none')
             ->orderBy('ati.atividade_data', 'asc')
             ->get();
+
         $assunto_ide = 0;
         foreach ($atividadeshow as $ati) {
             $assunto_ide = $ati->assunto_id;
         }
 
-        $exercicio = DB::table('exercicios as exer')
-            ->where('exer.assunto_id', '=', $assunto_ide)
+        return  $exercicio = DB::table('exercicios as exer')
+            ->join('exercicios.assunto_id', '=', $assunto_ide)
             ->get();
 
+        $exer_id = 0;
+        foreach ($exercicio as $exer) {
+            $exer_id = $exer->id;
+        }
 
-        return view('pages.atividades.atividade-show', compact('atividadeshow', 'exercicio'));
+        $desempenhos = DB::table('desempenhos as des')
+            ->where('des.exer_id', '=', $exer_id)
+            /* ->where('des.plano_id', '=', Session::get('id')) */
+            ->select('des.*')
+            ->get();
+        $count_quantidade_certas = 0;
+        $count_quantidade_erradas = 0;
+        foreach ($desempenhos as $des) {
+            $count_quantidade_certas = $des->desempenho_quantidade;
+            $count_quantidade_erradas = $des->desempenho_erradas;
+        }
+
+        return view('pages.atividades.atividade-show', compact('atividadeshow', 'exercicio', 'desempenhos', 'count_quantidade_certas', 'count_quantidade_erradas'));
     }
 
     public function edit($id)

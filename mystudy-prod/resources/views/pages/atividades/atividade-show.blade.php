@@ -16,13 +16,35 @@
                 <div class="card-header d-flex align-items-center border-bottom py-3">
                     <div class="d-flex align-items-center">
                         <div class="">
-                            <h5 class="text-white font-weight-700 ">{{ Str::ucfirst($item->assunto_nome)  }}
+                            <h5 class="text-white font-weight-700 mt-lg-0 mt-4">{{ Str::ucfirst($item->assunto_nome)  }}
                             </h5>
                             <small
                                 class="d-block mb-0 text-white font-weight-bold text-sm">{{ ucwords($item->disciplina_none)  }}
                             </small>
-                            <span class="badge badge-sm bg-gradient-danger mt-4">Prioridade
-                                {{ $item->atividade_prioridade }}</span>
+
+                            <div class="rating mt-4">
+                                <span class="mb-0 text-white font-weight-bold text-sm">Incidência de Prova</span>
+                                @if ($item->atividade_prioridade == 'baixa')
+                                <i class="fas fa-star text-primary" aria-hidden="true"></i>
+                                @else
+                                @if ($item->atividade_prioridade == 'média')
+                                <i class="fas fa-star text-success" aria-hidden="true"></i>
+                                <i class="fas fa-star text-success" aria-hidden="true"></i>
+                                @else
+                                @if ($item->atividade_prioridade == 'alta')
+                                <i class="fas fa-star text-warning" aria-hidden="true"></i>
+                                <i class="fas fa-star text-warning" aria-hidden="true"></i>
+                                <i class="fas fa-star text-warning" aria-hidden="true"></i>
+                                @else
+                                <i class="fas fa-star text-danger" aria-hidden="true"></i>
+                                <i class="fas fa-star text-danger" aria-hidden="true"></i>
+                                <i class="fas fa-star text-danger" aria-hidden="true"></i>
+                                <i class="fas fa-star text-danger" aria-hidden="true"></i>
+                                @endif
+                                @endif
+                                @endif
+                                {{-- <i class="fas fa-star-half-alt" aria-hidden="true"></i> --}}
+                            </div>
                         </div>
                     </div>
                     <div class="text-end ms-auto">
@@ -44,44 +66,53 @@
                     </div>
                 </div>
                 <div class="card-body p-3">
-                    <span class="mb-0 font-weight-bold text-sm">Observação</span>
-                    <p class="text-sm">
+                    <label class="mb-0 font-weight-bold text-sm">Observação</label>
+                    {{-- <span class="mb-0 font-weight-bold text-sm">Observação</span> --}}
+                    <p>
                         @foreach (explode(';', $item->atividade_observacao) as $info)
-                    <ul class="list-group">
-                        <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                            <i class="fa-solid fa-terminal fa-2xs"></i>
+                    <ul>
+                        <li class="text-white">
                             {{ ucwords($info)}}
                         </li>
                     </ul>
                     @endforeach
                     </p>
                     <hr class="horizontal gray-light my-2">
-                    <div class="div">
-                        <span class="mb-0 font-weight-bold text-sm">Você tem que</span>
-                        <p>
-                            @foreach (explode(',', $item->atividade_plano) as $info)
-                            <span class="badge bg-gradient-info text-white badge-sm">{{ $info }}</span>
-                            @endforeach
-                        </p>
+                    <div class="">
+                        <label class="mb-0 font-weight-bold text-sm">Você tem que</label> <br>
+                        @foreach (explode(',', $item->atividade_plano) as $info)
+                        <span class="badge bg-gradient-success text-white badge-sm">{{ $info }}</span>
+                        @endforeach
+
                     </div>
                     <hr class="horizontal gray-light my-2">
-                    <div class="div">
-                        <span class="mb-0 font-weight-bold text-sm">Data de Inicio e termino</span> </br>
-
+                    <div class="">
+                        <label class="mb-0 font-weight-bold text-sm">Data de início e termino</label> <br>
                         <span
-                            class="badge badge-pill bg-gradient-secondary">{{ $carbon::parse($item->atividade_data)->format('d/m/Y')  }}</span>
+                            class="badge badge-pill bg-gradient-secondary badge-sm">{{ $carbon::parse($item->atividade_data)->format('d/m/Y')  }}</span>
                         <span
-                            class="badge badge-pill bg-gradient-secondary">{{ $carbon::parse($item->atividade_tempo)->format('d/m/Y')  }}</span>
+                            class="badge badge-pill bg-gradient-secondary badge-sm">{{ $carbon::parse($item->atividade_tempo)->format('d/m/Y')  }}</span>
                     </div>
-                    <div class="mt-4">
+                    <hr class="horizontal gray-light my-2">
+                    <div class="mt-1">
                         @forelse ($exercicio as $exer)
-                        <span class="mb-0 font-weight-bold text-sm">Você tem exercício para fazer</span> </br>
-                        {{ $exer->exer_quantidade }} questões sobre o assunto {{ Str::ucfirst($item->assunto_nome)  }} -
+                        <label class="mb-0 font-weight-bold text-sm">Você tem exercício para fazer</label> <br>
+                        <span class="badge badge-warning">{{ $exer->exer_quantidade }}</span>
+                        questões sobre o assunto {{ Str::ucfirst($item->assunto_nome)  }} -
                         <span class="badge badge-sm bg-gradient-danger mt-4">{{ $exer->exer_status }}</span>
                         @empty
-
                         @endforelse
-
+                    </div>
+                    <hr class="horizontal gray-white my-2">
+                    <div class="mt-1">
+                        @forelse ($desempenhos as $desem)
+                        <span class="mb-0 font-weight-bold text-sm">Desempenho para esse assunto</span> </br>
+                        <span class="badge badge-warning">{{ $count_quantidade_certas }}</span>
+                        <span class="badge badge-warning">{{ $count_quantidade_erradas }}</span>
+                        @empty
+                        <label class="mb-0 font-weight-bold text-sm">Você ainda não tem desempenho cadastrado</label>
+                        <br>
+                        @endforelse
                     </div>
                     <a type="submit" href="{{ URL::previous() }}"
                         class="btn bg-gradient-primary btn-sm float-end mt-6 mb-0">Voltar</a>
