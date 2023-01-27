@@ -80,7 +80,7 @@
                     <hr class="horizontal gray-light my-2">
                     <div class="">
                         <label class="mb-0 font-weight-bold text-sm">Você tem que</label> <br>
-                        @foreach (explode(',', $item->atividade_plano) as $info)
+                        @foreach (explode(',', $item->atividade_tags) as $info)
                         <span class="badge bg-gradient-success text-white badge-sm">{{ $info }}</span>
                         @endforeach
 
@@ -107,8 +107,9 @@
                     <div class="mt-1">
                         @forelse ($desempenhos as $desem)
                         <span class="mb-0 font-weight-bold text-sm">Desempenho para esse assunto</span> </br>
-                        <span class="badge badge-warning">{{ $count_quantidade_certas }}</span>
-                        <span class="badge badge-warning">{{ $count_quantidade_erradas }}</span>
+                        <span class="badge badge-warning">total de {{ $count_quantidade_total }}</span>
+                        <span class="badge badge-warning">certas {{ $count_quantidade_certas }}</span>
+                        <span class="badge badge-warning">erradas {{ $count_quantidade_erradas }}</span>
                         @empty
                         <label class="mb-0 font-weight-bold text-sm">Você ainda não tem desempenho cadastrado</label>
                         <br>

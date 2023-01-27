@@ -52,9 +52,9 @@ class AtividadesController extends Controller
     public function store(Request $request)
     {
         $atividades = new Atividade();
-        $atividades->assunto_id = $request->campo_assunto;
         $atividades->plano_id = Session::get('id');
-        $atividades->atividade_plano = implode(',', $request->input('tags'));
+        $atividades->assunto_id = $request->campo_assunto;
+        $atividades->atividade_tags = implode(',', $request->input('tags'));
         $atividades->atividade_data = $request->data_atividade;
         $atividades->atividade_status = $request->status_atividade;
         $atividades->atividade_prioridade = $request->prioridade_atividade;
@@ -102,28 +102,34 @@ class AtividadesController extends Controller
             $assunto_ide = $ati->assunto_id;
         }
 
-        return  $exercicio = DB::table('exercicios as exer')
-            ->join('exercicios.assunto_id', '=', $assunto_ide)
+        $exercicio = DB::table('exercicios as exer')
+            ->where('exer.atividade_id', '=', $id)
             ->get();
 
         $exer_id = 0;
+        $exer_atividade = 0;
         foreach ($exercicio as $exer) {
             $exer_id = $exer->id;
+            $exer_atividade = $exer->atividade_id;
         }
 
-        $desempenhos = DB::table('desempenhos as des')
+        return   $desempenhos = DB::table('desempenhos as des')
             ->where('des.exer_id', '=', $exer_id)
+            ->join('exercicios as e', 'e.atividade_id', '=', $id)
             /* ->where('des.plano_id', '=', Session::get('id')) */
             ->select('des.*')
             ->get();
+
         $count_quantidade_certas = 0;
         $count_quantidade_erradas = 0;
+        $count_quantidade_total = 0;
         foreach ($desempenhos as $des) {
-            $count_quantidade_certas = $des->desempenho_quantidade;
+            $count_quantidade_total = $des->desempenho_quantidade;
+            $count_quantidade_certas = $des->desempenho_certas;
             $count_quantidade_erradas = $des->desempenho_erradas;
         }
 
-        return view('pages.atividades.atividade-show', compact('atividadeshow', 'exercicio', 'desempenhos', 'count_quantidade_certas', 'count_quantidade_erradas'));
+        return view('pages.atividades.atividade-show', compact('atividadeshow', 'exercicio', 'desempenhos', 'count_quantidade_certas', 'count_quantidade_total', 'count_quantidade_erradas'));
     }
 
     public function edit($id)

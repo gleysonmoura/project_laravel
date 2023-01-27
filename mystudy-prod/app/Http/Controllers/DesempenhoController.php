@@ -73,7 +73,7 @@ class DesempenhoController extends Controller
         $desempenho->desempenho_porcentagem = $request->desempenho;
 
         $meta_questao = Exercicio::findOrFail($id);
-        $meta_questao->assunto_id = $meta_questao->assunto_id;
+        $meta_questao->atividade_id = $meta_questao->atividade_id;
         $meta_questao->exer_status = 'finalizada';
         $meta_questao->exer_quantidade = $meta_questao->exer_quantidade;
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Atividade extends Model
 {
-    protected $fillable = ['assunto_id', 'atividade_plano', 'tags_id', 'atividade_data', 'atividade_status', 'atividade_prioridade', 'atividade_tempo', 'atividade_observacao'];
+    protected $fillable = ['plano_id', 'assunto_id', 'atividade_tags', 'atividade_data', 'atividade_status', 'atividade_prioridade', 'atividade_tempo', 'atividade_observacao'];
     protected $guarded = ['id', 'created_at', 'update_at'];
     protected $table = 'atividades';
 
@@ -21,8 +21,8 @@ class Atividade extends Model
     {
         return $this->belongsTo(PlanoEstudo::class);
     }
-    public function Metas()
+    public function Exercicios()
     {
-        return $this->hasMany(Metas::class);
+        return $this->hasMany(Exercicio::class);
     }
 }
