@@ -104,6 +104,7 @@ class AtividadesController extends Controller
 
         $exercicio = DB::table('exercicios as exer')
             ->where('exer.atividade_id', '=', $id)
+            ->where('exer.exer_status', '!=', 'finalizada')
             ->get();
 
         $exer_id = 0;
@@ -112,24 +113,24 @@ class AtividadesController extends Controller
             $exer_id = $exer->id;
             $exer_atividade = $exer->atividade_id;
         }
-
-        return   $desempenhos = DB::table('desempenhos as des')
-            ->where('des.exer_id', '=', $exer_id)
-            ->join('exercicios as e', 'e.atividade_id', '=', $id)
-            /* ->where('des.plano_id', '=', Session::get('id')) */
-            ->select('des.*')
+        /*ta pegando a ultima pesquisa, tem que pegar o somatorio de tudos*/
+        $desempenhos = DB::table('desempenhos as des')
+            ->join('exercicios as e', 'des.exer_id', '=', 'e.id')
+            ->where('e.atividade_id', '=', $id)
             ->get();
 
         $count_quantidade_certas = 0;
         $count_quantidade_erradas = 0;
         $count_quantidade_total = 0;
+        $count_porcentagem = 0;
         foreach ($desempenhos as $des) {
-            $count_quantidade_total = $des->desempenho_quantidade;
-            $count_quantidade_certas = $des->desempenho_certas;
-            $count_quantidade_erradas = $des->desempenho_erradas;
+            $count_quantidade_total += $des->desempenho_quantidade;
+            $count_quantidade_certas += $des->desempenho_certas;
+            $count_quantidade_erradas += $des->desempenho_erradas;
+            $count_porcentagem = ($count_quantidade_certas / $count_quantidade_total) * 100;
         }
 
-        return view('pages.atividades.atividade-show', compact('atividadeshow', 'exercicio', 'desempenhos', 'count_quantidade_certas', 'count_quantidade_total', 'count_quantidade_erradas'));
+        return view('pages.atividades.atividade-show', compact('atividadeshow', 'exercicio', 'desempenhos', 'count_porcentagem', 'count_quantidade_certas', 'count_quantidade_total', 'count_quantidade_erradas'));
     }
 
     public function edit($id)
