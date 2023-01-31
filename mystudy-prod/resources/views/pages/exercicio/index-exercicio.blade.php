@@ -111,9 +111,9 @@
                         <h6 class="mb-0">Metas</h6>
                         <div class="ms-auto my-auto mt-lg-0 mt-4">
                             <div class="ms-auto my-auto">
-                                <button type="button" class="btn btn-sm bg-gradient-primary" data-bs-toggle="modal"
+                                <button type="button" class="btn bg-gradient-primary btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#Modaladdmeta">
-                                    Add Meta
+                                    Add Exercício
                                 </button>
                             </div>
                         </div>
@@ -250,7 +250,7 @@
         </div>
     </div>
 </div>
-@include('pages.metaquestao.create-metaquestao')
+@include('pages.exercicio.modal-create-exercicio-atividade')
 @include('pages.desempenhos.modal-desempenhoexercicio')
 @push('js')
 

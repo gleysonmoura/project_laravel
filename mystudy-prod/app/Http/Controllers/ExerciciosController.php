@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Atividade;
+use App\Models\Disciplina;
 use App\Models\Exercicio;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
@@ -31,8 +33,8 @@ class ExerciciosController extends Controller
             /*    ->where('met.plano_id', '=', Session::get('id')) */
             ->select('des.*')
             ->get();
-
-        return view('pages.exercicio.index-exercicio', compact('exercicios', 'desempenhos'));
+        $lista_disciplina = Disciplina::all();
+        return view('pages.exercicio.index-exercicio', compact('exercicios', 'lista_disciplina', 'desempenhos'));
     }
 
     /**
@@ -43,6 +45,28 @@ class ExerciciosController extends Controller
     public function create()
     {
         //
+    }
+
+    public function store(Request $request)
+    {
+        $atividades = new Atividade();
+        $atividades->plano_id = Session::get('id');
+        $atividades->assunto_id = $request->campo_assunto;
+        $atividades->atividade_tags = "realizar resolução de questões";
+        $atividades->atividade_data = $request->data_atividade;
+        $atividades->atividade_status = "pra estudo";
+        $atividades->atividade_prioridade = "alta";
+        $atividades->atividade_tempo = $request->data_atividade;
+        $atividades->atividade_observacao = "realizar resolução de questões";
+        $atividades->save();
+
+        $meta_questao = new Exercicio();
+        $meta_questao->atividade_id = $atividades->id;
+        $meta_questao->exer_status = 'em andamento';
+        $meta_questao->exer_quantidade = $request->quantidade_meta;
+
+        $meta_questao->save();
+        return back()->with('success', 'Exercicio de questões criada com sucesso!');
     }
 
     /**
