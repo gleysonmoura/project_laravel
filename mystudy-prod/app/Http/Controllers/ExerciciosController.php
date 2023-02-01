@@ -29,8 +29,8 @@ class ExerciciosController extends Controller
 
         $desempenhos = DB::table('desempenhos as des')
             ->join('exercicios as met', 'met.id', '=', 'des.exer_id')
-            /*    ->join('atividades as ati', 'ati.id', '=', 'met.atividade_id') */
-            /*    ->where('met.plano_id', '=', Session::get('id')) */
+            ->join('atividades as ati', 'ati.id', '=', 'met.atividade_id')
+            ->where('ati.plano_id', '=', Session::get('id'))
             ->select('des.*')
             ->get();
         $lista_disciplina = Disciplina::all();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Desempenho;
 use App\Models\PlanoEstudo;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
@@ -66,7 +67,6 @@ class PlanoEstudoController extends Controller
             ->where('ati.plano_id', '=', Session::get('id'))
             ->where('ati.atividade_data', '>=', date('Y/m/d', strtotime('-2 Monday')))
             ->Where('ati.atividade_data', '<=', date('Y/m/d', strtotime('+1 Monday')))
-
             ->join('assuntos as assu', 'assu.id', '=', 'ati.assunto_id')
             ->join('disciplinas as dis', 'assu.disciplina_id', '=', 'dis.id')
             ->select('ati.*', 'assu.assunto_nome', 'dis.disciplina_none')
@@ -84,7 +84,20 @@ class PlanoEstudoController extends Controller
             ->select('meta.*'/* , 'ati.*' */, 'assu.assunto_nome', 'dis.disciplina_none')
             /*    ->orderBy('meta.metavidade_data', 'asc') */
             ->get();
-        return view('pages.planoestudo.planoestudo-show', compact('planos', 'atividades'));
+
+        $count_atividade = DB::table('atividades as ati')
+            ->where('ati.plano_id', '=', Session::get('id'))
+            ->where('ati.atividade_status', '!=', 'finalizado')
+            ->count();
+
+        return   $count_desempenhos = Desempenho::select(DB::raw('SUM(desempenhos.desempenho_quantidade) as total_p'))
+            ->join('exercicios as met', 'met.id', '=', 'desempenhos.exer_id')
+            ->join('atividades as ati', 'ati.id', '=', 'met.atividade_id')
+            ->where('ati.plano_id', '=', Session::get('id'))
+            ->get();
+
+
+        return view('pages.planoestudo.planoestudo-show', compact('planos', 'atividades', 'count_atividade', 'count_desempenhos'));
     }
 
     /**

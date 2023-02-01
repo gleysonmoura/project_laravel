@@ -11,9 +11,9 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Money</p>
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Atividades</p>
                                 <h5 class="font-weight-bolder">
-                                    $53,000
+                                    {{ $count_atividade }}
                                 </h5>
                                 <p class="mb-0">
                                     <span class="text-success text-sm font-weight-bolder">+55%</span>
@@ -36,9 +36,12 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Users</p>
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Exercícios resolvidos</p>
                                 <h5 class="font-weight-bolder">
-                                    2,300
+                                    @foreach ($count_desempenhos as $item)
+                                    {{ $item->$total_p }}
+                                    @endforeach
+
                                 </h5>
                                 <p class="mb-0">
                                     <span class="text-success text-sm font-weight-bolder">+3%</span>
