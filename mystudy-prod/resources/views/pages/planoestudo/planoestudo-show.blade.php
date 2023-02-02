@@ -38,9 +38,7 @@
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-uppercase font-weight-bold">Exercícios resolvidos</p>
                                 <h5 class="font-weight-bolder">
-                                    @foreach ($count_desempenhos as $item)
-                                    {{ $item->$total_p }}
-                                    @endforeach
+                                    {{$count}}
 
                                 </h5>
                                 <p class="mb-0">
@@ -187,6 +185,7 @@
             <div class="card h-100 ">
                 <div class="card-header">
                     <h5 class="mb-0 text-capitalize">To do list</h5>
+                    <small class="text-xs">{{date('d/m/Y') }}</small>
                 </div>
                 <div class="card-body pt-0">
                     <ul class="list-group list-group-flush" data-toggle="checklist">
@@ -194,43 +193,20 @@
                             <div class="checklist-item checklist-item-success checklist-item-checked d-flex">
                                 <div class="checklist-info">
                                     <h6 class="checklist-title mb-0">Meta do dia</h6>
-                                    <small class="text-xs">09:30 AM</small>
+
                                 </div>
                                 <div class="form-check my-auto ms-auto">
-                                    <input class="form-check-input" type="checkbox" id="customCheck1" checked="">
+                                    {{ $count_exe }}
                                 </div>
                             </div>
                         </li>
                         <li class="checklist-entry list-group-item px-0">
                             <div class="checklist-item checklist-item-warning d-flex">
                                 <div class="checklist-info">
-                                    <h6 class="checklist-title mb-0">Brunch Meeting</h6>
-                                    <small class="text-xs">11:00 AM</small>
+                                    <h6 class="checklist-title mb-0">Atividades do dia</h6>
                                 </div>
                                 <div class="form-check my-auto ms-auto">
-                                    <input class="form-check-input" type="checkbox" id="customCheck1">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="checklist-entry list-group-item px-0">
-                            <div class="checklist-item checklist-item-info d-flex">
-                                <div class="checklist-info">
-                                    <h6 class="checklist-title mb-0">Argon Dashboard Launch</h6>
-                                    <small class="text-xs">02:00 PM</small>
-                                </div>
-                                <div class="form-check my-auto ms-auto">
-                                    <input class="form-check-input" type="checkbox" id="customCheck1">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="checklist-entry list-group-item px-0">
-                            <div class="checklist-item checklist-item-danger checklist-item-checked d-flex">
-                                <div class="checklist-info">
-                                    <h6 class="checklist-title mb-0">Winter Hackaton</h6>
-                                    <small>10:30 AM</small>
-                                </div>
-                                <div class="form-check my-auto ms-auto">
-                                    <input class="form-check-input" type="checkbox" id="customCheck2" checked="">
+                                    {{ $count_atividades }}
                                 </div>
                             </div>
                         </li>
@@ -239,7 +215,7 @@
             </div>
         </div>
     </div>
-    <div class="row mt-5">
+    {{-- <div class="row mt-5">
         <div class="col-lg-7 mb-lg-0 mb-4">
             <div class="card ">
                 <div class="card-header pb-0 p-3">
@@ -457,7 +433,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 @endsection
 
