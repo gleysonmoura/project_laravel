@@ -6,6 +6,8 @@ use App\Models\Desempenho;
 use App\Models\Exercicio;
 use App\Models\Meta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class DesempenhoController extends Controller
 {
@@ -16,7 +18,18 @@ class DesempenhoController extends Controller
      */
     public function index()
     {
-        //
+        $desempenho = DB::table('desempenhos')
+            ->get();
+
+        $desempenhos = DB::table('desempenhos as des')
+            ->join('exercicios as e', 'des.exer_id', '=', 'e.id')
+            ->join('atividades', 'atividades.id', '=', 'e.atividade_id')
+            ->join('assuntos', 'atividades.assunto_id', '=', 'assuntos.id')
+            ->where('atividades.plano_id', '=', Session::get('id'))
+            /* ->select('des.*', 'atividades.*') */
+            ->get();
+
+        return view('pages.desempenhos.index-desempenho', compact('desempenhos'));
     }
 
     /**
@@ -62,7 +75,7 @@ class DesempenhoController extends Controller
         return redirect()->route('metaquestao.index')->with('success', 'Meta finalizada com sucesso!');
     } */
 
-    public function finalizarexercicio(Request $request, $id)
+    public function finalizarexercicio(Request $request)
     {
         $desempenho = new Desempenho();
 

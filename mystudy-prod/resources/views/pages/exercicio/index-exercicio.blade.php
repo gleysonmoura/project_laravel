@@ -151,26 +151,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($exercicios as $item)
+                                @foreach ($exercicios as $exercicio)
                                 <tr>
                                     <td>
                                         <h6 class="ms-3 text-sm my-auto">
-                                            {{ ucwords($item->disciplina_none)  }} -
-                                            {{ Str::ucfirst($item->assunto_nome)  }}
+                                            {{ $exercicio->id }}
+                                            {{ ucwords($exercicio->disciplina_none)  }} -
+                                            {{ Str::ucfirst($exercicio->assunto_nome)  }}
                                         </h6>
                                     </td>
                                     <td class="text-sm text-center">
-                                        {{\Carbon\Carbon::parse( $item->created_at)->formatLocalized('%d de %b')}}
-                                        {{-- {{ $carbon::parse($item->created_at)->format('d/m/Y')  }}
+                                        {{\Carbon\Carbon::parse( $exercicio->created_at)->formatLocalized('%d de %b')}}
+                                        {{-- {{ $carbon::parse($exercicio->created_at)->format('d/m/Y')  }}
                                         --}}
                                     </td>
                                     <td class="text-sm text-center">
-                                        {{ $item->exer_quantidade }}
+                                        {{ $exercicio->exer_quantidade }}
                                     </td>
 
                                     <td class="text-sm text-center">
                                         @forelse($desempenhos as $desempenho)
-                                        @if ($desempenho->exer_id === $item->id)
+                                        @if ($desempenho->exer_id === $exercicio->id)
                                         @if ($desempenho->desempenho_porcentagem <= 50) <span
                                             class="text-danger font-weight-bolder">
                                             {{ $desempenho->desempenho_porcentagem }}%</span>
@@ -195,45 +196,49 @@
                                                 @endforelse
                                     </td>
                                     <td class="text-sm text-center">
-                                        @if ($item->exer_status == 'em andamento')
+                                        @if ($exercicio->exer_status == 'em andamento')
                                         <span class="badge badge-sm bg-gradient-danger">
-                                            {{ $item->exer_status }}
+                                            {{ $exercicio->exer_status }}
                                         </span>
                                         @else
                                         <span class="badge badge-sm bg-gradient-primary">
-                                            {{ $item->exer_status }}
+                                            {{ $exercicio->exer_status }}
                                         </span>
                                         @endif
                                     </td>
                                     <td class="text-sm">
                                         <span class="d-flex">
-                                            @if ($item->exer_status == 'finalizada')
+                                            @if ($exercicio->exer_status == 'finalizada')
                                             <a type="button" class="me-3" style="pointer-events: none;"
                                                 data-bs-toggle="modal" data-bs-target="#Modaldesempenho"
                                                 data-bs-original-title="Finalizar meta" disabled>
                                                 <i class="fa-solid fa-right-from-bracket text-secondary"></i>
                                             </a>
                                             @else
-                                            <a type="button" class="me-3" data-bs-toggle="modal"
-                                                data-bs-target="#Modaldesempenho"
-                                                data-bs-original-title="Finalizar meta">
+                                            <a href="{{ route('exercicio.show', $exercicio->id) }}" class="me-3"
+                                                data-bs-toggle="tooltip" data-bs-original-title="Edit item">
                                                 <i class="fa-solid fa-right-from-bracket text-secondary"></i>
                                             </a>
+                                            {{-- <a type="button" class="me-3" data-bs-toggle="modal"
+                                                data-bs-target="#Modaldesempenho" href="#"
+                                                data-bs-original-title="Finalizar meta">
+                                                <i class="fa-solid fa-right-from-bracket text-secondary"></i>
+                                            </a> --}}
                                             @endif
 
-                                            <a href="{{ route('atividade.edit', $item->id) }}" class="me-3"
-                                                data-bs-toggle="tooltip" data-bs-original-title="Edit item">
-                                                <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
-                                            </a>
-                                            <form action="{{ route('atividade.destroy', $item->id) }}"
-                                                class="delete_form" method="post">
-                                                {{ csrf_field() }}
-                                                {{ method_field('DELETE') }}
-                                                <button data-bs-toggle="tooltip" data-bs-original-title="Delete item"
-                                                    class="border-0 bg-default">
-                                                    <i class="fas fa-trash text-secondary" aria-hidden="true"></i>
-                                                </button>
-                                            </form>
+                                            {{-- <a href="{{ route('atividade.edit', $exercicio->id) }}" class="me-3"
+                                            data-bs-toggle="tooltip" data-bs-original-title="Edit item">
+                                            <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
+                                            </a> --}}
+                                            {{-- <form action="{{ route('atividade.destroy', $exercicio->id) }}"
+                                            class="delete_form" method="post">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <button data-bs-toggle="tooltip" data-bs-original-title="Delete item"
+                                                class="border-0 bg-default">
+                                                <i class="fas fa-trash text-secondary" aria-hidden="true"></i>
+                                            </button>
+                                            </form> --}}
                                         </span>
                                     </td>
                                 </tr>
@@ -252,6 +257,7 @@
 </div>
 @include('pages.exercicio.modal-create-exercicio-atividade')
 @include('pages.desempenhos.modal-desempenhoexercicio')
+@include('pages.desempenhos.modal-desempenho')
 @push('js')
 
 <script>

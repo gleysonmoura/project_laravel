@@ -19,12 +19,21 @@ class ExerciciosController extends Controller
     public function index()
     {
         $exercicios = DB::table('exercicios as exer')
-            ->where('atividades.plano_id', '=', Session::get('id'))
             ->join('atividades', 'atividades.id', '=', 'exer.atividade_id')
             ->join('assuntos as assu', 'assu.id', '=', 'atividades.assunto_id')
             ->join('disciplinas as dis', 'assu.disciplina_id', '=', 'dis.id')
-            ->select('exer.*'/* , 'ati.*' */, 'assu.assunto_nome', 'dis.disciplina_none')
-            /*    ->orderBy('meta.metavidade_data', 'asc') */
+            ->where('atividades.plano_id', '=', Session::get('id'))
+            ->select('exer.id', 'exer.*'/* , 'ati.*' */, 'assu.assunto_nome', 'dis.disciplina_none')
+            ->orderBy('exer.created_at', 'asc')
+            ->paginate(5);
+
+
+        $atividades = DB::table('atividades as ati')
+            ->where('ati.plano_id', '=', Session::get('id'))
+            ->join('assuntos as assu', 'assu.id', '=', 'ati.assunto_id')
+            ->join('disciplinas as dis', 'assu.disciplina_id', '=', 'dis.id')
+            ->select('ati.*', 'assu.assunto_nome', 'dis.disciplina_none')
+            ->orderBy('ati.atividade_data', 'asc')
             ->paginate(5);
 
         $desempenhos = DB::table('desempenhos as des')
@@ -95,7 +104,8 @@ class ExerciciosController extends Controller
      */
     public function show($id)
     {
-        //
+        $dados_exercicios = Exercicio::findOrFail($id);
+        return view('pages.exercicio.index-finalizarexercicio', compact('dados_exercicios'));
     }
 
     /**

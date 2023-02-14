@@ -1,4 +1,4 @@
-<div class="modal fade" id="Modaldesempenho" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="modal-desempenhoexercicio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg " role="document">
         <div class="modal-content">
@@ -9,19 +9,19 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form method="POST" action="{{ route('desempenho.finalizarexercicio', $item->id) }}">
+                    <form method="POST" action="{{ route('desempenho.finalizarexercicio', $exercicio->id) }}">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <p class="text-sm font-weight-bold text-secondary mb-0"> Meta de Questões
-                                <span class="text-success">{{ $item->exer_quantidade }}</span>
+                                <span class="text-success">{{ $exercicio->exer_quantidade }}</span>
                             </p>
                             <p>
-                                {{ $item->id }}
+                                {{ $exercicio->id }}
                             </p>
                             <span class="mb-0 font-weight-bold text-sm">
                                 <h6 class="text-danger"></h6>
                             </span>
-                            <input style="display:none;" type="text" value="{{$item->id}}" name="id_meta"
+                            <input style="display:none;" type="text" value="{{$exercicio->id}}" name="id_meta"
                                 class="form-control form-control-sm">
                         </div>
                         <div class="form-group">
@@ -65,7 +65,7 @@
                                 </table>
                             </div>
                         </div>
-
+                    </form>
                 </div>
             </div>
             <div class="modal-footer">

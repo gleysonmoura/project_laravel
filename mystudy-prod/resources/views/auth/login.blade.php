@@ -66,10 +66,8 @@
                             style="background-image:url(../img/login-register.jpg);
               background-size: cover;">
                             <span class="mask bg-gradient-primary opacity-6"></span>
-                            <h4 class="mt-5 text-white font-weight-bolder position-relative">"Attention is the new
-                                currency"</h4>
-                            <p class="text-white position-relative">The more effortless the writing looks, the more
-                                effort the writer actually put into the process.</p>
+                            <h4 class="mt-5 text-white font-weight-bolder position-relative"></h4>
+                            <p class="text-white position-relative"></p>
                         </div>
                     </div>
                 </div>

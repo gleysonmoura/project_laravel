@@ -9,20 +9,21 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form method="POST" action="{{ route('desempenho.finalizar', $item->id) }}">
+                    <form method="POST" action="{{ route('desempenho.finalizarexercicio', $exercicio->id) }}">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <p class="text-sm font-weight-bold text-secondary mb-0"> Meta de Questões
-                                <span class="text-success">{{ $item->meta_quantidade }}</span>
+                                {{-- <span class="text-success">{{ $exercicio->meta_quantidade }}</span> --}}
+                                {{ $exercicio->id }}
                             </p>
 
                             <span class="mb-0 font-weight-bold text-sm">
                                 <h6 class="text-danger"></h6>
                             </span>
-                            <input style="display:none;" type="text" value="{{$item->id}}" name="id_meta"
+                            <input style="display:none;" type="text" value="{{$exercicio->id}}" name="id_meta"
                                 class="form-control form-control-sm">
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <div class="table-responsive">
                                 <table class="table align-items-center mb-0">
                                     <thead>
@@ -62,7 +63,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </div> --}}
 
                 </div>
             </div>
