@@ -11,11 +11,6 @@ use Illuminate\Support\Facades\Session;
 
 class DesempenhoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $desempenho = DB::table('desempenhos')
@@ -32,22 +27,11 @@ class DesempenhoController extends Controller
         return view('pages.desempenhos.index-desempenho', compact('desempenhos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
     }
@@ -75,7 +59,7 @@ class DesempenhoController extends Controller
         return redirect()->route('metaquestao.index')->with('success', 'Meta finalizada com sucesso!');
     } */
 
-    public function finalizarexercicio(Request $request)
+    public function finalizarexercicio(Request $request, $id)
     {
         $desempenho = new Desempenho();
 

@@ -24,7 +24,7 @@ class ExerciciosController extends Controller
             ->join('disciplinas as dis', 'assu.disciplina_id', '=', 'dis.id')
             ->where('atividades.plano_id', '=', Session::get('id'))
             ->select('exer.id', 'exer.*'/* , 'ati.*' */, 'assu.assunto_nome', 'dis.disciplina_none')
-            ->orderBy('exer.created_at', 'asc')
+            ->orderBy('exer.created_at', 'desc')
             ->paginate(5);
 
 
@@ -42,8 +42,27 @@ class ExerciciosController extends Controller
             ->where('ati.plano_id', '=', Session::get('id'))
             ->select('des.*')
             ->get();
+
+        $count_semana_exercicio = DB::table('exercicios as exer')
+            ->join('atividades', 'atividades.id', '=', 'exer.atividade_id')
+            ->where('atividades.plano_id', '=', Session::get('id'))
+            ->where('exer.created_at', '>=', date('Y/m/d', strtotime('-1 Monday')))
+            ->count();
+
+        $count_semana_exercicio_atrasada = DB::table('exercicios as exer')
+            ->join('atividades', 'atividades.id', '=', 'exer.atividade_id')
+            ->where('atividades.plano_id', '=', Session::get('id'))
+            ->where('exer.exer_status', '=', 'em andamento')
+            ->where('exer.created_at', '<', date('Y/m/d'))
+            ->count();
+
+        $count_exercicio = DB::table('exercicios as exer')
+            ->join('atividades', 'atividades.id', '=', 'exer.atividade_id')
+            ->where('atividades.plano_id', '=', Session::get('id'))
+            ->count();
+
         $lista_disciplina = Disciplina::all();
-        return view('pages.exercicio.index-exercicio', compact('exercicios', 'lista_disciplina', 'desempenhos'));
+        return view('pages.exercicio.index-exercicio', compact('exercicios', 'count_exercicio', 'lista_disciplina', 'desempenhos', 'count_semana_exercicio', 'count_semana_exercicio_atrasada'));
     }
 
     /**

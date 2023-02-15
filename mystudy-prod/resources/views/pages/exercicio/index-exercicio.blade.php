@@ -8,6 +8,7 @@
     <div class="row mt-2 mx-4 col-12">
         @include('alert-notification')
     </div>
+    {{-- ROW ESTATISTICAS DOS EXERCICIOS --}}
     <div class="row">
         <div class="col-sm-4">
             <div class="card">
@@ -16,25 +17,10 @@
                         <div class="col-7 text-start">
                             <p class="text-sm mb-1 text-uppercase font-weight-bold">Nos últimos 7 dias</p>
                             <h5 class="font-weight-bolder mb-0">
-                                {{-- {{ $count_atividade_abertas }} --}}
+                                {{ $count_semana_exercicio }}
                             </h5>
                             <span class="text-sm text-end text-success font-weight-bolder mt-auto mb-0">+55% <span
                                     class="font-weight-normal text-secondary">since last month</span></span>
-                        </div>
-                        <div class="col-5">
-                            <div class="dropdown text-end">
-                                <a href="javascript:;" class="cursor-pointer text-secondary" id="dropdownUsers1"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="text-xs text-secondary"></span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end px-2 py-3" aria-labelledby="dropdownUsers1">
-                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last 7 days</a>
-                                    </li>
-                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last week</a></li>
-                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last 30 days</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -47,25 +33,10 @@
                         <div class="col-7 text-start">
                             <p class="text-sm mb-1 text-uppercase font-weight-bold">Atrasadas</p>
                             <h5 class="font-weight-bolder mb-0">
-                                {{-- {{ $count_atividade_atrasadas }} --}}
+                                {{ $count_semana_exercicio_atrasada }}
                             </h5>
                             <span class="text-sm text-end text-success font-weight-bolder mt-auto mb-0">+12% <span
                                     class="font-weight-normal text-secondary">since last month</span></span>
-                        </div>
-                        <div class="col-5">
-                            <div class="dropdown text-end">
-                                <a href="javascript:;" class="cursor-pointer text-secondary" id="dropdownUsers2"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="text-xs text-secondary"></span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end px-2 py-3" aria-labelledby="dropdownUsers2">
-                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last 7 days</a>
-                                    </li>
-                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last week</a></li>
-                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last 30 days</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -78,25 +49,10 @@
                         <div class="col-7 text-start">
                             <p class="text-sm mb-1 text-uppercase font-weight-bold"> Total</p>
                             <h5 class="font-weight-bolder mb-0">
-                                {{-- {{ $count_atividade }} --}}
+                                {{ $count_exercicio }}
                             </h5>
                             <span class="text-sm text-end text-success font-weight-bolder mt-auto mb-0">+12% <span
                                     class="font-weight-normal text-secondary">since last month</span></span>
-                        </div>
-                        <div class="col-5">
-                            <div class="dropdown text-end">
-                                <a href="javascript:;" class="cursor-pointer text-secondary" id="dropdownUsers2"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="text-xs text-secondary"></span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end px-2 py-3" aria-labelledby="dropdownUsers2">
-                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last 7 days</a>
-                                    </li>
-                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last week</a></li>
-                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Last 30 days</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -108,7 +64,7 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="d-lg-flex">
-                        <h6 class="mb-0">Metas</h6>
+                        <h6 class="mb-0">Exercícios</h6>
                         <div class="ms-auto my-auto mt-lg-0 mt-4">
                             <div class="ms-auto my-auto">
                                 <button type="button" class="btn bg-gradient-primary btn-sm" data-bs-toggle="modal"
@@ -155,9 +111,8 @@
                                 <tr>
                                     <td>
                                         <h6 class="ms-3 text-sm my-auto">
-                                            {{ $exercicio->id }}
-                                            {{ ucwords($exercicio->disciplina_none)  }} -
-                                            {{ Str::ucfirst($exercicio->assunto_nome)  }}
+                                            {{ Str::ucfirst($exercicio->assunto_nome)  }} -
+                                            <small>{{ ucwords($exercicio->disciplina_none)  }}</small>
                                         </h6>
                                     </td>
                                     <td class="text-sm text-center">
