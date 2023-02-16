@@ -1,7 +1,7 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 @inject('carbon', 'Carbon\Carbon')
 @section('content')
-@include('layouts.navbars.auth.topnav', ['title' => 'Plano de Estudo'])
+@include('layouts.navbars.auth.topnav-home', ['title' => 'Plano de Estudo'])
 @include('layouts.navbars.auth.sidenav-home')
 <div class="container-fluid py-4">
     <div class="row ">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Atividade;
 use App\Models\Desempenho;
 use App\Models\Exercicio;
 use App\Models\Meta;
@@ -24,7 +25,30 @@ class DesempenhoController extends Controller
             /* ->select('des.*', 'atividades.*') */
             ->get();
 
-        return view('pages.desempenhos.index-desempenho', compact('desempenhos'));
+        $count_desempenhos = Desempenho::select(DB::raw('COUNT(desempenhos.desempenho_quantidade) as total_p'))
+            ->join('exercicios as met', 'met.id', '=', 'desempenhos.exer_id')
+            ->join('atividades as ati', 'ati.id', '=', 'met.atividade_id')
+            ->where('ati.plano_id', '=', Session::get('id'))
+            ->get();
+        date('d/m/Y', strtotime('-10 days'));
+
+        /* $count_assuntos = Atividade::select(DB::raw('COUNT(atividades.assunto_id) as total_p', 'assunto_nome')) */
+        $count_assuntos = DB::table('atividades')
+            ->where('atividades.plano_id', '=', Session::get('id'))
+            ->join('assuntos', 'atividades.assunto_id', '=', 'assuntos.id')
+            /*  ->where('atividade_status', '=!', 'finalizado') */
+            ->whereDate('atividades.updated_at', '<',  date('Y/m/d', strtotime('-10 days')))
+            ->get();
+
+
+        foreach ($count_assuntos as $teste) {
+            $dados_atividade = array($teste);
+            (array_unique($dados_atividade));
+        }
+
+
+
+        return view('pages.desempenhos.index-desempenho', compact('desempenhos', 'count_assuntos', 'dados_atividade'));
     }
 
     public function create()
