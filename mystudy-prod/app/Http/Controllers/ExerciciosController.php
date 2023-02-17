@@ -97,12 +97,7 @@ class ExerciciosController extends Controller
         return back()->with('success', 'Exercicio de questões criada com sucesso!');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function saveexer(Request $request, $id)
     {
         $meta_questao = new Exercicio();
@@ -112,15 +107,8 @@ class ExerciciosController extends Controller
 
         $meta_questao->save();
         return back()->with('success', 'Exercicio de questões criada com sucesso!');
-        //return redirect()->route('pages.metavidades.metavidade-show', $id)->with('success', 'Meta de questões criada com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $dados_exercicios = Exercicio::findOrFail($id);
@@ -138,24 +126,11 @@ class ExerciciosController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

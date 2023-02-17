@@ -58,7 +58,9 @@
                                         data-bs-target="#Modaladdexercicio" href="#">Add Meta Exercicios</a></li>
                                 <li><a class="dropdown-item text-white" href="{{ route('notas.index') }}">Add
                                         anotações</a></li>
-                                <li><a class="dropdown-item text-white" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item text-white"
+                                        href="{{ route('atividade.finalizaratividade', $item->id) }}">Finalizar
+                                        Atividade</a></li>
                             </ul>
                         </div>
                         {{-- <a type="submit" href="{{ route('metaquestao.create') }}"

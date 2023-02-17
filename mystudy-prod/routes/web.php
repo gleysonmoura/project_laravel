@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function () {
 	Route::post('/finalizarexercicio/{id}', [DesempenhoController::class, 'finalizarexercicio'])->name('desempenho.finalizarexercicio');
 	Route::post('/store/{id}', [MetaController::class, 'store'])->name('metaquestao.store');
 	Route::get('/showAtividade/{id}', [AtividadesController::class, 'showAtividade'])->name('atividade.showAtividade');
+	Route::get('/finalizaratividade/{id}', [AtividadesController::class, 'finalizaratividade'])->name('atividade.finalizaratividade');
 	Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 	Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 	Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

@@ -122,7 +122,8 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th
+                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Atividades</th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -183,6 +184,11 @@
 
                                     </td>
                                     <td class="text-sm text-center">
+                                        @if ($item->atividade_status == "finalizada")
+                                        <span class="badge badge-sm bg-gradient-primary">
+                                            {{ $item->atividade_status }}
+                                        </span>
+                                        @else
                                         @if ($item->atividade_data > date("Y-m-d"))
                                         <span class="badge badge-sm bg-gradient-danger">
                                             {{ $item->atividade_status }}
@@ -198,6 +204,8 @@
                                         </span>
                                         @endif
                                         @endif
+                                        @endif
+
                                     </td>
                                     <td class="text-sm">
                                         <span class="d-flex">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Atividade;
 use App\Models\Desempenho;
 use App\Models\Disciplina;
+use App\Models\Exercicio;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -131,6 +132,34 @@ class AtividadesController extends Controller
         }
 
         return view('pages.atividades.atividade-show', compact('atividadeshow', 'exercicio', 'desempenhos', 'count_porcentagem', 'count_quantidade_certas', 'count_quantidade_total', 'count_quantidade_erradas'));
+    }
+
+    public function finalizaratividade($id)
+    {
+        $atividades_finalizar = Atividade::findOrFail($id);
+
+        $exercicio = DB::table('exercicios as exe')
+            ->join('atividades as ati', 'exe.atividade_id', '=', 'ati.id')
+            ->where('ati.plano_id', '=', Session::get('id'))
+            ->where('exe.exer_status', '!=', 'finalizada')
+            ->get();
+
+        foreach ($exercicio as $result_exercicio) {
+            if ($result_exercicio == true) {
+                return back()->with('success', 'Atividade não pode ser finalizada, existe exercício pendente!');
+            } else {
+                $atividades_finalizar->plano_id = Session::get('id');
+                $atividades_finalizar->assunto_id = $atividades_finalizar->assunto_id;
+                $atividades_finalizar->atividade_tags = $atividades_finalizar->atividade_tags;
+                $atividades_finalizar->atividade_data = $atividades_finalizar->atividade_data;
+                $atividades_finalizar->atividade_status = "finalizada";
+                $atividades_finalizar->atividade_prioridade = $atividades_finalizar->atividade_prioridade;
+                $atividades_finalizar->atividade_observacao = $atividades_finalizar->atividade_observacao;
+
+                $atividades_finalizar->save();
+                return back()->with('success', 'Atividade finalizada com sucesso!');
+            }
+        }
     }
 
     public function edit($id)
