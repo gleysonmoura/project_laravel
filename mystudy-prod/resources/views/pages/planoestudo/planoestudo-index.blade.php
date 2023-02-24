@@ -32,16 +32,16 @@
                                         Status</th>
                                     <th
                                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Data</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                         Plano</th>
                                     <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
-                                        Progresso</th>
+                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        Data da prova</th>
                                     <th
                                         class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
-                                        action</th>
+                                        Dias estudados</th>
+                                    <th
+                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                        ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,15 +65,34 @@
                                     </td>
                                     <td class="align-middle text-center">
                                         <div class="d-flex align-items-center justify-content-center">
-                                            <span class="me-2 text-xs font-weight-bold">60%</span>
-                                            <div>
+                                            @php
+                                            $hoje = new DateTime();
+                                            /* calculo de dias estudos a aparti da data de criação do plano */
+                                            $diferenca = $hoje->diff(new DateTime($item->created_at));
+
+                                            /* calculo para saber quantos dias falta para a data provavel da prova */
+                                            $data_prova = $hoje->diff(new DateTime($item->plano_data));
+                                            /* echo $diferenca->format('%a days');
+                                            */@endphp
+                                            <div class="progress-wrapper">
+                                                <div class="progress-info">
+                                                    <div class="progress-percentage">
+                                                        <span class="text-sm font-weight-bold">dias
+                                                            {{ $diferenca->format(" %a" ) }}</span>
+                                                        <span class="text-sm font-weight-bold">dias para prova{{
+                                                            $data_prova->format(" %a" ) }}</span>
+                                                    </div>
+                                                </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-gradient-info" role="progressbar"
-                                                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                                                        style="width: 60%;"></div>
+                                                    <div class="progress-bar bg-gradient-primary" role="progressbar"
+                                                        aria-valuenow="{{ $diferenca->format(" %a" ) }}"
+                                                        aria-valuemin="0" aria-valuemax="{{ $data_prova->format(" %a" )
+                                                        }}" style="width: {{ $diferenca->format(" %a" ) }}%;">
+                                                        {{ $diferenca->format(" %a" ) }}%</div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </td>
                                     <td class="text-center align-middle">
                                         <span class="d-flex">
