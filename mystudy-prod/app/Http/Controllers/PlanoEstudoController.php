@@ -2,43 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePlano;
 use App\Models\Desempenho;
 use App\Models\Exercicio;
 use App\Models\PlanoEstudo;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PlanoEstudoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $planos = PlanoEstudo::all();
         return view('pages.planoestudo.planoestudo-index', compact('planos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('pages.planoestudo.planoestudo-create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(CreatePlano $request)
     {
         $planos = new PlanoEstudo();
 
@@ -51,12 +37,6 @@ class PlanoEstudoController extends Controller
         return redirect()->route('planoestudo.index')->with('success', 'Plano de estudo criado com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
 
@@ -120,35 +100,16 @@ class PlanoEstudoController extends Controller
         return view('pages.planoestudo.planoestudo-show', compact('planos', 'count', 'count_atividades', 'count_exe', 'atividades', 'count_atividade', 'count_desempenhos'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
