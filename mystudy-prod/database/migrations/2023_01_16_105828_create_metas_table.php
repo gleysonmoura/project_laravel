@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('metas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('atividade_id')->references('id')->on('atividades');
+            $table->foreignId('atividade_id')->references('id')->on('atividades')->onDelete('cascade');
             $table->integer('meta_quantidade');
             $table->string('meta_status', 25);
             $table->timestamps();

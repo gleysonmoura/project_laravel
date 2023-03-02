@@ -25,22 +25,26 @@
                 </div>
                 <div class="card-body px-0 pb-0">
                     <div class="table-responsive p-0">
-                        <table class="table align-items-center justify-content-center mb-0">
+                        <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th
+                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">
                                         Status</th>
                                     <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">
                                         Plano</th>
                                     <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">
                                         Data da prova</th>
                                     <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">
                                         Dias estudados</th>
                                     <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">
+                                        Dias para a prova</th>
+                                    <th
+                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">
                                         ações</th>
                                 </tr>
                             </thead>
@@ -64,43 +68,34 @@
                                         </p>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            @php
-                                            $hoje = new DateTime();
-                                            /* calculo de dias estudos a aparti da data de criação do plano */
-                                            $diferenca = $hoje->diff(new DateTime($item->created_at));
+                                        @php
+                                        $hoje = new DateTime();
+                                        /* calculo de dias estudos a aparti da data de criação do plano */
+                                        $diferenca = $hoje->diff(new DateTime($item->created_at));
 
-                                            /* calculo para saber quantos dias falta para a data provavel da prova */
-                                            $data_prova = $hoje->diff(new DateTime($item->plano_data));
-                                            /* echo $diferenca->format('%a days');
-                                            */@endphp
-                                            <div class="progress-wrapper">
-                                                <div class="progress-info">
-                                                    <div class="progress-percentage">
-                                                        <span class="text-sm font-weight-bold">dias
-                                                            {{ $diferenca->format(" %a" ) }}</span>
-                                                        <span class="text-sm font-weight-bold">dias para prova{{
-                                                            $data_prova->format(" %a" ) }}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-gradient-primary" role="progressbar"
-                                                        aria-valuenow="{{ $diferenca->format(" %a" ) }}"
-                                                        aria-valuemin="0" aria-valuemax="{{ $data_prova->format(" %a" )
-                                                        }}" style="width: {{ $diferenca->format(" %a" ) }}%;">
-                                                        {{ $diferenca->format(" %a" ) }}%</div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        /* calculo para saber quantos dias falta para a data provavel da prova */
+                                        $data_prova = $hoje->diff(new DateTime($item->plano_data));
+                                        /* echo $diferenca->format('%a days');
+                                        */@endphp
 
+                                        {{ $diferenca->format(" %a" ) }} dias
                                     </td>
-                                    <td class="text-center align-middle">
+                                    <td class="align-middle text-center">{{ $data_prova->format(" %a" ) }} dias</td>
+                                    <td class="text-sm">
                                         <span class="d-flex">
-                                            <a href="{{ route('planoestudo.show', $item->id) }}"
-                                                class="text-sm text-center text-secondary d-flex justify-content-end font-weight-bold mb-0 icon-move-right mt-2">
-                                                Ir<i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
+                                            <form action="{{ route('planoestudo.destroy', $item->id) }}"
+                                                class="delete_form" method="post">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button data-bs-toggle="tooltip" data-bs-original-title="Delete item"
+                                                    class="border-0 bg-default">
+                                                    <i class="fas fa-trash text-secondary" aria-hidden="true"></i>
+                                                </button>
+                                            </form>
+                                            <a href="{{ route('planoestudo.show', $item->id) }}" class="text-sm text-center text-secondary d-flex justify-content-end
+                                            font-weight-bold mb-0 icon-move-right ms-3">
+                                                Ir<i class="fas fa-arrow-right text-sm ms-3" aria-hidden="true"></i>
                                             </a>
-
                                         </span>
                                     </td>
                                 </tr>

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('atividades', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('plano_id')->references('id')->on('plano_estudos');
+            $table->foreignId('plano_id')->references('id')->on('plano_estudos')->onDelete('cascade');
             $table->foreignId('assunto_id')->references('id')->on('assuntos');
             $table->string('atividade_tags');
             $table->date('atividade_data');

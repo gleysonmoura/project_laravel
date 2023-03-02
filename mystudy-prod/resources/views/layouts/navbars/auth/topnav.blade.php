@@ -9,10 +9,20 @@
                         href="{{ route('planoestudo.show', Session::get('id')) }}"><i class="fa-solid fa-house"></i></a>
                 </li>
                 <li class="breadcrumb-item font-weight-bolder text-sm text-white active" aria-current="page">
-                    {{ $title }}</li>
+                    {{ $title }}
+                </li>
             </ol>
             {{-- <h6 class="font-weight-bolder text-sm text-white mb-0">{{ $title }}</h6> --}}
         </nav>
+        <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
+            <a href="javascript:;" class="nav-link p-0">
+                <div class="sidenav-toggler-inner">
+                    <i class="sidenav-toggler-line bg-white"></i>
+                    <i class="sidenav-toggler-line bg-white"></i>
+                    <i class="sidenav-toggler-line bg-white"></i>
+                </div>
+            </a>
+        </div>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                 {{-- <div class="input-group">

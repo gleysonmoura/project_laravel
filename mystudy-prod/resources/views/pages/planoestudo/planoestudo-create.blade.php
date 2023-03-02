@@ -1,14 +1,13 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
-
 @section('content')
 @include('layouts.navbars.auth.topnav-home', ['title' => 'Plano de Estudo'])
 @include('layouts.navbars.auth.sidenav-home')
 <div class="container-fluid py-4">
-    <div class="row">
+    <div class="row ">
         <div class="col-12">
             <div class="card card-body mt-4">
                 <div class="card-header d-flex justify-content-between">
-                    <h6>Plano de Estudos</h6>
+                    <h6 class="mb-0">Plano de Estudos</h6>
                 </div>
                 <form method="POST" action="{{ route('planoestudo.store') }}">
                     {{ csrf_field() }}
@@ -19,7 +18,8 @@
                                 <div class="form-group">
                                     <input type="text" name="nome_plano" class="form-control value=" {{
                                         old('nome_plano') }}" id=" nome_plano">
-                                    @error('nome_plano') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
+                                    @error('nome_plano') <p class="text-danger text-xs pt-1"> {{$message}} </p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -39,14 +39,15 @@
                                 <option value="em estudo">Em Andamento</option>
                                 <option value="em planejado">Em Planejado</option>
                                 <option value="Aguardando">Aguardando</option>
-                                @error('status_plano') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
+                                @error('status_plano') <p class="text-danger text-xs pt-1"> {{$message}} </p>
+                                @enderror
                             </select>
                         </div>
                     </div>
                     <div class="d-flex justify-content-end mt-4">
                         <button type="button" name="button" class="btn btn-sm btn-light m-0">Cancel</button>
                         <button type="submit" name="button" class="btn btn-sm bg-gradient-primary m-0 ms-2">Criar
-                            Atividade</button>
+                            Plano</button>
                     </div>
                 </form>
             </div>

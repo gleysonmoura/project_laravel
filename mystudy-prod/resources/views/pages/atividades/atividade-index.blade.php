@@ -145,7 +145,6 @@
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Actions
                                     </th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -181,7 +180,6 @@
                                         @endif
                                         @endif
                                         @endif
-
                                     </td>
                                     <td class="text-sm text-center">
                                         @if ($item->atividade_status == "finalizada")
@@ -205,7 +203,6 @@
                                         @endif
                                         @endif
                                         @endif
-
                                     </td>
                                     <td class="text-sm">
                                         <span class="d-flex">

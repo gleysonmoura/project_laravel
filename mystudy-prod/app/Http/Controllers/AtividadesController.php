@@ -180,7 +180,7 @@ class AtividadesController extends Controller
     {
         $atividades_edit = Atividade::findOrFail($id);
         $atividades_edit->assunto_id = $atividades_edit->assunto_id;
-        $atividades_edit->atividade_plano = implode(',', $request->input('tags'));
+        $atividades_edit->atividade_tags = implode(',', $request->input('tags'));
         $atividades_edit->atividade_data = $request->data_atividade;
         $atividades_edit->atividade_status = $request->status_atividade;
         $atividades_edit->atividade_prioridade = $request->prioridade_atividade;

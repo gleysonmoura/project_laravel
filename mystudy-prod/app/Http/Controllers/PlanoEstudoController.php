@@ -112,6 +112,8 @@ class PlanoEstudoController extends Controller
 
     public function destroy($id)
     {
-        //
+        $planos = PlanoEstudo::findOrFail($id);
+        $planos->delete();
+        return redirect()->route('planoestudo.index')->with('success', 'Plano excluida com sucesso!');
     }
 }
