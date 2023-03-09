@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePlano;
 use App\Models\Desempenho;
+use App\Models\Disciplina;
 use App\Models\Exercicio;
 use App\Models\PlanoEstudo;
 use Illuminate\Support\Facades\Session;
@@ -97,7 +98,9 @@ class PlanoEstudoController extends Controller
             ->count();
 
 
-        return view('pages.planoestudo.planoestudo-show', compact('planos', 'count', 'count_atividades', 'count_exe', 'atividades', 'count_atividade', 'count_desempenhos'));
+        $disciplinas = Disciplina::with('assuntos')->get();
+
+        return view('pages.planoestudo.planoestudo-show', compact('planos', 'disciplinas', 'count', 'count_atividades', 'count_exe', 'atividades', 'count_atividade', 'count_desempenhos'));
     }
 
     public function edit($id)

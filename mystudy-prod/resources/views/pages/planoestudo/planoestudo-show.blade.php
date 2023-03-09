@@ -5,101 +5,52 @@
 
 <div class="container-fluid py-4">
     <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card">
-                <div class="card-body p-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Atividades</p>
-                                <h5 class="font-weight-bolder">
-                                    {{ $count_atividade }}
-                                </h5>
-                                {{-- <p class="mb-0">
-                                    <span class="text-success text-sm font-weight-bolder">+55%</span>
-                                    since yesterday
-                                </p> --}}
-                            </div>
-                        </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                                <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-                            </div>
-                        </div>
+        <div class="col-xl-12 col-sm-6 mb-xl-0 mb-4">
+            <div class="card card-body">
+                <div class="col-sm-auto col-4">
+                    <div class="h-100">
+                        <h6 class="mb-1 font-weight-bolder">
+                            {{ $planos->plano_nome}} - {{ $carbon::parse($planos->plano_data)->format('Y') }}
+                        </h6>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg-12 col-12">
             <div class="card">
-                <div class="card-body p-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Exercícios resolvidos</p>
-                                <h5 class="font-weight-bolder">
-                                    {{$count}}
-
-                                </h5>
-                                {{-- <p class="mb-0">
-                                    <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                    since last week
-                                </p> --}}
-                            </div>
-                        </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-                                <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card-header pb-0">
+                    <h6>Resumo do meu desempenho geral</h6>
                 </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card">
                 <div class="card-body p-3">
                     <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Assuntos Estudados</p>
-                                <h5 class="font-weight-bolder">
-                                    +3,462
-                                </h5>
-                                {{-- <p class="mb-0">
-                                    <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                                    since last quarter
-                                </p> --}}
+                        <div class="col-lg-3 col-6 text-center">
+                            <div class="border-dashed border-1 border-secondary border-radius-md py-3">
+                                <h6 class="text-primary mb-0">Total Atividades</h6>
+                                <h4 class="font-weight-bolder"><span id="state1"
+                                        countto="23980">{{ $count_atividade }}</span></h4>
                             </div>
                         </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                                <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                        <div class="col-lg-3 col-6 text-center">
+                            <div class="border-dashed border-1 border-secondary border-radius-md py-3">
+                                <h6 class="text-primary mb-0">Exercícios Resolvidos</h6>
+                                <h4 class="font-weight-bolder"><span id="state1" countto="23980">{{ $count }}</span>
+                                </h4>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6">
-            <div class="card">
-                <div class="card-body p-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Produtividade</p>
-                                <h5 class="font-weight-bolder">
-                                    50%
-                                </h5>
-                                <p class="mb-0">
-                                    <span class="text-success text-sm font-weight-bolder">+5%</span>
-                                    {{-- than last month --}}
-                                </p>
+                        <div class="col-lg-3 col-6 text-center">
+                            <div class="border-dashed border-1 border-secondary border-radius-md py-3">
+                                <h6 class="text-primary mb-0">Assuntos Estudados</h6>
+                                <h4 class="font-weight-bolder"><span id="state1" countto="23980">{{ $count }}</span>
+                                </h4>
                             </div>
                         </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
-                                <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
+                        <div class="col-lg-3 col-6 text-center">
+                            <div class="border-dashed border-1 border-secondary border-radius-md py-3">
+                                <h6 class="text-primary mb-0">Produtividade</h6>
+                                <h4 class="font-weight-bolder"><span id="state1" countto="23980">{{ $count }}</span>
+                                </h4>
                             </div>
                         </div>
                     </div>
@@ -108,8 +59,61 @@
         </div>
     </div>
     <div class="row mt-4">
-        <div class="col-lg-7 col-md-6 mb-4 mb-lg-0">
-            <div class="card">
+        <div class="col-12 col-lg-7">
+            <div class="card mb-3 mt-lg-0 mt-4">
+                <div class="card-header pb-0">
+                    <h6>Conteúdo</h6>
+                </div>
+                <div class="card-body p-3">
+                    <div class="accordion-1">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 mx-auto">
+                                    @foreach ($disciplinas as $key => $disciplina)
+                                    <div class="accordion" id="accordionRental">
+                                        <div class="accordion-item mb-3">
+                                            <h5 class="accordion-header" id="headingOne">
+                                                <button
+                                                    class="accordion-button border-bottom font-weight-bold collapsed"
+                                                    type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseOne{{ $key }}" aria-expanded="false"
+                                                    aria-controls="collapseOne{{ $key }}">
+                                                    {{ $disciplina->disciplina_none }}
+                                                    <i class="collapse-close fa fa-plus text-xs pt-1 position-absolute end-0 me-3"
+                                                        aria-hidden="true"></i>
+                                                    <i class="collapse-open fa fa-minus text-xs pt-1 position-absolute end-0 me-3"
+                                                        aria-hidden="true"></i>
+                                                </button>
+                                            </h5>
+                                            <div id="collapseOne{{ $key }}" class="accordion-collapse collapse"
+                                                aria-labelledby="headingOne{{ $key }}" data-bs-parent="#accordionRental"
+                                                style="">
+                                                <div class="accordion-body text-sm opacity-8">
+
+                                                    <div class="">
+                                                        @foreach ($disciplina->assuntos as $assunto)
+                                                        <a href="#"
+                                                            class="list-group-item list-group-item-action">{{ $assunto->assunto_nome }}</a>
+                                                        @endforeach
+                                                    </div>
+                                                    <a class="btn btn-link" href="javascript:;">
+                                                        <i class="fa-solid fa-right-long"></i>
+                                                        {{ $assunto->assunto_nome }}</a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-5">
+            <div class="card mb-3 mt-lg-0 mt-4">
                 <div class="card-header pb-0">
                     <h6>Timeline de Atividades</h6>
                 </div>
@@ -181,9 +185,7 @@
 
                 </div>
             </div>
-        </div>
-        <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-            <div class="card h-100 ">
+            <div class="card mb-3 mt-lg-0 mt-4">
                 <div class="card-header">
                     <h5 class="mb-0 text-capitalize">To do list</h5>
                     <small class="text-xs">{{date('d/m/Y') }}</small>
@@ -214,6 +216,12 @@
                     </ul>
                 </div>
             </div>
+        </div>
+        <div class="col-lg-7 col-md-6 mb-4 mb-lg-0">
+
+        </div>
+        <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+
         </div>
     </div>
     {{-- <div class="row mt-5">
