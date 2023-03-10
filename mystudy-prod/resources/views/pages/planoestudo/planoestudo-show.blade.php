@@ -1,7 +1,7 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 @inject('carbon', 'Carbon\Carbon')
 @section('content')
-{{-- @include('layouts.navbars.auth.topnav', ['title' => 'Dashboard']) --}}
+@include('layouts.navbars.auth.topnav', ['title' => 'Dashboard'])
 
 <div class="container-fluid py-4">
     <div class="row">
@@ -78,7 +78,8 @@
                                                     type="button" data-bs-toggle="collapse"
                                                     data-bs-target="#collapseOne{{ $key }}" aria-expanded="false"
                                                     aria-controls="collapseOne{{ $key }}">
-                                                    {{ $disciplina->disciplina_none }}
+                                                    <h6>{{ $disciplina->disciplina_none }}</h6>
+
                                                     <i class="collapse-close fa fa-plus text-xs pt-1 position-absolute end-0 me-3"
                                                         aria-hidden="true"></i>
                                                     <i class="collapse-open fa fa-minus text-xs pt-1 position-absolute end-0 me-3"
@@ -92,14 +93,22 @@
 
                                                     <div class="">
                                                         @foreach ($disciplina->assuntos as $assunto)
-                                                        <a href="#"
-                                                            class="list-group-item list-group-item-action">{{ $assunto->assunto_nome }}</a>
+                                                        <div class="d-flex justify-content-between">
+                                                            <span class="mb-2 text-sm">
+                                                                <i class="fa-solid fa-angles-right aria-hidden="
+                                                                    true""></i> {{ $assunto->assunto_nome }}
+                                                            </span>
+                                                            <span class="text-dark font-weight-bold ms-2"><a
+                                                                    href="{{ route('atividade.create') }}"
+                                                                    class="text-primary text-sm icon-move-right my-auto text-end">criar
+                                                                    atividade
+                                                                    <i class="fas fa-arrow-right text-xs ms-1"
+                                                                        aria-hidden="true"></i>
+                                                                </a></span>
+                                                        </div>
+                                                        <hr class="horizontal light" style="margin:1%">
                                                         @endforeach
                                                     </div>
-                                                    <a class="btn btn-link" href="javascript:;">
-                                                        <i class="fa-solid fa-right-long"></i>
-                                                        {{ $assunto->assunto_nome }}</a>
-
                                                 </div>
                                             </div>
                                         </div>

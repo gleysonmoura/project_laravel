@@ -16,4 +16,9 @@ class PlanoEstudo extends Model
     {
         return $this->hasMany(Atividade::class);
     }
+
+    public function editais()
+    {
+        return $this->belongsToMany(Edital::class);
+    }
 }
