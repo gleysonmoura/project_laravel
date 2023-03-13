@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assunto;
+use App\Models\Conteudo;
 use App\Models\Disciplina;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,12 +39,6 @@ class ConteudoController extends Controller
         return view("pages.conteudo.create", compact('disciplina'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $assunto = new Assunto();
@@ -57,15 +52,16 @@ class ConteudoController extends Controller
         return redirect()->route('conteudo.index')->with('Task Created Successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $conteudos = DB::table('conteudos as conteudo')
+            ->join('editals as edital', 'conteudo.edital_id', '=', 'edital.id')
+            ->join('Assuntos as assunto', 'assunto.id', '=', 'conteudo.assunto_id')
+            ->join('disciplinas as disciplina', 'disciplina.id', '=', 'assunto.disciplina_id')
+            ->orderBy('disciplina.disciplina_none')
+            ->get();
+
+        return view("pages.conteudo.conteudo-show", compact('conteudos'));
     }
 
     /**

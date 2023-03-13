@@ -9,6 +9,38 @@
         @include('alert-notification')
     </div>
     <div class="row mt-4 ">
+        @foreach ($planos as $item)
+        <div class="col-12 col-lg-6">
+            <div class="card mt-4">
+                <div class="card-body p-3">
+                    <div class="d-flex">
+                        <div class="avatar avatar-lg">
+                            <img alt="Image placeholder" src="/assets/img/small-logos/logo-slack.svg">
+                        </div>
+                        <div class="ms-2 my-auto">
+                            <h6 class="mb-0">{{ $item->plano_nome }}</h6>
+                            <p class="text-xs mb-0">11:00 AM</p>
+                        </div>
+                    </div>
+                    <p class="mt-3"> You have an upcoming meet for Marketing Planning</p>
+                    <p class="mb-0"><b>Meeting ID:</b> 902-128-281</p>
+                    <hr class="horizontal light">
+                    <div class="d-flex">
+                        <a href="{{ route('planoestudo.show', $item->id) }}" class=" btn btn-sm btn-primary mb-0">
+                            Join
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        @endforeach
+
+
+
+
         <div class="col-lg-12 col-12">
             <div class="card">
                 <div class="card-header pb-0">

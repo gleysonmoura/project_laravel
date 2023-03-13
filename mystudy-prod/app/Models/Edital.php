@@ -15,4 +15,8 @@ class Edital extends Model
     {
         return $this->belongsToMany(PlanoEstudo::class);
     }
+    public function Conteudos()
+    {
+        return $this->hasMany(Conteudo::class);
+    }
 }

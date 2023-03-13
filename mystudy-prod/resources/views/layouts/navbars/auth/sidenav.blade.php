@@ -143,16 +143,25 @@
             </li>
             <li class="nav-item">
                 <hr class="horizontal light">
-                <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">DOCS</h6>
+                <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">ADMIN</h6>
             </li>
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#basicExamples" class="nav-link collapsed"
-                    aria-controls="basicExamples" role="button" aria-expanded="false">
+                <a data-bs-toggle="collapse" href="#tagedital" class="nav-link collapsed" aria-controls="tagedital"
+                    role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
                         <i class="ni ni-spaceship text-sm text-white"></i>
                     </div>
-                    <span class="nav-link-text ms-1">PDF</span>
+                    <span class="nav-link-text ms-1">Edital</span>
                 </a>
+                <div class="collapse " id="tagedital">
+                    <ul class="nav ms-4">
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('edital.index') }}">
+                                <span class="sidenav-normal"> Index </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
         </ul>
         <div class="ps__rail-x" style="left: 0px; bottom: 0px;">

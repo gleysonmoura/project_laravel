@@ -8,6 +8,7 @@ use App\Http\Controllers\PlanoEstudoController;
 use App\Http\Controllers\AnotacaoController;
 use App\Http\Controllers\MetaController;
 use App\Http\Controllers\ExerciciosController;
+use App\Http\Controllers\EditalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +43,7 @@ Route::middleware('auth')->group(function () {
 	Route::resource('desempenho', DesempenhoController::class);
 	Route::resource('notas', AnotacaoController::class);
 	Route::resource('exercicio', ExerciciosController::class);
+	Route::resource('edital', EditalController::class);
 	Route::post('/saveexer/{id}', [ExerciciosController::class, 'saveexer'])->name('exercicio.saveexer');
 	/* 	Route::get('/finalizarexercicio/{id}', [ExerciciosController::class, 'finalizarexercicio'])->name('exercicio.finalizarexercicio'); */
 	Route::post('/finalizar/{id}', [DesempenhoController::class, 'finalizar'])->name('desempenho.finalizar');
