@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('editals', function (Blueprint $table) {
             $table->id();
-            $table->string('instituicao');
+            $table->string('instituicao_edital');
             $table->text('cargo_edital');
             $table->timestamps();
         });

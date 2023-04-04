@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePlano;
 use App\Models\Desempenho;
 use App\Models\Disciplina;
+use App\Models\Edital_planoEstudo;
 use App\Models\Exercicio;
 use App\Models\PlanoEstudo;
 use Illuminate\Support\Facades\Session;
@@ -22,18 +23,23 @@ class PlanoEstudoController extends Controller
 
     public function create()
     {
-        return view('pages.planoestudo.planoestudo-create');
+        $editals = DB::table('editals')->get();
+        return view('pages.planoestudo.planoestudo-create', compact('editals'));
     }
 
     public function store(CreatePlano $request)
     {
         $planos = new PlanoEstudo();
-
         $planos->plano_nome = $request->nome_plano;
         $planos->plano_data = $request->data_plano;
         $planos->plano_status = $request->status_plano;
-
         $planos->save();
+
+        $edital_plano = new Edital_planoEstudo();
+        $edital_plano->edital_id = $request->edital_plano;
+        $edital_plano->plano_estudo_id = $planos->id;
+
+        $edital_plano->save();
 
         return redirect()->route('planoestudo.index')->with('success', 'Plano de estudo criado com sucesso!');
     }

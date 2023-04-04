@@ -15,9 +15,16 @@ class Assunto extends Model
     {
         return $this->belongsTo(Disciplina::class);
     }
-
-    public function Atividades ()
+    public function Atividades()
     {
         return $this->hasMany(Atividade::class);
+    }
+    public function conteudos()
+    {
+        return $this->belongsToMany(Conteudo::class);
+    }
+    public function editais()
+    {
+        return $this->belongsToMany(Edital::class, 'conteudo');
     }
 }

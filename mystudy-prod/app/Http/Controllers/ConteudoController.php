@@ -7,6 +7,7 @@ use App\Models\Conteudo;
 use App\Models\Disciplina;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class ConteudoController extends Controller
 {
@@ -54,45 +55,51 @@ class ConteudoController extends Controller
 
     public function show($id)
     {
+
+
+
+        /*  return
+            $disciplinas = Disciplina::with(['assuntos' => function ($query) use ($edital_id) {
+                $query->where('edital_id', $edital_id);
+            }])
+            ->whereHas('assuntos', function ($query) use ($edital_id) {
+                $query->where('edital_id', $edital_id);
+            })
+            ->get();
+ */
+
         $conteudos = DB::table('conteudos as conteudo')
-            ->join('editals as edital', 'conteudo.edital_id', '=', 'edital.id')
             ->join('Assuntos as assunto', 'assunto.id', '=', 'conteudo.assunto_id')
-            ->join('disciplinas as disciplina', 'disciplina.id', '=', 'assunto.disciplina_id')
-            ->orderBy('disciplina.disciplina_none')
+            ->join('editals as edital', 'conteudo.edital_id', '=', 'edital.id')
+            ->where('conteudo.edital_id', '=', $id)
+            /*             ->join('conteudos as conteudo', 'conteudo.assunto_id', '=', 'assunto.id')
+ */
             ->get();
 
-        return view("pages.conteudo.conteudo-show", compact('conteudos'));
+        /*  return  $conteudos = DB::table('conteudos as conteudo')
+            ->join('editals as edital', 'conteudo.edital_id', '=', 'edital.id')
+            ->join('Assuntos as assunto', 'assunto.id', '=', 'conteudo.assunto_id')
+            ->select('*')
+            ->get(); */
+
+        $disciplinas = Disciplina::with('assuntos')->get();
+
+        return view("pages.conteudo.conteudo-show", compact('conteudos', 'disciplinas'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //

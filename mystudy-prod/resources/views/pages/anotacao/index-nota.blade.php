@@ -4,6 +4,56 @@
 @section('content')
 @include('layouts.navbars.auth.topnav', ['title' => 'Anotações'])
 
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-lg-9 col-12 mx-auto">
+            <div class="card card-body mt-4">
+                <h6 class="mb-0">Nova Anotação</h6>
+                @foreach ($atividadeshow as $item)
+                <p class="text-sm mb-0">Assunto - {{ $item->assunto_nome }}</p>
+                @endforeach
+                <hr class="horizontal my-3 light">
+                <div class="rating-wrapper" data-id="raiders">
+                    <label class="mt-4">Nivel de importância</label>
+                    <div class="star-wrapper">
+                        <i class="fa-regular fa-star" value='1'></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                </div>
+                <label class="mt-4">Titulo da anotação</label>
+                <input type="text" class="form-control" id="titulo_anotacao">
+
+
+                <label class="mt-4">Descrição</label>
+                <div class="row">
+                    <div class="col-12">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label class="form-label">Start Date</label>
+                        <input class="form-control datetimepicker flatpickr-input" type="text"
+                            placeholder="Please select start date" data-input="" onfocus="focused(this)"
+                            onfocusout="defocused(this)">
+                    </div>
+
+                </div>
+                <div class="d-flex justify-content-end mt-4">
+                    <button type="button" name="button" class="btn btn-light m-0">Cancel</button>
+                    <button type="button" name="button" class="btn bg-gradient-primary m-0 ms-2">Create
+                        Project</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="d-flex justify-content-center mb-5">
 
     <div class="col-lg-9 mt-lg-0 mt-4">
@@ -40,6 +90,13 @@
 </div>
 
 <script>
+    $("div.star-wrapper i").on("mouseover", function () {
+if ($(this).siblings("i.vote-recorded").length == 0) {
+$(this).prevAll().addBack().addClass("fa-solid yellow").removeClass("fa-regular");
+$(this).nextAll().removeClass("fa-solid yellow").addClass("fa-regular");
+}
+});
+
     var quill = new Quill('.quill-textarea', {
     placeholder: 'Enter Detail',
     theme: 'snow',

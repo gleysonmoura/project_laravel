@@ -13,11 +13,24 @@
                         Tag</a>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
-                    @foreach ($conteudos as $item)
-                    {{ $item->disciplina_none }}
-                    {{ $item->assunto_nome }}
+
+                    @foreach ($disciplinas as $key => $disciplina)
+                    <ul>
+                        {{ $disciplina->disciplina_none}}
+                        @foreach ($conteudos as $assunto)
+                        @if ($disciplina->id == $assunto->disciplina_id)
+                        <li>{{ $assunto->assunto_nome }}</li>
+                        @endif
+
+                        @endforeach
+                    </ul>
+
+
 
                     @endforeach
+
+
+
                 </div>
             </div>
         </div>

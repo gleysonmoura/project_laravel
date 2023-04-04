@@ -41,7 +41,10 @@ Route::middleware('auth')->group(function () {
 	Route::resource('planoestudo', PlanoEstudoController::class);
 	Route::resource('metaquestao', MetaController::class);
 	Route::resource('desempenho', DesempenhoController::class);
+
 	Route::resource('notas', AnotacaoController::class);
+	Route::get('/addnotas/{id}', [AnotacaoController::class, 'addnotas'])->name('notas.addnotas');
+
 	Route::resource('exercicio', ExerciciosController::class);
 	Route::resource('edital', EditalController::class);
 	Route::post('/saveexer/{id}', [ExerciciosController::class, 'saveexer'])->name('exercicio.saveexer');

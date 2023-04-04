@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Anotacao;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class AnotacaoController extends Controller
 {
@@ -12,10 +14,23 @@ class AnotacaoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         $notas = Anotacao::all();
         return view('pages.anotacao.index-nota', compact('notas'));
+    }
+
+    public function addnotas($id)
+    {
+        $atividadeshow = DB::table('atividades as ati')
+            ->where('ati.id', '=', $id)
+            ->where('ati.plano_id', '=', Session::get('id'))
+            ->join('assuntos as assu', 'assu.id', '=', 'ati.assunto_id')
+            ->select('ati.id', 'ati.plano_id', 'assu.assunto_nome')
+            ->get();
+
+        $notas = Anotacao::all();
+        return view('pages.anotacao.index-nota', compact('notas', 'atividadeshow'));
     }
 
     /**
@@ -35,6 +50,7 @@ class AnotacaoController extends Controller
      */
     public function store(Request $request)
     {
+
         $notas = new Anotacao();
         $notas->tag_notas = $request->detail;
 

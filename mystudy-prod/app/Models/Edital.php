@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Edital extends Model
 {
-    protected $fillable = ['instituicao', 'cargo_edital'];
+    protected $fillable = ['instituicao_edital', 'cargo_edital'];
     protected $guarded = ['id', 'created_at', 'update_at'];
     protected $table = 'editais';
 
@@ -18,5 +18,9 @@ class Edital extends Model
     public function Conteudos()
     {
         return $this->hasMany(Conteudo::class);
+    }
+    public function assuntos()
+    {
+        return $this->belongsToMany(Assunto::class, 'conteudo');
     }
 }

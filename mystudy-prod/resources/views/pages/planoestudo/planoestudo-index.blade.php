@@ -9,38 +9,6 @@
         @include('alert-notification')
     </div>
     <div class="row mt-4 ">
-        @foreach ($planos as $item)
-        <div class="col-12 col-lg-6">
-            <div class="card mt-4">
-                <div class="card-body p-3">
-                    <div class="d-flex">
-                        <div class="avatar avatar-lg">
-                            <img alt="Image placeholder" src="/assets/img/small-logos/logo-slack.svg">
-                        </div>
-                        <div class="ms-2 my-auto">
-                            <h6 class="mb-0">{{ $item->plano_nome }}</h6>
-                            <p class="text-xs mb-0">11:00 AM</p>
-                        </div>
-                    </div>
-                    <p class="mt-3"> You have an upcoming meet for Marketing Planning</p>
-                    <p class="mb-0"><b>Meeting ID:</b> 902-128-281</p>
-                    <hr class="horizontal light">
-                    <div class="d-flex">
-                        <a href="{{ route('planoestudo.show', $item->id) }}" class=" btn btn-sm btn-primary mb-0">
-                            Join
-                        </a>
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        @endforeach
-
-
-
-
         <div class="col-lg-12 col-12">
             <div class="card">
                 <div class="card-header pb-0">
@@ -49,7 +17,8 @@
                         <div class="ms-auto my-auto mt-lg-0 mt-4">
                             <div class="ms-auto my-auto">
                                 <a href="{{ route('planoestudo.create') }}"
-                                    class="btn bg-gradient-primary btn-sm mb-0">+&nbsp; Add
+                                    class="btn bg-gradient-primary btn-sm mb-0">+&nbsp;
+                                    Add
                                     Plano</a>
                             </div>
                         </div>
@@ -154,7 +123,98 @@
                 </div>
             </div>
         </div>
+        @forelse ( $planos as $item )
+        <div class="col-12 col-lg-6">
+            <div class="card mt-4">
+                <div class="card-body p-3">
+                    <div class="d-flex">
+                        <div class="avatar avatar-lg">
+                            <img alt="Image placeholder" src="/assets/img/small-logos/logo-slack.svg">
+                        </div>
+                        <div class="ms-3 my-auto">
+                            <h6 class="mb-0">{{ $item->plano_nome }}</h6>
+                            <p class="text-xs mb-0">{{ $carbon::parse($item->plano_data)->format('d/m/Y') }}</p>
+                            <div class="avatar-group">
+                                {{-- <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip"
+                                    data-original-title="Jessica Rowland" data-bs-original-title="" title="">
+                                    <img alt="Image placeholder" src="/assets/img/team-3.jpg" class="">
+                                </a> --}}
+                            </div>
+                        </div>
+                        <div class="ms-auto">
+                            <div class="dropdown">
+                                <button class="btn btn-link text-secondary ps-0 pe-2" id="navbarDropdownMenuLink"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-ellipsis-v text-lg" aria-hidden="true"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end me-sm-n4 me-n3"
+                                    aria-labelledby="navbarDropdownMenuLink" style="">
+                                    <a class="dropdown-item" href="javascript:;">Editar</a>
+                                    <form action="{{ route('planoestudo.destroy', $item->id) }}" class="delete_form"
+                                        method="post">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <a class="dropdown-item">Excluir
+                                        </a>
+                                    </form>
+                                    <a class="dropdown-item" href="javascript:;">
+
+                                    </a>
+                                    {{-- <a class="dropdown-item" href="javascript:;">Something else here</a> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- <div class="d-flex">
+                        <div class="avatar avatar-lg">
+                            <img alt="Image placeholder" src="/assets/img/small-logos/logo-slack.svg">
+                        </div>
+                        <div class="ms-2 my-auto">
+                            <h6 class="mb-0">{{ $item->plano_nome }}</h6>
+                    <p class="text-xs mb-0">{{ $carbon::parse($item->plano_data)->format('d/m/Y') }}</p>
+                </div>
+
+            </div> --}}
+            <p class="mt-3"> You have an upcoming meet for Marketing Planning</p>
+            <span class="badge badge-sm bg-gradient-info ">{{ $item->plano_status }}</span>
+            <hr class="horizontal light">
+            <div class="d-flex">
+                <a href="{{ route('planoestudo.show', $item->id) }}" class=" btn btn-sm btn-primary mb-0">
+                    Ir
+                </a>
+
+            </div>
+        </div>
     </div>
+
+</div>
+@empty
+<div class=" bg-gradient-default">
+    <div class="card-body">
+        <h5 class="card-title text-info text-warning">Olá,
+            {{ ucwords(auth()->user()->firstname)   }}
+            {{ ucwords(auth()->user()->lastname) }}
+        </h5>
+        <blockquote class="blockquote text-white mb-0">
+            <p class="text-dark ms-3">Você ainda não tem um plano de estudo!</p>
+            <footer class="blockquote-footer text-secondary text-sm ms-3">
+                Faça o cadastro e comece seus estudos.
+            </footer>
+        </blockquote>
+    </div>
+</div>
+@endforelse
+@foreach ($planos as $item)
+
+
+@endforeach
+
+
+
+
+
+</div>
 
 </div>
 
