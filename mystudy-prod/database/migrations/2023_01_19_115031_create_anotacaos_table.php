@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('anotacoes', function (Blueprint $table) {
             $table->id();
-            $table->longText('tag_notas');
+            $table->foreignId('plano_id')->references('id')->on('plano_estudos');
+            $table->foreignId('assunto_id')->references('id')->on('assuntos');
+            $table->string('titulo_anotacao', 200);
+            $table->longText('texto_anotacaco');
             $table->timestamps();
         });
     }

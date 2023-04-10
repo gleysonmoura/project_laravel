@@ -6,52 +6,66 @@
 
 <div class="container-fluid py-4">
     <div class="row">
-        <div class="col-lg-9 col-12 mx-auto">
+        <div class="col-12 mx-auto">
             <div class="card card-body mt-4">
-                <h6 class="mb-0">Nova Anotação</h6>
-                @foreach ($atividadeshow as $item)
-                <p class="text-sm mb-0">Assunto - {{ $item->assunto_nome }}</p>
-                @endforeach
+                <div class="card-header d-flex justify-content-between">
+                    <h6 class="mb-0">Plano de Estudos</h6>
+                    @foreach ($atividadeshow as $item)
+                    <p class="text-sm mb-0">Assunto - {{ $item->assunto_nome }}</p>
+
+                    @endforeach
+                </div>
                 <hr class="horizontal my-3 light">
-                <div class="rating-wrapper" data-id="raiders">
-                    <label class="mt-4">Nivel de importância</label>
-                    <div class="star-wrapper">
-                        <i class="fa-regular fa-star" value='1'></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
+                <form method="POST" action="{{ route('notas.storeanotacao', $item->id) }}">
+                    {{ csrf_field() }}
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="rating-wrapper" data-id="raiders">
+                                <label class="mt-4">Nível de importância</label>
+                                <div class="star-wrapper">
+                                    <i class="fa-regular fa-star" value='1'></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                </div>
-                <label class="mt-4">Titulo da anotação</label>
-                <input type="text" class="form-control" id="titulo_anotacao">
-
-
-                <label class="mt-4">Descrição</label>
-                <div class="row">
-                    <div class="col-12">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="mt-4">Titulo da anotação</label>
+                            <input type="text" class="form-control value=" {{ old('titulo_anotacao') }}"
+                                id="titulo_anotacao" name="titulo_anotacao">
+                            @error('titulo_anotacao') <p class="text-danger text-xs pt-1"> {{$message}} </p>
+                            @enderror
+                        </div>
                     </div>
-
-
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <label class="form-label">Start Date</label>
-                        <input class="form-control datetimepicker flatpickr-input" type="text"
-                            placeholder="Please select start date" data-input="" onfocus="focused(this)"
-                            onfocusout="defocused(this)">
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="mt-4">Descrição</label>
+                            <div class="row">
+                                <div class="col-12">
+                                    <textarea class="form-control value=" {{ old('texto_anotacaco') }}"
+                                        id="texto_anotacaco" name=texto_anotacaco"" rows="3"></textarea>
+                                    @error('texto_anotacaco') <p class="text-danger text-xs pt-1"> {{$message}} </p>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                </div>
-                <div class="d-flex justify-content-end mt-4">
-                    <button type="button" name="button" class="btn btn-light m-0">Cancel</button>
-                    <button type="button" name="button" class="btn bg-gradient-primary m-0 ms-2">Create
-                        Project</button>
-                </div>
+                    <div class="d-flex justify-content-end mt-4">
+                        <button type="button" name="button" class="btn btn-sm btn-light m-0">Cancel</button>
+                        <button type="submit" name="button" class="btn btn-sm bg-gradient-primary m-0 ms-2">Criar
+                            Anotação</button>
+                    </div>
+                </form>
             </div>
+
         </div>
     </div>
+</div>
 </div>
 
 <div class="d-flex justify-content-center mb-5">

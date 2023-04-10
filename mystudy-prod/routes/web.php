@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
 
 	Route::resource('notas', AnotacaoController::class);
 	Route::get('/addnotas/{id}', [AnotacaoController::class, 'addnotas'])->name('notas.addnotas');
+	Route::post('/storeanotacao/{id}', [AnotacaoController::class, 'storeanotacao'])->name('notas.storeanotacao');
 
 	Route::resource('exercicio', ExerciciosController::class);
 	Route::resource('edital', EditalController::class);

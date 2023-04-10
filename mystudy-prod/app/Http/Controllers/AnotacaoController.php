@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Anotacao as RequestsAnotacao;
 use App\Models\Anotacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +27,7 @@ class AnotacaoController extends Controller
             ->where('ati.id', '=', $id)
             ->where('ati.plano_id', '=', Session::get('id'))
             ->join('assuntos as assu', 'assu.id', '=', 'ati.assunto_id')
-            ->select('ati.id', 'ati.plano_id', 'assu.assunto_nome')
+            ->select('ati.id', 'ati.plano_id', 'assu.*')
             ->get();
 
         $notas = Anotacao::all();
@@ -48,11 +49,14 @@ class AnotacaoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeanotacao(RequestsAnotacao $request, $id)
     {
 
         $notas = new Anotacao();
-        $notas->tag_notas = $request->detail;
+        $notas->titulo_anotacao = $request->titulo_anotacao;
+        $notas->texto_anotacaco = $request->texto_anotacaco;
+        $notas->assunto_id = $id;
+        $notas->plano_id = Session::get('id');;
 
         $notas->save();
 
