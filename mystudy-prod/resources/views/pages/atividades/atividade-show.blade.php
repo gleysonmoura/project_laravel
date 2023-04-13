@@ -57,7 +57,7 @@
                                 <li><a class="dropdown-item text-white" data-bs-toggle="modal"
                                         data-bs-target="#Modaladdexercicio" href="#">Add Meta Exercicios</a></li>
                                 <li><a class="dropdown-item text-white"
-                                        href="{{ route('notas.addnotas', $item->id ) }}">Add
+                                        href="{{ route('anotacao.addnotas', $item->id ) }}">Add
                                         anotações</a></li>
                                 <li><a class="dropdown-item text-white"
                                         href="{{ route('atividade.finalizaratividade', $item->id) }}">Finalizar

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('plano_id')->references('id')->on('plano_estudos');
             $table->foreignId('assunto_id')->references('id')->on('assuntos');
             $table->string('titulo_anotacao', 200);
-            $table->longText('texto_anotacaco');
+            $table->longText('texto_anotacao');
             $table->timestamps();
         });
     }

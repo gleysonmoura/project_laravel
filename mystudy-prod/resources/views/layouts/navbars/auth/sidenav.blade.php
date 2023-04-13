@@ -85,6 +85,36 @@
                 </div>
             </li>
             <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#pagesExamples"
+                    class="nav-link {{ request()->routeIs('anotacao.*') ? 'active':'' }}" aria-controls="pagesExamples"
+                    role="button" aria-expanded="false">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ungroup text-warning text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Anotações</span>
+                </a>
+                <div class="collapse {{ request()->routeIs('anotacao.*') ? ' font-weight-bolder collapse show':'' }}"
+                    id="pagesExamples" style="">
+                    <ul class="nav ms-4">
+                        <li class="nav-item ">
+                            <a class="nav-link " href="{{ route('anotacao.index') }}">
+                                <span class="sidenav-normal"> Index </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " href="{{ route('anotacao.create') }}">
+                                <span class="sidenav-normal"> Criar </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " href="{{ route('anotacao.index') }}">
+                                <span class="sidenav-normal"> Lista </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#tagconteudo"
                     class="nav-link {{ request()->routeIs('conteudo.*') ? 'active':'' }}" aria-controls="tagconteudo"
                     role="button" aria-expanded="false">

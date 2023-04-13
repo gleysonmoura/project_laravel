@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Anotacao extends FormRequest
+class CreateAnotacao extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +15,7 @@ class Anotacao extends FormRequest
     {
         return [
             'titulo_anotacao' => 'required',
-            'texto_anotacaco' => 'required',
+            'descricao_anotacao' => 'required',
         ];
     }
 

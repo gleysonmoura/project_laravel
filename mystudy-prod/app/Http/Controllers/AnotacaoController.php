@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Anotacao as RequestsAnotacao;
+use App\Http\Requests\CreateAnotacao;
 use App\Models\Anotacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,10 +16,10 @@ class AnotacaoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
         $notas = Anotacao::all();
-        return view('pages.anotacao.index-nota', compact('notas'));
+        return view('pages.anotacao.anotacao-index', compact('notas'));
     }
 
     public function addnotas($id)
@@ -31,7 +32,7 @@ class AnotacaoController extends Controller
             ->get();
 
         $notas = Anotacao::all();
-        return view('pages.anotacao.index-nota', compact('notas', 'atividadeshow'));
+        return view('pages.anotacao.storeanotacao', compact('notas', 'atividadeshow'));
     }
 
     /**
@@ -49,18 +50,18 @@ class AnotacaoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeanotacao(RequestsAnotacao $request, $id)
+    public function storeanotacao(CreateAnotacao $request, $id)
     {
 
         $notas = new Anotacao();
         $notas->titulo_anotacao = $request->titulo_anotacao;
-        $notas->texto_anotacaco = $request->texto_anotacaco;
+        $notas->texto_anotacao = $request->descricao_anotacao;
         $notas->assunto_id = $id;
         $notas->plano_id = Session::get('id');;
 
         $notas->save();
 
-        return back();
+        return back()->with('success', 'Anotação cadastrada com sucesso!');
     }
 
     /**

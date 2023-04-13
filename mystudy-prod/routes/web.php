@@ -42,9 +42,9 @@ Route::middleware('auth')->group(function () {
 	Route::resource('metaquestao', MetaController::class);
 	Route::resource('desempenho', DesempenhoController::class);
 
-	Route::resource('notas', AnotacaoController::class);
-	Route::get('/addnotas/{id}', [AnotacaoController::class, 'addnotas'])->name('notas.addnotas');
-	Route::post('/storeanotacao/{id}', [AnotacaoController::class, 'storeanotacao'])->name('notas.storeanotacao');
+	Route::resource('anotacao', AnotacaoController::class);
+	Route::get('/addnotas/{id}', [AnotacaoController::class, 'addnotas'])->name('anotacao.addnotas');
+	Route::post('/storeanotacao/{id}', [AnotacaoController::class, 'storeanotacao'])->name('anotacao.storeanotacao');
 
 	Route::resource('exercicio', ExerciciosController::class);
 	Route::resource('edital', EditalController::class);
