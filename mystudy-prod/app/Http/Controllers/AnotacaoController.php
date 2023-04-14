@@ -11,14 +11,23 @@ use Illuminate\Support\Facades\Session;
 
 class AnotacaoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $notas = Anotacao::all();
+
+        $search = $request->search;
+        $notas = Anotacao::where(function ($query) use ($search) {
+            if ($search) {
+                $query->where('titulo_anotacao', 'LIKE', "%{$search}");
+                $query->orwhere('assunto_nome', 'LIKE', "%{$search}");
+            }
+        })
+            ->join('assuntos', 'anotacoes.assunto_id', '=', 'assuntos.id')
+            ->select('anotacoes.*', 'assuntos.assunto_nome')
+            ->get();
+
+
+        /* dd($notas); */
+
         return view('pages.anotacao.anotacao-index', compact('notas'));
     }
 
@@ -64,46 +73,25 @@ class AnotacaoController extends Controller
         return back()->with('success', 'Anotação cadastrada com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //
