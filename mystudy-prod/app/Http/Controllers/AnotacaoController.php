@@ -44,21 +44,12 @@ class AnotacaoController extends Controller
         return view('pages.anotacao.storeanotacao', compact('notas', 'atividadeshow'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function storeanotacao(CreateAnotacao $request, $id)
     {
 
@@ -76,7 +67,14 @@ class AnotacaoController extends Controller
 
     public function show($id)
     {
-        //
+        $anotacao = DB::table('anotacoes as anotacoes')
+            ->join('assuntos', 'anotacoes.assunto_id', '=', 'assuntos.id')
+            ->where('anotacoes.id', '=', $id)
+            ->select('anotacoes.*', 'assuntos.assunto_nome')
+            ->get();
+
+
+        return view('pages.anotacao.anotacao-show', compact('anotacao'));
     }
 
 

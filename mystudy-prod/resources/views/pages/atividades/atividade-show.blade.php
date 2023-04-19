@@ -13,7 +13,7 @@
         <div class="col-lg-9 mt-lg-0 mt-4">
             <div class="card mt-4">
                 @foreach ($atividadeshow as $item)
-                <div class="card-header d-flex align-items-center border-bottom py-3">
+                <div class="card-header d-flex align-items-center">
                     <div class="d-flex align-items-center">
                         <div class="">
                             <h5 class="text-white font-weight-700 mt-lg-0 mt-4">{{ Str::ucfirst($item->assunto_nome)  }}
@@ -47,6 +47,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="text-end ms-auto">
                         <div class="dropdown">
                             <button class="btn bg-gradient-info btn-sm dropdown-toggle" type="button"
@@ -68,6 +69,7 @@
                         class="btn bg-gradient-primary btn-sm float-end mt-6 mb-0">Voltar</a> --}}
                     </div>
                 </div>
+                <hr class="horizontal my-3 light">
                 <div class="card-body p-3">
                     <label class="mb-0 font-weight-bold text-sm">Observação</label>
                     {{-- <span class="mb-0 font-weight-bold text-sm">Observação</span> --}}

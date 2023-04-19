@@ -85,8 +85,8 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#pagesExamples"
-                    class="nav-link {{ request()->routeIs('anotacao.*') ? 'active':'' }}" aria-controls="pagesExamples"
+                <a data-bs-toggle="collapse" href="#pagesanotacao"
+                    class="nav-link {{ request()->routeIs('anotacao.*') ? 'active':'' }}" aria-controls="pagesanotacao"
                     role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
                         <i class="ni ni-ungroup text-warning text-sm opacity-10"></i>
@@ -94,7 +94,7 @@
                     <span class="nav-link-text ms-1">Anotações</span>
                 </a>
                 <div class="collapse {{ request()->routeIs('anotacao.*') ? ' font-weight-bolder collapse show':'' }}"
-                    id="pagesExamples" style="">
+                    id="pagesanotacao" style="">
                     <ul class="nav ms-4">
                         <li class="nav-item ">
                             <a class="nav-link " href="{{ route('anotacao.index') }}">

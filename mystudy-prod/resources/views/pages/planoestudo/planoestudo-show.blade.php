@@ -99,9 +99,8 @@
                                                                     true""></i> {{ $assunto->assunto_nome }}
                                                             </span>
                                                             <span class="text-dark font-weight-bold ms-2"><a
-                                                                    href="{{ route('atividade.create') }}"
-                                                                    class="text-primary text-sm icon-move-right my-auto text-end">criar
-                                                                    atividade
+                                                                    href="{{ route('viewestudar.show', $assunto->id) }}"
+                                                                    class="text-primary text-sm icon-move-right my-auto text-end">estudar
                                                                     <i class="fas fa-arrow-right text-xs ms-1"
                                                                         aria-hidden="true"></i>
                                                                 </a></span>

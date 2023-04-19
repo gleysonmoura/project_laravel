@@ -4,7 +4,7 @@
 @include('layouts.navbars.auth.topnav-home', ['title' => 'Plano de Estudo'])
 @include('layouts.navbars.auth.sidenav-home')
 <div class="container-fluid py-4">
-    <div class="row ">
+    <div class="row mt-4">
         <div class="col-12">
             <div class="card card-body mt-4">
                 <div class="card-header d-flex justify-content-between">

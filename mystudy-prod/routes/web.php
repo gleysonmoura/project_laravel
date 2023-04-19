@@ -9,6 +9,7 @@ use App\Http\Controllers\AnotacaoController;
 use App\Http\Controllers\MetaController;
 use App\Http\Controllers\ExerciciosController;
 use App\Http\Controllers\EditalController;
+use App\Http\Controllers\VisualizarEstudar;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +42,7 @@ Route::middleware('auth')->group(function () {
 	Route::resource('planoestudo', PlanoEstudoController::class);
 	Route::resource('metaquestao', MetaController::class);
 	Route::resource('desempenho', DesempenhoController::class);
+	Route::resource('viewestudar', VisualizarEstudar::class);
 
 	Route::resource('anotacao', AnotacaoController::class);
 	Route::get('/addnotas/{id}', [AnotacaoController::class, 'addnotas'])->name('anotacao.addnotas');
