@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Atividade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VisualizarEstudar extends Controller
 {
@@ -36,7 +37,13 @@ class VisualizarEstudar extends Controller
 
     public function show($id)
     {
-        $dados_assunto = Atividade::findOrFail($id);
+        $dados_assunto = DB::table('atividades as atividade')
+            ->where('atividade.assunto_id', '=', $id)
+            ->join('assuntos as assunto', 'atividade.assunto_id', '=', 'assunto.id')
+            ->join('disciplinas as disciplina', 'disciplina.id', 'assunto.disciplina_id')
+            ->get();
+
+        // return $dados_assunto = Atividade::findOrFail($id);
 
         return view('pages.estudar.estudar-index', compact('dados_assunto'));
     }

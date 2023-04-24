@@ -8,53 +8,21 @@
         <div class="col-md-7">
             <div class="card">
                 <div class="card-header pb-0 px-3">
-                    <h6 class="mb-0">Billing Information</h6>
+                    <h6 class="mb-0">Atividades</h6>
                 </div>
                 <div class="card-body pt-4 p-3">
+                    @foreach ( $dados_assunto as $dado_assunto)
                     <ul class="list-group">
                         <li class="list-group-item border-0 d-flex p-4 mb-2 border-radius-lg bg-gray-600">
                             <div class="d-flex flex-column">
-                                <h6 class="mb-3 text-sm">Oliver Liam</h6>
-                                <span class="mb-2 text-xs">Company Name: <span
-                                        class="font-weight-bold ms-sm-2 text-white">Viking Burrito</span></span>
-                                <span class="mb-2 text-xs">Email Address: <span
-                                        class="ms-sm-2 font-weight-bold text-white">oliver@burrito.com</span></span>
-                                <span class="text-xs">VAT Number: <span
-                                        class="ms-sm-2 font-weight-bold text-white">FRB1235476</span></span>
-                            </div>
-                            <div class="ms-auto text-end">
-                                <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i
-                                        class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete</a>
-                                <a class="btn btn-link px-3 mb-0 text-white" href="javascript:;"><i
-                                        class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
-                            </div>
-                        </li>
-                        <li class="list-group-item border-0 d-flex p-4 mb-2 mt-3 border-radius-lg bg-gray-600">
-                            <div class="d-flex flex-column">
-                                <h6 class="mb-3 text-sm">Lucas Harper</h6>
-                                <span class="mb-2 text-xs">Company Name: <span
-                                        class="font-weight-bold ms-sm-2 text-white">Stone Tech Zone</span></span>
-                                <span class="mb-2 text-xs">Email Address: <span
-                                        class="ms-sm-2 font-weight-bold text-white">lucas@stone-tech.com</span></span>
-                                <span class="text-xs">VAT Number: <span
-                                        class="ms-sm-2 font-weight-bold text-white">FRB1235476</span></span>
-                            </div>
-                            <div class="ms-auto text-end">
-                                <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i
-                                        class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete</a>
-                                <a class="btn btn-link px-3 mb-0 text-white" href="javascript:;"><i
-                                        class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
-                            </div>
-                        </li>
-                        <li class="list-group-item border-0 d-flex p-4 mb-2 mt-3 border-radius-lg bg-gray-600">
-                            <div class="d-flex flex-column">
-                                <h6 class="mb-3 text-sm">Ethan James</h6>
-                                <span class="mb-2 text-xs">Company Name: <span
-                                        class="font-weight-bold ms-sm-2 text-white">Fiber Notion</span></span>
-                                <span class="mb-2 text-xs">Email Address: <span
-                                        class="ms-sm-2 font-weight-bold text-white">ethan@fiber.com</span></span>
-                                <span class="text-xs">VAT Number: <span
-                                        class="ms-sm-2 font-weight-bold text-white">FRB1235476</span></span>
+                                <h6 class="mb-3 text-sm">{{ $dado_assunto->assunto_nome }}</h6>
+                                <span class="mb-2 text-xs">Data: <span
+                                        class="font-weight-bold ms-sm-2 text-white">{{ $dado_assunto->atividade_data }}
+                                        - {{ $dado_assunto->atividade_tempo }}</span></span>
+                                <span class="mb-2 text-xs">Status: <span
+                                        class="ms-sm-2 font-weight-bold text-white">{{ $dado_assunto->atividade_status }}</span></span>
+                                <span class="text-xs">TAGS: <span
+                                        class="ms-sm-2 font-weight-bold text-white">{{ $dado_assunto->atividade_tags }}</span></span>
                             </div>
                             <div class="ms-auto text-end">
                                 <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i
@@ -64,6 +32,8 @@
                             </div>
                         </li>
                     </ul>
+                    @endforeach
+
                 </div>
             </div>
         </div>
