@@ -139,27 +139,27 @@ class AtividadesController extends Controller
         $atividades_finalizar = Atividade::findOrFail($id);
 
         $exercicio = DB::table('exercicios as exe')
-            ->join('atividades as ati', 'exe.atividade_id', '=', 'ati.id')
             ->where('ati.plano_id', '=', Session::get('id'))
             ->where('exe.exer_status', '!=', 'finalizada')
-            ->get();
+            ->join('atividades as ati', 'exe.atividade_id', '=', 'ati.id')
+            ->count();
 
-        foreach ($exercicio as $result_exercicio) {
-            if ($result_exercicio == true) {
-                return back()->with('success', 'Atividade não pode ser finalizada, existe exercício pendente!');
-            } else {
-                $atividades_finalizar->plano_id = Session::get('id');
-                $atividades_finalizar->assunto_id = $atividades_finalizar->assunto_id;
-                $atividades_finalizar->atividade_tags = $atividades_finalizar->atividade_tags;
-                $atividades_finalizar->atividade_data = $atividades_finalizar->atividade_data;
-                $atividades_finalizar->atividade_status = "finalizada";
-                $atividades_finalizar->atividade_prioridade = $atividades_finalizar->atividade_prioridade;
-                $atividades_finalizar->atividade_observacao = $atividades_finalizar->atividade_observacao;
+        // foreach ($exercicio as $result_exercicio) {
+        if ($exercicio != 0) {
+            return back()->with('success', 'Atividade não pode ser finalizada, existe exercício pendente!');
+        } else {
+            $atividades_finalizar->plano_id = Session::get('id');
+            $atividades_finalizar->assunto_id = $atividades_finalizar->assunto_id;
+            $atividades_finalizar->atividade_tags = $atividades_finalizar->atividade_tags;
+            $atividades_finalizar->atividade_data = $atividades_finalizar->atividade_data;
+            $atividades_finalizar->atividade_status = "finalizada";
+            $atividades_finalizar->atividade_prioridade = $atividades_finalizar->atividade_prioridade;
+            $atividades_finalizar->atividade_observacao = $atividades_finalizar->atividade_observacao;
 
-                $atividades_finalizar->save();
-                return back()->with('success', 'Atividade finalizada com sucesso!');
-            }
+            $atividades_finalizar->save();
+            return back()->with('success', 'Atividade finalizada com sucesso!');
         }
+        //   }
     }
 
     public function edit($id)

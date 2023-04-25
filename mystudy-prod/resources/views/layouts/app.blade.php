@@ -83,6 +83,16 @@
         <script src="{{asset ('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
 
         <script>
+            const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
+            searchable: true,
+            fixedHeight: true,
+            columns: [{
+                select: [2],
+                sortable: false
+            }]
+        });
+        </script>
+        <script>
             var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
             var options = {

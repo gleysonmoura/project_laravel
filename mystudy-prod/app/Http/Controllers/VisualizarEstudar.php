@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Atividade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class VisualizarEstudar extends Controller
 {
@@ -43,9 +44,15 @@ class VisualizarEstudar extends Controller
             ->join('disciplinas as disciplina', 'disciplina.id', 'assunto.disciplina_id')
             ->get();
 
+        $exercicios = DB::table('exercicios as exer')
+            ->where('exer.atividade_id', '=', $id)
+            ->join('atividades', 'atividades.id', '=', 'exer.atividade_id')
+            ->join('assuntos as assu', 'assu.id', '=', 'atividades.assunto_id')
+            ->join('disciplinas as dis', 'assu.disciplina_id', '=', 'dis.id')
+            ->get();
         // return $dados_assunto = Atividade::findOrFail($id);
 
-        return view('pages.estudar.estudar-index', compact('dados_assunto'));
+        return view('pages.estudar.estudar-index', compact('dados_assunto', 'exercicios'));
     }
 
     /**
